@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivatorUserId" xml:space="preserve">
+    <value>Activator</value>
+  </data>
+  <data name="ActiveDateTime" xml:space="preserve">
+    <value>Active Time</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Address(es)</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>Address Title</value>
+  </data>
+  <data name="AttachmentLength" xml:space="preserve">
+    <value>Attachment Length (Byte)</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ChildCount" xml:space="preserve">
+    <value>Child Count</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CommentCount" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="CreatorUserId" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="CultureId" xml:space="preserve">
+    <value>Culture Id</value>
+  </data>
+  <data name="CultureLcid" xml:space="preserve">
+    <value>Culture Lcid</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="DeleteDateTime" xml:space="preserve">
+    <value>Delete Time</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="DiscountRate" xml:space="preserve">
+    <value>Discount Rate</value>
+  </data>
+  <data name="DiscountValue" xml:space="preserve">
+    <value>Discount Value</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="DownloadCount" xml:space="preserve">
+    <value>Download Count</value>
+  </data>
+  <data name="EditorUserId" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="HasAttachment" xml:space="preserve">
+    <value>Has Attachment</value>
+  </data>
+  <data name="Hits" xml:space="preserve">
+    <value>Hits</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="HomePageUrl" xml:space="preserve">
+    <value>Home Page Url</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Image Url</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="InsertAndUpdateDateTime" xml:space="preserve">
+    <value>Insert and Update Time</value>
+  </data>
+  <data name="InsertDateTime" xml:space="preserve">
+    <value>Insert Date Time</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="IsDeleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="IsFeatured" xml:space="preserve">
+    <value>Featured</value>
+  </data>
+  <data name="IsPin" xml:space="preserve">
+    <value>Is Pin</value>
+  </data>
+  <data name="IsPublic" xml:space="preserve">
+    <value>Is Public</value>
+  </data>
+  <data name="IsSystem" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>Verified</value>
+  </data>
+  <data name="KiloBytes" xml:space="preserve">
+    <value>Kilo Byte(s)</value>
+  </data>
+  <data name="LastUpdateDateTime" xml:space="preserve">
+    <value>Last Update Time</value>
+  </data>
+  <data name="ListItemIsDeleted" xml:space="preserve">
+    <value>Is Deleted!</value>
+  </data>
+  <data name="ListItemIsInactive" xml:space="preserve">
+    <value>Is Inactive!</value>
+  </data>
+  <data name="MasterDataCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="MasterDataIdentity" xml:space="preserve">
+    <value>Master Data Identity</value>
+  </data>
+  <data name="MegaBytes" xml:space="preserve">
+    <value>Mega Byte(s)</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Month(s)</value>
+  </data>
+  <data name="MoreInformation" xml:space="preserve">
+    <value>More Information</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>Ordering</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="PhoneNumbers" xml:space="preserve">
+    <value>Phone Number(s)</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ProjectActionCount" xml:space="preserve">
+    <value>Project Action Count</value>
+  </data>
+  <data name="RemoverUserId" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="Sha1OfAttachment" xml:space="preserve">
+    <value>SHA-1</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="UpdateDateTime" xml:space="preserve">
+    <value>Update Date Time</value>
+  </data>
+  <data name="UserCount" xml:space="preserve">
+    <value>User Count</value>
+  </data>
+  <data name="VerifiedBySite" xml:space="preserve">
+    <value>Verified By Site</value>
+  </data>
+  <data name="VerifierUserId" xml:space="preserve">
+    <value>Verifier</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>Verify Time</value>
+  </data>
+  <data name="WithoutSlashAtTheEnd" xml:space="preserve">
+    <value>Without Slash At The End!</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="DiscountEnd" xml:space="preserve">
+    <value>Discount End</value>
+  </data>
+  <data name="DiscountStart" xml:space="preserve">
+    <value>Discount Start</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="StatusMessage" xml:space="preserve">
+    <value>Status Message</value>
+  </data>
+  <data name="IsProposed" xml:space="preserve">
+    <value>Proposed</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="EndDateTime" xml:space="preserve">
+    <value>End Date Time</value>
+  </data>
+  <data name="StartDateTime" xml:space="preserve">
+    <value>Start Date Time</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+</root>

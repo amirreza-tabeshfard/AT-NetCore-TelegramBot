@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivatorUserId" xml:space="preserve">
+    <value>مسوول فعال‌سازی</value>
+  </data>
+  <data name="ActiveDateTime" xml:space="preserve">
+    <value>زمان فعال‌سازی</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>نشانی</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>نشانی(ها)</value>
+  </data>
+  <data name="AddressTitle" xml:space="preserve">
+    <value>عنوان نشانی</value>
+  </data>
+  <data name="AttachmentLength" xml:space="preserve">
+    <value>اندازه فايل (بايت)</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>طبقه‌بندی</value>
+  </data>
+  <data name="ChildCount" xml:space="preserve">
+    <value>تعداد زيرمجموعه</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>کد</value>
+  </data>
+  <data name="CommentCount" xml:space="preserve">
+    <value>نظرات</value>
+  </data>
+  <data name="CreatorUserId" xml:space="preserve">
+    <value>ايجاد کننده</value>
+  </data>
+  <data name="CultureId" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="CultureLcid" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>ريال</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>روز</value>
+  </data>
+  <data name="DeleteDateTime" xml:space="preserve">
+    <value>زمان حذف</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>توضيحات</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>تخفيف</value>
+  </data>
+  <data name="DiscountRate" xml:space="preserve">
+    <value>درصد تخفيف</value>
+  </data>
+  <data name="DiscountValue" xml:space="preserve">
+    <value>مقدار تخفيف</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>دانلود</value>
+  </data>
+  <data name="DownloadCount" xml:space="preserve">
+    <value>تعداد دانلود</value>
+  </data>
+  <data name="EditorUserId" xml:space="preserve">
+    <value>ويرايش کننده</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>ندارد</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>فايل</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>نام فايل</value>
+  </data>
+  <data name="Free" xml:space="preserve">
+    <value>رايگان</value>
+  </data>
+  <data name="HasAttachment" xml:space="preserve">
+    <value>فايل ضميمه</value>
+  </data>
+  <data name="Hits" xml:space="preserve">
+    <value>بازديد</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>صفحه خانگی</value>
+  </data>
+  <data name="HomePageUrl" xml:space="preserve">
+    <value>نشانی صفحه خانگی</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>ساعت</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>شناسه</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>تصوير</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>نشانی عکس</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>غير فعال</value>
+  </data>
+  <data name="InsertAndUpdateDateTime" xml:space="preserve">
+    <value>زمان درج و ويرايش</value>
+  </data>
+  <data name="InsertDateTime" xml:space="preserve">
+    <value>زمان درج</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="IsDeleted" xml:space="preserve">
+    <value>حذف شده</value>
+  </data>
+  <data name="IsFeatured" xml:space="preserve">
+    <value>برگزيده</value>
+  </data>
+  <data name="IsPin" xml:space="preserve">
+    <value>سنجاق</value>
+  </data>
+  <data name="IsPublic" xml:space="preserve">
+    <value>نمايش برای عموم</value>
+  </data>
+  <data name="IsSystem" xml:space="preserve">
+    <value>سيستمی</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>تاييد شده</value>
+  </data>
+  <data name="KiloBytes" xml:space="preserve">
+    <value>کيلوبايت</value>
+  </data>
+  <data name="LastUpdateDateTime" xml:space="preserve">
+    <value>آخرين زمان ويرايش</value>
+  </data>
+  <data name="ListItemIsDeleted" xml:space="preserve">
+    <value>حذف شده!</value>
+  </data>
+  <data name="ListItemIsInactive" xml:space="preserve">
+    <value>غير فعال!</value>
+  </data>
+  <data name="MasterDataCode" xml:space="preserve">
+    <value>کد خارجی</value>
+  </data>
+  <data name="MasterDataIdentity" xml:space="preserve">
+    <value>مشخصه خارجی</value>
+  </data>
+  <data name="MegaBytes" xml:space="preserve">
+    <value>مگابايت</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>ماه</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>ماه</value>
+  </data>
+  <data name="MoreInformation" xml:space="preserve">
+    <value>اطلاعات بيشتر</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>خير</value>
+  </data>
+  <data name="Ordering" xml:space="preserve">
+    <value>چيدمان</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>درصد</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>شماره تماس</value>
+  </data>
+  <data name="PhoneNumbers" xml:space="preserve">
+    <value>شماره(های) تماس</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>قيمت</value>
+  </data>
+  <data name="ProjectActionCount" xml:space="preserve">
+    <value>تعداد فعاليت‌ها</value>
+  </data>
+  <data name="RemoverUserId" xml:space="preserve">
+    <value>مسئول حذف</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>فايل را انتخاب نماييد</value>
+  </data>
+  <data name="Sha1OfAttachment" xml:space="preserve">
+    <value>SHA-1</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="Unlimited" xml:space="preserve">
+    <value>نامحدود</value>
+  </data>
+  <data name="UpdateDateTime" xml:space="preserve">
+    <value>زمان ويرايش</value>
+  </data>
+  <data name="UserCount" xml:space="preserve">
+    <value>تعداد کاربران</value>
+  </data>
+  <data name="VerifiedBySite" xml:space="preserve">
+    <value>مورد تاييد پايگاه</value>
+  </data>
+  <data name="VerifierUserId" xml:space="preserve">
+    <value>مسوول تاييد</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>زمان تاييد</value>
+  </data>
+  <data name="WithoutSlashAtTheEnd" xml:space="preserve">
+    <value>بدون Slash در انتها!</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>سال</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>بلی</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>گروه</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>گروه ها</value>
+  </data>
+  <data name="DiscountEnd" xml:space="preserve">
+    <value>پایان تخفیف</value>
+  </data>
+  <data name="DiscountStart" xml:space="preserve">
+    <value>شروع تخفیف</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>موجود</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="StatusMessage" xml:space="preserve">
+    <value>وضعیت پیام</value>
+  </data>
+  <data name="IsProposed" xml:space="preserve">
+    <value>پیشنهاد</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>اجباری</value>
+  </data>
+  <data name="EndDateTime" xml:space="preserve">
+    <value>زمان پایان</value>
+  </data>
+  <data name="StartDateTime" xml:space="preserve">
+    <value>زمان شروع</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>نظر</value>
+  </data>
+</root>

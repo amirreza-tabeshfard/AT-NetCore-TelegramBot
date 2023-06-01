@@ -4,7 +4,7 @@ public partial class FrmLoading : Form
 {
     #region Field(s)
 
-
+    private readonly FrmMain _frmMain;
 
     #endregion
 
@@ -13,6 +13,7 @@ public partial class FrmLoading : Form
     public FrmLoading()
     {
         InitializeComponent();
+        _frmMain = new FrmMain();
     }
 
     #endregion
@@ -27,6 +28,7 @@ public partial class FrmLoading : Form
         {
             timer.Enabled = false;
             this.Hide();
+            _frmMain.Show();
         }
     }
 

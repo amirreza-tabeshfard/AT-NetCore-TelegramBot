@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Compare" xml:space="preserve">
+    <value>Values of the Fields {1} and {2} must be equal!</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>{0} must be equal to {1}</value>
+  </data>
+  <data name="DatabaseBackup" xml:space="preserve">
+    <value>The database was successfully backed up by the file.</value>
+  </data>
+  <data name="DuplicateError" xml:space="preserve">
+    <value>The {0} field value is already exist! Please choose another one.</value>
+  </data>
+  <data name="Error002" xml:space="preserve">
+    <value>Unfortunately, your email address has not been confirmed so far! Please check your e-mail account to confirm it.</value>
+  </data>
+  <data name="Error003" xml:space="preserve">
+    <value>Unfortunately, you are not able to log into the database! Please contact the database administrators.</value>
+  </data>
+  <data name="Error007" xml:space="preserve">
+    <value>{0} The page uses this template! So you can not delete it.</value>
+  </data>
+  <data name="Error008" xml:space="preserve">
+    <value>Sorry, you have not entered the correct password right now!</value>
+  </data>
+  <data name="Error009" xml:space="preserve">
+    <value>Username and / or password is not correct! Please try again</value>
+  </data>
+  <data name="Error100" xml:space="preserve">
+    <value>You did not specify file for uploading!</value>
+  </data>
+  <data name="Error101" xml:space="preserve">
+    <value>This information has been used elsewhere, so you can not remove it!</value>
+  </data>
+  <data name="Error110" xml:space="preserve">
+    <value>The file is in use! So you can not delete it...</value>
+  </data>
+  <data name="Error200" xml:space="preserve">
+    <value>Random Data Has Been Created Previously!</value>
+  </data>
+  <data name="ErrorOnJson" xml:space="preserve">
+    <value>Error on sending or receiving data!</value>
+  </data>
+  <data name="Information001" xml:space="preserve">
+    <value>Your new password has been successfully registered.</value>
+  </data>
+  <data name="Information002" xml:space="preserve">
+    <value>Your information has been successfully recorded.</value>
+  </data>
+  <data name="Information003" xml:space="preserve">
+    <value>The operation of updating subsystem information, sections, and activities was done successfully.</value>
+  </data>
+  <data name="Information004" xml:space="preserve">
+    <value>Your photo has been successfully uploaded</value>
+  </data>
+  <data name="Information005" xml:space="preserve">
+    <value>Your resume has been successfully sent</value>
+  </data>
+  <data name="Information006" xml:space="preserve">
+    <value>The file was successfully saved at the time of {0}.</value>
+  </data>
+  <data name="Information007" xml:space="preserve">
+    <value>Random Data Created Successfully.</value>
+  </data>
+  <data name="Information010" xml:space="preserve">
+    <value>The file uploaded successfully.</value>
+  </data>
+  <data name="Information011" xml:space="preserve">
+    <value>The file deleted successfully.</value>
+  </data>
+  <data name="JsonRequestError" xml:space="preserve">
+    <value>Error on sending/receiving Data!</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading... Please Wait!</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>Length of {0} could not be more than {1}!</value>
+  </data>
+  <data name="Question001" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>{0} must be between {1} and {2}!</value>
+  </data>
+  <data name="RegularExpressionForCellPhoneNumber" xml:space="preserve">
+    <value>You did not specify a valid cell phone number!</value>
+  </data>
+  <data name="RegularExpressionForDouble" xml:space="preserve">
+    <value>For the field {0} you are just allowed to use integer or double numbers!</value>
+  </data>
+  <data name="RegularExpressionForEmail" xml:space="preserve">
+    <value>{0} is not a valid email address!</value>
+  </data>
+  <data name="RegularExpressionForFileName" xml:space="preserve">
+    <value>{0} is invalid! {0} must contains _ and/or upercase and lowercase English character and/or number between 0 - 9 and its length must be between 1 - 100 characters.</value>
+  </data>
+  <data name="RegularExpressionForInteger" xml:space="preserve">
+    <value>For the field {0} you are just allowed to use integer numbers!</value>
+  </data>
+  <data name="RegularExpressionForMoney" xml:space="preserve">
+    <value>{0} is not valid!</value>
+  </data>
+  <data name="RegularExpressionForNationalCode" xml:space="preserve">
+    <value>{0} is invalid! {0} must contains 10 digits.</value>
+  </data>
+  <data name="RegularExpressionForPassword" xml:space="preserve">
+    <value>{0} is invalid! {0} must contains _ and/or upercase and lowercase English character and/or number between 0 - 9 and its length must be between 8 - 40 characters.</value>
+  </data>
+  <data name="RegularExpressionForPercentage" xml:space="preserve">
+    <value>For the field {0} you should use numbers between 0.00 to 100.00!</value>
+  </data>
+  <data name="RegularExpressionForUrl" xml:space="preserve">
+    <value>{0} is not a valid url address!</value>
+  </data>
+  <data name="RegularExpressionForUsername" xml:space="preserve">
+    <value>{0} is invalid! {0} must contains _ and/or upercase and lowercase English character and/or number between 0 - 9 and its length must be between 6 - 20 characters.</value>
+  </data>
+  <data name="RegularExpressionForZeroOrUnsignedInteger" xml:space="preserve">
+    <value>For the field {0} you are just allowed to use integer numbers &gt;=0</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>The {0} is required!</value>
+  </data>
+  <data name="RequiredGeneral" xml:space="preserve">
+    <value>Required!</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Your information saved successfully.</value>
+  </data>
+  <data name="SelectAnItem" xml:space="preserve">
+    <value>Select an item...</value>
+  </data>
+  <data name="StringLength" xml:space="preserve">
+    <value>{0} must be between {2} and {1} characters!</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>An unknown error has occurred! Please contact the system administrator.</value>
+  </data>
+  <data name="UnvalidatedValue" xml:space="preserve">
+    <value>Field value {0} is not valid!</value>
+  </data>
+  <data name="YouCanSelectAnItem" xml:space="preserve">
+    <value>You can select an item...</value>
+  </data>
+  <data name="YouShouldSelectAnItem" xml:space="preserve">
+    <value>You should select an item!</value>
+  </data>
+</root>
