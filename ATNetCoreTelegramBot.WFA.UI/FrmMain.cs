@@ -7,7 +7,7 @@ public partial class FrmMain : Form
     #region Field(s)
 
     private FrmTelegramBot _frmTelegramBot;
-    private FrmGroupIndex frmGroupIndex;
+    private FrmGroupIndex _frmGroupIndex;
 
     #endregion
 
@@ -33,12 +33,12 @@ public partial class FrmMain : Form
 
     private void GroupIndexShow()
     {
-        frmGroupIndex = new FrmGroupIndex();
+        _frmGroupIndex = new FrmGroupIndex();
 
         if (this.MdiChildren.Count() == 1)
         {
-            frmGroupIndex.MdiParent = this;
-            frmGroupIndex.Show();
+            _frmGroupIndex.MdiParent = this;
+            _frmGroupIndex.Show();
         }
         else
         {
@@ -59,7 +59,7 @@ public partial class FrmMain : Form
         toolStriplblCurrentDateTime.Visible = true;
         toolStriplblDateTimeAge.Visible = true;
         toolStriplblListen.Visible = true;
-        toolStriplblListen.Text = $"Start listening for @{FrmTelegramBot.myTelegramBotUser?.Username}";
+        toolStriplblListen.Text = $"Start listening for @{FrmTelegramBot.telegramBotUser?.Username}";
         toolStriplblCurrentDateTime.Text = FrmTelegramBot.currentDateTime.ToString();
         toolStriplblDateTimeAge.Text = DateTimeExtensions.GetAge(FrmTelegramBot.currentDateTime);
 

@@ -1,5 +1,10 @@
-﻿using Telegram.Bot;
+﻿using System;
+using Telegram.Bot;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ATNetCoreTelegramBot.WFA.UI;
 
@@ -8,8 +13,10 @@ public partial class FrmTelegramBot : Form
     #region Field(s)
 
     internal static DateTime currentDateTime;
-    internal static User myTelegramBotUser;
+    internal static User telegramBotUser;
     internal static bool isOnline;
+
+    private FrmGroupIndex _frmGroupIndex;
 
     #endregion
 
@@ -18,26 +25,31 @@ public partial class FrmTelegramBot : Form
     public FrmTelegramBot()
     {
         InitializeComponent();
+        _frmGroupIndex = new FrmGroupIndex();
     }
 
     #endregion
 
     #region Private Method(s)
 
-    private void Online()
+    private void SetOnline()
     {
-        currentDateTime = DateTime.Now;
-        txtToken.Enabled = false;
-        btnStart.Enabled = false;
-        btnEnd.Enabled = true;
-        toolStriplblCheckOnline.Text = "Online";
-        toolStriplblCheckOnline.ForeColor = System.Drawing.Color.Green;
-        //Program.telegramBotClient = new TelegramBotClient(token: Program.Token, httpClient: null);
-        //myTelegramBotUser = Program.telegramBotClient.GetMeAsync().Result;
-        isOnline = true;
+        Program.telegramBotClient = new TelegramBotClient(token: Program.Token, httpClient: null);
+        telegramBotUser = Program.telegramBotClient.GetMeAsync().Result;
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        if (telegramBotUser is not null)
+        {
+            currentDateTime = DateTime.Now;
+            txtToken.Enabled = false;
+            btnStart.Enabled = false;
+            btnEnd.Enabled = true;
+            toolStriplblCheckOnline.Text = "Online";
+            toolStriplblCheckOnline.ForeColor = System.Drawing.Color.Green;
+            isOnline = true;
+        }
     }
 
-    private void Offline()
+    private void SetOffline()
     {
         txtToken.Enabled = true;
         btnStart.Enabled = true;
@@ -47,15 +59,94 @@ public partial class FrmTelegramBot : Form
         isOnline = false;
     }
 
-    private void CheckOnline()
+    private void IsOnline()
     {
         if (isOnline)
         {
             Program.Token = txtToken.Text;
-            Online();
+            SetOnline();
         }
         else
-            Offline();
+            SetOffline();
+    }
+
+    #endregion
+
+    #region Method(s): TelegramBot
+
+    private ReceiverOptions? ReceiverOption()
+    {
+        ReceiverOptions? result = default;
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        result = new ReceiverOptions()
+        {
+            AllowedUpdates = new UpdateType[]
+            {
+                UpdateType.Message,
+                UpdateType.EditedMessage,
+            }
+        };
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        return result;
+    }
+
+    private async Task PollingErrorHandler(ITelegramBotClient telegramBotClient, Exception exception, CancellationToken cancellationToken)
+    {
+        if (exception is ApiRequestException apiRequestException)
+            await telegramBotClient.SendTextMessageAsync(chatId: telegramBotUser.Id,
+                                                         text: exception.Message,
+                                                         messageThreadId: default,
+                                                         parseMode: default,
+                                                         entities: default,
+                                                         disableNotification: default,
+                                                         disableWebPagePreview: default,
+                                                         protectContent: default,
+                                                         replyToMessageId: default,
+                                                         allowSendingWithoutReply: default,
+                                                         replyMarkup: default,
+                                                         cancellationToken: default
+                                                         );
+    }
+
+    private async Task UpdateHandler(ITelegramBotClient telegramBotClient, Update update, CancellationToken cancellationToken)
+    {
+        Telegram.Bot.Types.Message? message = update.Message;
+        Chat chat = message.Chat;
+        User? user = message.From;
+        MessageType type = message.Type;
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        bool? groupStatus = default;
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        try
+        {
+            if (user is not null)
+                groupStatus = _frmGroupIndex.InitializeGroups(id: user.Id, userName: user.Username);
+
+            if ((groupStatus is null) || (groupStatus is false))
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        catch (Exception ex)
+        {
+            await telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
+                                                         text: ex.Message,
+                                                         messageThreadId: default,
+                                                         parseMode: default,
+                                                         entities: default,
+                                                         disableNotification: default,
+                                                         disableWebPagePreview: default,
+                                                         protectContent: default,
+                                                         replyToMessageId: default,
+                                                         allowSendingWithoutReply: default,
+                                                         replyMarkup: default,
+                                                         cancellationToken: default
+                                                         );
+        }
     }
 
     #endregion
@@ -65,7 +156,7 @@ public partial class FrmTelegramBot : Form
     private void FrmTelegramBot_Load(object sender, EventArgs e)
     {
         txtToken.Text = Program.Token;
-        CheckOnline();
+        IsOnline();
     }
 
     private void FrmTelegramBot_FormClosing(object sender, FormClosingEventArgs e)
@@ -83,15 +174,15 @@ public partial class FrmTelegramBot : Form
     private void BtnStart_Click(object sender, EventArgs e)
     {
         isOnline = true;
-        CheckOnline();
-        //Program.telegramBotClient.StartReceiving(updateHandler: default, receiverOptions: default, cancellationToken: default);
+        IsOnline();
+        Program.telegramBotClient.StartReceiving(updateHandler: UpdateHandler, pollingErrorHandler: PollingErrorHandler, receiverOptions: ReceiverOption());
     }
 
     private void BtnEnd_Click(object sender, EventArgs e)
     {
-        Offline();
-        //if (Program.telegramBotClient != null)
-        //    Program.telegramBotClient = default;
+        SetOffline();
+        if (Program.telegramBotClient != null)
+            Program.telegramBotClient = default;
     }
 
     #endregion

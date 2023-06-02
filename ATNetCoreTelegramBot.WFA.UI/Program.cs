@@ -14,13 +14,13 @@ internal static class Program
 
     static Program()
     {
-        Token = "1936144475:AAGwL-4GRQDskAnXAQafJKlujf1cbjEUeuw";
+        Token = "6105915531:AAEaNaJWSJyqlrMo1vVxYM1iTU6sPT7KEgg";
     }
 
     [STAThread]
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        Application.Run(new FrmGroupIndex());
+        Application.Run(new FrmLoading());
     }
 }

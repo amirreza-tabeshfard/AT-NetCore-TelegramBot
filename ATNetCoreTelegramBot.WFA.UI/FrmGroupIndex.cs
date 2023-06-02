@@ -1,8 +1,9 @@
 ﻿using System.Data;
 using System.Text;
 
-using Telegram.Bot.Types.Enums;
 using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 using ATNetCoreTelegramBot.Common.Extensions;
 
@@ -14,7 +15,6 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     private FrmGroupInsert _frmGroupInsert;
     private FrmGroupUpdate _frmGroupUpdate;
-    private static bool isNotExsictToGroups = default;
 
     #endregion
 
@@ -71,13 +71,17 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
             {
                 try
                 {
-                    //Task<Telegram.Bot.Types.ChatMember> chatMember = Program.telegramBotClient.GetChatMemberAsync(group, id);
+                    Task<ChatMember> chatMember = Program.telegramBotClient.GetChatMemberAsync(group, id);
 
-                    //if (chatMember.Result.Status.ToString().Length > 25)
-                    //    result.Add(group);
+                    if (chatMember is not null)
+                        if (chatMember.Result is not null)
+                        {
+                            if (chatMember.Result.Status.ToString().Length > 25)
+                                result.Add(group);
 
-                    //if (chatMember.Result.Status.ToString() == "Left")
-                    //    result.Add(group);
+                            if (chatMember.Result.Status.ToString() == "Left")
+                                result.Add(group);
+                        }
                 }
                 catch (Exception ex)
                 {
@@ -119,44 +123,50 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     #region Internal Method(s)
 
-    internal bool InitializeGroups(long id, string userName)
+    public bool? InitializeGroups(long id, string userName)
     {
-        bool result = default;
+        bool? result = default;
         IEnumerable<string> NamesOfGroupsThatTheUserIsNotAMember;
         IEnumerable<string> groupNames = InitializeChannelAndGroups();
-
-        NamesOfGroupsThatTheUserIsNotAMember = InMemberOfGroups(groupNames, id);
-
-        if (NamesOfGroupsThatTheUserIsNotAMember.Count() != 0)
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        if (groupNames.Any())
         {
-            StringBuilder sb = new StringBuilder();
+            NamesOfGroupsThatTheUserIsNotAMember = InMemberOfGroups(groupNames, id);
 
-            sb.AppendLine($"کاربر گرامی (<b><i>{userName}</i></b>)");
-            sb.AppendLine("جهت استفاده از این ربات باید عضو گروه های ذیل شوید.");
-            sb.AppendLine();
-            sb.AppendLine("👥 لیست گروه ها");
-
-            foreach (var item in NamesOfGroupsThatTheUserIsNotAMember)
+            if (NamesOfGroupsThatTheUserIsNotAMember.Count() != 0)
             {
-                string url = item.Replace("@", "https://t.me/");
-                sb.AppendLine($"🔘 <a href='{url}'>{item.Replace("@", "")}</a>");
-            }
+                StringBuilder sb = new StringBuilder();
 
-            //Program.telegramBotClient.SendTextMessageAsync(
-            //                                        chatId: id,
-            //                                        text: sb.ToString(),
-            //                                        parseMode: ParseMode.Html,
-            //                                        disableNotification: false,
-            //                                        disableWebPagePreview: false,
-            //                                        replyToMessageId: 0,
-            //                                        replyMarkup: null,
-            //                                        cancellationToken: CancellationToken.None
-            //                                    );
-            isNotExsictToGroups = true;
-            result = true;
+                sb.AppendLine($"کاربر گرامی (<b><i>{userName}</i></b>)");
+                sb.AppendLine("جهت استفاده از این ربات باید عضو گروه های ذیل شوید.");
+                sb.AppendLine();
+                sb.AppendLine("👥 لیست گروه ها");
+
+                foreach (var item in NamesOfGroupsThatTheUserIsNotAMember)
+                {
+                    string url = item.Replace("@", "https://t.me/");
+                    sb.AppendLine($"🔘 <a href='{url}'>{item.Replace("@", "")}</a>");
+                }
+
+                Program.telegramBotClient.SendTextMessageAsync(chatId: id,
+                                                             text: sb.ToString(),
+                                                             messageThreadId: default,
+                                                             parseMode: ParseMode.Html,
+                                                             entities: default,
+                                                             disableNotification: default,
+                                                             disableWebPagePreview: default,
+                                                             protectContent: default,
+                                                             replyToMessageId: default,
+                                                             allowSendingWithoutReply: default,
+                                                             replyMarkup: default,
+                                                             cancellationToken: CancellationToken.None
+                                                             );
+
+                result = true;
+            }
+            else
+                result = false;
         }
-        else
-            isNotExsictToGroups = false;
 
         return result;
     }
@@ -168,7 +178,6 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
     private void FrmGroupIndex_Load(object sender, EventArgs e)
     {
         RefreshAllDataGrid();
-        //Program.telegramBotClient.OnMessage += TelegramBotClient_OnMessage;
     }
 
     private void FrmGroupIndex_FormClosing(object sender, FormClosingEventArgs e)
@@ -271,26 +280,6 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
     {
         RefreshAllDataGrid();
     }
-
-    #endregion
-
-    #region Event(s) ==> Telegram(s)
-
-    //private void TelegramBotClient_OnMessage(object sender, MessageEventArgs e)
-    //{
-    //    Telegram.Bot.Types.Message message = e.Message;
-    //    if ((message == null) || (message.Type != MessageType.Text))
-    //        return;
-    //    //*********************************
-
-    //    Telegram.Bot.Types.User user = message.From;
-
-    //    id = user.Id;
-    //    userName = user.Username;
-
-    //    if (InitializeGroups(id, userName))
-    //        return;
-    //}
 
     #endregion
 }

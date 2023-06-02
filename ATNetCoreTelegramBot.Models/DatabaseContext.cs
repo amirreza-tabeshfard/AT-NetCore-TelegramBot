@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace ATNetCoreTelegramBot.Models;
 
 public class DatabaseContext :
-    IdentityDbContext
-    //DbContext
+    //IdentityDbContext
+    DbContext
 {
     public DatabaseContext()
     {
@@ -41,8 +41,8 @@ public class DatabaseContext :
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
-            optionsBuilder.UseSqlServer(@"Integrated Security=False; Persist Security Info=False; Initial Catalog=WebNest; Data Source=AMIRREZATABESHF; User ID=sa; Password=Amirreza1367!@#; MultipleActiveResultSets=True");
-
+            optionsBuilder.UseSqlServer(@"Integrated Security=False; Persist Security Info=False; Initial Catalog=AT_NetCore_TelegramBot; Data Source=AMIRREZA-TABESH; User ID=sa; Password=Amirreza; MultipleActiveResultSets=True; Encrypt=false; TrustServerCertificate=true;");
+        
         base.OnConfiguring(optionsBuilder);
     }
 }
