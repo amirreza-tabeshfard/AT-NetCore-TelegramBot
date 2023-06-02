@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
+using ATNetCoreTelegramBot.Models;
+
 namespace ATNetCoreTelegramBot.DAL;
 
 public class UnitOfWork :
@@ -8,7 +10,7 @@ public class UnitOfWork :
 {
     #region Field(s)
 
-    private Models.DatabaseContext _databaseContext;
+    private DatabaseContext _databaseContext;
 
     private SchemaTelegram.ITelegramUnitOfWork _schemaTelegramUnitOfWork;
 
@@ -29,14 +31,14 @@ public class UnitOfWork :
 
     protected bool IsDisposed { get; set; }
 
-    protected virtual Models.DatabaseContext DatabaseContext
+    protected virtual DatabaseContext DatabaseContext
     {
         get
         {
             if (_databaseContext == null)
             {
                 _databaseContext =
-                    new Models.DatabaseContext();
+                    new DatabaseContext();
             }
             return (_databaseContext);
         }

@@ -6,6 +6,6 @@ public static class TableName
     {
         public const string Channel = "Channels";
         public const string Group = "Groups";
-        public const string TelegramUser = "TelegramUsers";
+        public const string User = "Users";
     }
 }

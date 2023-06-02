@@ -1,5 +1,6 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
+using ATNetCoreTelegramBot.Models;
 
 namespace ATNetCoreTelegramBot.DAL.SchemaTelegram.Group;
 
@@ -8,7 +9,7 @@ public class GroupRepository :
 {
     #region Constructor
 
-    public GroupRepository(Models.DatabaseContext databaseContext)
+    public GroupRepository(DatabaseContext databaseContext)
         : base(databaseContext)
     {
 

@@ -11,24 +11,24 @@ public static class DateTimeExtensions
         y = temp;
     }
 
-    private static void Swap(ref System.DateTime x, ref System.DateTime y)
+    private static void Swap(ref DateTime x, ref DateTime y)
     {
         var temp = x;
         x = y;
         y = temp;
     }
 
-    public static System.DateTime AbsoluteStart(this System.DateTime dateTime)
+    public static DateTime AbsoluteStart(this DateTime dateTime)
     {
         return dateTime.Date;
     }
 
-    public static System.DateTime AbsoluteEnd(this System.DateTime dateTime)
+    public static DateTime AbsoluteEnd(this DateTime dateTime)
     {
         return AbsoluteStart(dateTime).AddDays(1).AddTicks(-1);
     }
 
-    public static bool IsInRange(this System.DateTime currentDate, System.DateTime beginDate, System.DateTime endDate)
+    public static bool IsInRange(this DateTime currentDate, DateTime beginDate, DateTime endDate)
     {
         if (beginDate.Ticks > endDate.Ticks)
             Swap(ref beginDate, ref endDate);
@@ -36,7 +36,7 @@ public static class DateTimeExtensions
         return currentDate >= beginDate && currentDate <= endDate;
     }
 
-    public static System.Collections.Generic.IEnumerable<System.DateTime> GetDateRangeTo(this System.DateTime self, System.DateTime toDate)
+    public static System.Collections.Generic.IEnumerable<DateTime> GetDateRangeTo(this DateTime self, DateTime toDate)
     {
         //var range = Enumerable.Range(0, new System.TimeSpan(toDate.Ticks - self.Ticks).Days);
 
@@ -44,7 +44,7 @@ public static class DateTimeExtensions
         //       select self.Date.AddDays(p);
 
         System.Collections.Generic.IEnumerable<int> range = default(System.Collections.Generic.IEnumerable<int>);
-        System.Collections.Generic.IEnumerable<System.DateTime> result = default(System.Collections.Generic.IEnumerable<System.DateTime>);
+        System.Collections.Generic.IEnumerable<DateTime> result = default(System.Collections.Generic.IEnumerable<DateTime>);
 
         if (self.Ticks > toDate.Ticks)
             Swap(ref self, ref toDate);
@@ -65,35 +65,35 @@ public static class DateTimeExtensions
     {
         if (!string.IsNullOrEmpty(input))
         {
-            System.DateTime dt;
-            return System.DateTime.TryParse(s: input, result: out dt);
+            DateTime dt;
+            return DateTime.TryParse(s: input, result: out dt);
         }
         return false;
     }
 
-    public static System.DateTime ToDateTime(this object o)
+    public static DateTime ToDateTime(this object o)
     {
-        System.DateTime dt;
+        DateTime dt;
         try
         {
             dt = System.Convert.ToDateTime(o);
         }
         catch (System.Exception)
         {
-            dt = System.DateTime.Now;
+            dt = DateTime.Now;
         }
         return dt;
     }
 
-    public static string ToSqlFriendly(this System.DateTime? dt)
+    public static string ToSqlFriendly(this DateTime? dt)
     {
         return dt?.ToString("yyy-MM-dd hh:mm:ss");
     }
 
-    public static string GetAge(this System.DateTime birthDate, out int day, out int month, out int year, out int week)
+    public static string GetAge(this DateTime birthDate, out int day, out int month, out int year, out int week)
     {
-        var x = System.DateTime.Now - birthDate;
-        var age = System.DateTime.MinValue + x;
+        var x = DateTime.Now - birthDate;
+        var age = DateTime.MinValue + x;
         year = age.Year - 1;
         month = age.Month - 1;
         day = age.Day - 1;
@@ -107,10 +107,10 @@ public static class DateTimeExtensions
         return r;
     }
 
-    public static string GetAge(this System.DateTime birthDate)
+    public static string GetAge(this DateTime birthDate)
     {
-        var x = System.DateTime.Now - birthDate;
-        var age = System.DateTime.MinValue + x;
+        var x = DateTime.Now - birthDate;
+        var age = DateTime.MinValue + x;
         int year = age.Year - 1;
         int month = age.Month - 1;
         int day = age.Day - 1;
@@ -124,12 +124,12 @@ public static class DateTimeExtensions
         return r;
     }
 
-    public static int CalculateAge(this System.DateTime? birthDate)
+    public static int CalculateAge(this DateTime? birthDate)
     {
         if (!birthDate.HasValue)
             return 0;
 
-        var today = System.DateTime.Today;
+        var today = DateTime.Today;
         var age = today.Year - birthDate.Value.Year;
 
         if (birthDate > today.AddYears(-age))
@@ -138,12 +138,12 @@ public static class DateTimeExtensions
         return age;
     }
 
-    public static System.Collections.Generic.IEnumerable<System.DateTime> MonthsBetween(System.DateTime d0, System.DateTime d1)
+    public static System.Collections.Generic.IEnumerable<DateTime> MonthsBetween(DateTime d0, DateTime d1)
     {
-        return Enumerable.Range(0, (d1.Year - d0.Year) * 12 + (d1.Month - d0.Month) + 1).Select(m => new System.DateTime(d0.Year, d0.Month, 1).AddMonths(m));
+        return Enumerable.Range(0, (d1.Year - d0.Year) * 12 + (d1.Month - d0.Month) + 1).Select(m => new DateTime(d0.Year, d0.Month, 1).AddMonths(m));
     }
 
-    public static System.Collections.Generic.IEnumerable<System.DateTime> GetDaysBetween(System.DateTime fromDate, System.DateTime toDate)
+    public static System.Collections.Generic.IEnumerable<DateTime> GetDaysBetween(DateTime fromDate, DateTime toDate)
     {
         return Enumerable.Range(0, toDate.Subtract(fromDate).Days + 1).Select(x => fromDate.AddDays(x).Date);
     }
@@ -205,7 +205,7 @@ public static class DateTimeExtensions
         return PersianDateTime.TryParse(persianDate, out _);
     }
 
-    public static string ToPersianDate(this System.DateTime input, string format = null)
+    public static string ToPersianDate(this DateTime input, string format = null)
     {
         var persianDateTime = new PersianDateTime(input)
         {
@@ -220,12 +220,12 @@ public static class DateTimeExtensions
         return persianDateTime.ToString(format);
     }
 
-    public static string ToLongPersianDate(this System.DateTime input)
+    public static string ToLongPersianDate(this DateTime input)
     {
         return input.ToPersianDate("dddd d MMMM yyyy");
     }
 
-    public static string ToPersianDate(this System.DateTime? input, string format = null)
+    public static string ToPersianDate(this DateTime? input, string format = null)
     {
         if (!input.HasValue)
             return System.String.Empty;
@@ -233,7 +233,7 @@ public static class DateTimeExtensions
         return ToPersianDate(input.Value, format);
     }
 
-    public static string ToPersianDateTime(this System.DateTime input, bool includeHourSign = false)
+    public static string ToPersianDateTime(this DateTime input, bool includeHourSign = false)
     {
         return input.ToPersianDate($"yyyy/MM/dd{(includeHourSign ? " ساعت " : " ")}HH:mm");
     }
@@ -242,12 +242,12 @@ public static class DateTimeExtensions
 
     #region تاریخ میلادی [ Gregorian Date ]
 
-    public static System.DateTime ToGregorianDateTime(this string persianDate)
+    public static DateTime ToGregorianDateTime(this string persianDate)
     {
         return PersianDateTime.Parse(persianDate).ToDateTime();
     }
 
-    public static System.DateTime ToGregorianDateTime(this int persianDate)
+    public static DateTime ToGregorianDateTime(this int persianDate)
     {
         return PersianDateTime.Parse(persianDate).ToDateTime();
     }
@@ -262,9 +262,9 @@ public static class DateTimeExtensions
     const int DAY = 24 * HOUR;
     const int MONTH = 30 * DAY;
 
-    public static string ToRelativeDate(this System.DateTime dateTime)
+    public static string ToRelativeDate(this DateTime dateTime)
     {
-        var ts = new System.TimeSpan(System.DateTime.Now.Ticks - dateTime.Ticks);
+        var ts = new System.TimeSpan(DateTime.Now.Ticks - dateTime.Ticks);
         var delta = System.Math.Abs(ts.TotalSeconds);
         if (delta < 1 * MINUTE)
         {
@@ -303,9 +303,9 @@ public static class DateTimeExtensions
         return years <= 1 ? "یک سال قبل" : years + " سال قبل";
     }
 
-    public static string ToFutureRelativeDate(this System.DateTime dateTime)
+    public static string ToFutureRelativeDate(this DateTime dateTime)
     {
-        var ts = new System.TimeSpan(dateTime.Ticks - System.DateTime.Now.Ticks);
+        var ts = new System.TimeSpan(dateTime.Ticks - DateTime.Now.Ticks);
         var delta = System.Math.Abs(ts.TotalSeconds);
         if (delta < 1 * MINUTE)
         {

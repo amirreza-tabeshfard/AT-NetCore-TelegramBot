@@ -11,7 +11,7 @@ public class Channel : ID.BaseEntityGuid
 
     internal class Configuration : IEntityTypeConfiguration<Channel>
     {
-        [System.Obsolete]
+        [Obsolete]
         public void Configure(EntityTypeBuilder<Channel> builder)
         {
             builder.Property(current => current.Id)
@@ -84,6 +84,6 @@ public class Channel : ID.BaseEntityGuid
 
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 3)]
-    public System.DateTime InsertDateTime { get; set; }
+    public DateTime InsertDateTime { get; set; }
     // **********
 }

@@ -6,6 +6,8 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
 using ATNetCoreTelegramBot.Common.Extensions;
+using ATNetCoreTelegramBot.Common.Enums;
+using System.Runtime.InteropServices;
 
 namespace ATNetCoreTelegramBot.WFA.UI;
 
@@ -61,7 +63,7 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
         return results;
     }
 
-    private IEnumerable<string> InMemberOfGroups(IEnumerable<string> groups, long id)
+    private IEnumerable<string> InMemberOfGroups(IEnumerable<string> groups, long userId)
     {
         List<string> result = new List<string>();
 
@@ -71,7 +73,7 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
             {
                 try
                 {
-                    Task<ChatMember> chatMember = Program.telegramBotClient.GetChatMemberAsync(group, id);
+                    Task<ChatMember> chatMember = Program.telegramBotClient.GetChatMemberAsync(group, userId);
 
                     if (chatMember is not null)
                         if (chatMember.Result is not null)
@@ -123,49 +125,50 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     #region Internal Method(s)
 
-    public bool? InitializeGroups(long id, string userName)
+    internal GroupStatus InitializeGroups(long userId, string userName)
     {
-        bool? result = default;
+        GroupStatus result = GroupStatus.Unknown;
         IEnumerable<string> NamesOfGroupsThatTheUserIsNotAMember;
         IEnumerable<string> groupNames = InitializeChannelAndGroups();
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         if (groupNames.Any())
         {
-            NamesOfGroupsThatTheUserIsNotAMember = InMemberOfGroups(groupNames, id);
+            NamesOfGroupsThatTheUserIsNotAMember = InMemberOfGroups(groupNames, userId);
 
-            if (NamesOfGroupsThatTheUserIsNotAMember.Count() != 0)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                sb.AppendLine($"کاربر گرامی (<b><i>{userName}</i></b>)");
-                sb.AppendLine("جهت استفاده از این ربات باید عضو گروه های ذیل شوید.");
-                sb.AppendLine();
-                sb.AppendLine("👥 لیست گروه ها");
-
-                foreach (var item in NamesOfGroupsThatTheUserIsNotAMember)
+            if (NamesOfGroupsThatTheUserIsNotAMember is not null)
+                if (NamesOfGroupsThatTheUserIsNotAMember.Count() != 0)
                 {
-                    string url = item.Replace("@", "https://t.me/");
-                    sb.AppendLine($"🔘 <a href='{url}'>{item.Replace("@", "")}</a>");
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine($"کاربر گرامی (<b><i>{userName}</i></b>)");
+                    sb.AppendLine("جهت استفاده از این ربات باید عضو گروه های ذیل شوید.");
+                    sb.AppendLine();
+                    sb.AppendLine("👥 لیست گروه ها");
+
+                    foreach (var item in NamesOfGroupsThatTheUserIsNotAMember)
+                    {
+                        string url = item.Replace("@", "https://t.me/");
+                        sb.AppendLine($"🔘 <a href='{url}'>{item.Replace("@", "")}</a>");
+                    }
+
+                    Program.telegramBotClient.SendTextMessageAsync(chatId: userId,
+                                                                 text: sb.ToString(),
+                                                                 messageThreadId: default,
+                                                                 parseMode: ParseMode.Html,
+                                                                 entities: default,
+                                                                 disableNotification: default,
+                                                                 disableWebPagePreview: default,
+                                                                 protectContent: default,
+                                                                 replyToMessageId: default,
+                                                                 allowSendingWithoutReply: default,
+                                                                 replyMarkup: default,
+                                                                 cancellationToken: CancellationToken.None
+                                                                 );
+
+                    result = GroupStatus.UnMembered;
                 }
-
-                Program.telegramBotClient.SendTextMessageAsync(chatId: id,
-                                                             text: sb.ToString(),
-                                                             messageThreadId: default,
-                                                             parseMode: ParseMode.Html,
-                                                             entities: default,
-                                                             disableNotification: default,
-                                                             disableWebPagePreview: default,
-                                                             protectContent: default,
-                                                             replyToMessageId: default,
-                                                             allowSendingWithoutReply: default,
-                                                             replyMarkup: default,
-                                                             cancellationToken: CancellationToken.None
-                                                             );
-
-                result = true;
-            }
-            else
-                result = false;
+                else
+                    result = GroupStatus.Membered;
         }
 
         return result;
@@ -177,7 +180,19 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     private void FrmGroupIndex_Load(object sender, EventArgs e)
     {
+        IEnumerable<Models.SchemaTelegram.Group> allGroups = AllGroups();
+
         RefreshAllDataGrid();
+        if (allGroups.Count() == 0)
+        {
+            mnuFileUpdate.Enabled = false;
+            mnuFileDelete.Enabled = false;
+        }
+        else
+        {
+            mnuFileUpdate.Enabled = true;
+            mnuFileDelete.Enabled = true;
+        }
     }
 
     private void FrmGroupIndex_FormClosing(object sender, FormClosingEventArgs e)
@@ -194,6 +209,7 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     private void mnuFileDelete_Click(object sender, EventArgs e)
     {
+        IEnumerable<Models.SchemaTelegram.Group> allGroups = default;
         Guid id;
         int selectedRowCount = dataGridView.CurrentCell.RowIndex;
         var row = dataGridView.Rows[selectedRowCount];
@@ -230,7 +246,18 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
                             .SaveChanges();
                     }
 
+                    allGroups = AllGroups();
                     RefreshAllDataGrid();
+                    if (allGroups.Count() == 0)
+                    {
+                        mnuFileUpdate.Enabled = false;
+                        mnuFileDelete.Enabled = false;
+                    }
+                    else
+                    {
+                        mnuFileUpdate.Enabled = true;
+                        mnuFileDelete.Enabled = true;
+                    }
                 }
                 break;
         }
@@ -238,18 +265,31 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     private void mnuFileInsert_Click(object sender, EventArgs e)
     {
+        IEnumerable<Models.SchemaTelegram.Group> allGroups = default;
         using (_frmGroupInsert = new FrmGroupInsert())
         {
             var result = _frmGroupInsert.ShowDialog();
             if (result == DialogResult.OK)
             {
+                allGroups = AllGroups();
                 RefreshAllDataGrid();
+                if (allGroups.Count() == 0)
+                {
+                    mnuFileUpdate.Enabled = false;
+                    mnuFileDelete.Enabled = false;
+                }
+                else
+                {
+                    mnuFileUpdate.Enabled = true;
+                    mnuFileDelete.Enabled = true;
+                }
             }
         }
     }
 
     private void mnuFileUpdate_Click(object sender, EventArgs e)
     {
+        IEnumerable<Models.SchemaTelegram.Group> allGroups = default;
         Guid id = default;
         string name = default;
         int ordering = default;
@@ -267,7 +307,18 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
             var result = _frmGroupUpdate.ShowDialog();
             if (result == DialogResult.OK)
             {
+                allGroups = AllGroups();
                 RefreshAllDataGrid();
+                if (allGroups.Count() == 0)
+                {
+                    mnuFileUpdate.Enabled = false;
+                    mnuFileDelete.Enabled = false;
+                }
+                else
+                {
+                    mnuFileUpdate.Enabled = true;
+                    mnuFileDelete.Enabled = true;
+                }
             }
         }
     }
@@ -278,7 +329,19 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
 
     private void ContextMenuStripRefresh_Click(object sender, EventArgs e)
     {
+        IEnumerable<Models.SchemaTelegram.Group> allGroups = default;
+        allGroups = AllGroups();
         RefreshAllDataGrid();
+        if (allGroups.Count() == 0)
+        {
+            mnuFileUpdate.Enabled = false;
+            mnuFileDelete.Enabled = false;
+        }
+        else
+        {
+            mnuFileUpdate.Enabled = true;
+            mnuFileDelete.Enabled = true;
+        }
     }
 
     #endregion

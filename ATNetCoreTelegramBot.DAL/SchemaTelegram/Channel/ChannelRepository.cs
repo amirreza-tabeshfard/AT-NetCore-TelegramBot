@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using ATNetCoreTelegramBot.Models;
+
 namespace ATNetCoreTelegramBot.DAL.SchemaTelegram.Channel;
 
 public class ChannelRepository :
@@ -7,7 +9,7 @@ public class ChannelRepository :
 {
     #region Constructor
 
-    public ChannelRepository(Models.DatabaseContext databaseContext)
+    public ChannelRepository(DatabaseContext databaseContext)
         : base(databaseContext)
     {
 

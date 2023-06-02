@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using ATNetCoreTelegramBot.Models;
+
 namespace ATNetCoreTelegramBot.DAL.ID;
 
 public class StringRepository<T> :
-    Object, IStringRepository<T> where T : Models.ID.BaseEntityIdentity
+    Object, IStringRepository<T> where T : Models.ID.BaseEntityString
 {
     #region Constructor
 
-    public StringRepository(Models.DatabaseContext databaseContext)
+    public StringRepository(DatabaseContext databaseContext)
     {
         DatabaseContext = databaseContext ?? throw new ArgumentNullException("DatabaseContext");
         DbSet = DatabaseContext.Set<T>();
@@ -19,7 +21,7 @@ public class StringRepository<T> :
 
     protected DbSet<T> DbSet { get; set; }
 
-    protected Models.DatabaseContext DatabaseContext { get; set; }
+    protected DatabaseContext DatabaseContext { get; set; }
 
     #endregion /Properties
 

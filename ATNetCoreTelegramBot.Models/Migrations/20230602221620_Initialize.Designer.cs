@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230601225806_Initialize")]
+    [Migration("20230602221620_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -87,21 +87,24 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.ToTable("Groups", "telegram");
                 });
 
-            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaTelegram.TelegramUser", b =>
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaTelegram.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(0)
-                        .HasDefaultValueSql("newsequentialid()");
+                        .HasColumnOrder(0);
+
+                    b.Property<bool?>("AddedToAttachmentMenu")
+                        .HasColumnType("bit")
+                        .HasColumnOrder(8);
 
                     b.Property<bool?>("CanJoinGroups")
                         .HasColumnType("bit")
-                        .HasColumnOrder(7);
+                        .HasColumnOrder(9);
 
                     b.Property<bool?>("CanReadAllGroupMessages")
                         .HasColumnType("bit")
-                        .HasColumnOrder(8);
+                        .HasColumnOrder(10);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -111,17 +114,21 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.Property<DateTime>("InsertDateTime")
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(10);
+                        .HasColumnOrder(12);
 
                     b.Property<bool>("IsBot")
                         .HasColumnType("bit")
                         .HasColumnOrder(5);
 
+                    b.Property<bool>("IsPremium")
+                        .HasColumnType("bit")
+                        .HasColumnOrder(6);
+
                     b.Property<string>("LanguageCode")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(6);
+                        .HasColumnOrder(7);
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -131,7 +138,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.Property<bool?>("SupportsInlineQueries")
                         .HasColumnType("bit")
-                        .HasColumnOrder(9);
+                        .HasColumnOrder(11);
 
                     b.Property<long>("TelegramID")
                         .HasColumnType("bigint")
@@ -145,15 +152,11 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TelegramID")
-                        .IsUnique()
-                        .HasDatabaseName("IX_telegram.Users.TelegramID");
-
                     b.HasIndex("UserName")
                         .IsUnique()
                         .HasDatabaseName("IX_telegram.Users.UserName");
 
-                    b.ToTable("TelegramUsers", "telegram");
+                    b.ToTable("Users", "telegram");
                 });
 #pragma warning restore 612, 618
         }

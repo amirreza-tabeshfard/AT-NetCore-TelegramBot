@@ -1,6 +1,6 @@
 ﻿namespace ATNetCoreTelegramBot.Models.ID;
 
-public abstract class BaseEntityIdentifier : object
+public abstract class BaseEntityInt : object
 {
     // **********
     [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated

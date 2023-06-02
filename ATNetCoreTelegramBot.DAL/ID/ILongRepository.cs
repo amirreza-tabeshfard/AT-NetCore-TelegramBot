@@ -1,7 +1,7 @@
 ﻿namespace ATNetCoreTelegramBot.DAL.ID;
 
-public interface IIntRepository<T> where T : 
-    Models.ID.BaseEntityInt
+internal interface ILongRepository<T> where T :
+    Models.ID.BaseEntityLong
 {
     #region Method(s)
 

@@ -1,14 +1,15 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
+using ATNetCoreTelegramBot.Models;
 
 namespace ATNetCoreTelegramBot.DAL.SchemaTelegram.User;
 
 public class UserRepository :
-    ID.GuidRepository<Models.SchemaTelegram.TelegramUser>, IUserRepository
+    ID.GuidRepository<Models.SchemaTelegram.User>, IUserRepository
 {
     #region Constructor
 
-    public UserRepository(Models.DatabaseContext databaseContext)
+    public UserRepository(DatabaseContext databaseContext)
         : base(databaseContext)
     {
 
@@ -19,10 +20,10 @@ public class UserRepository :
     #region Argument 2
 
     // ID
-    public Models.SchemaTelegram.TelegramUser GetByID
+    public Models.SchemaTelegram.User GetByID
         (Guid id, bool isExceptID = false)
     {
-        Models.SchemaTelegram.TelegramUser oEntities = default;
+        Models.SchemaTelegram.User oEntities = default;
 
         if (isExceptID == false)
         {
@@ -46,10 +47,10 @@ public class UserRepository :
         return (oEntities);
     }
 
-    public Task<Models.SchemaTelegram.TelegramUser> GetByIdAsync
+    public Task<Models.SchemaTelegram.User> GetByIdAsync
         (Guid id, bool isExceptID = false)
     {
-        Task<Models.SchemaTelegram.TelegramUser> oEntities = default;
+        Task<Models.SchemaTelegram.User> oEntities = default;
 
         if (isExceptID == false)
         {
@@ -74,10 +75,10 @@ public class UserRepository :
     }
 
     // TelegramID 
-    public Models.SchemaTelegram.TelegramUser GetByTelegramID
+    public Models.SchemaTelegram.User GetByTelegramID
         (long telegramID, bool isExceptTelegramID = false)
     {
-        Models.SchemaTelegram.TelegramUser oEntities = default;
+        Models.SchemaTelegram.User oEntities = default;
 
         if (isExceptTelegramID == false)
         {
@@ -101,10 +102,10 @@ public class UserRepository :
         return (oEntities);
     }
 
-    public Task<Models.SchemaTelegram.TelegramUser> GetByTelegramIDAsync
+    public Task<Models.SchemaTelegram.User> GetByTelegramIDAsync
         (long telegramID, bool isExceptTelegramID = false)
     {
-        Task<Models.SchemaTelegram.TelegramUser> oEntities = default;
+        Task<Models.SchemaTelegram.User> oEntities = default;
 
         if (isExceptTelegramID == false)
         {

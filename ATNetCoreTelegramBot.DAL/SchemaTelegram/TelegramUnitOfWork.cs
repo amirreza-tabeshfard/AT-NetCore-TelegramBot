@@ -1,4 +1,6 @@
-﻿namespace ATNetCoreTelegramBot.DAL.SchemaTelegram;
+﻿using ATNetCoreTelegramBot.Models;
+
+namespace ATNetCoreTelegramBot.DAL.SchemaTelegram;
 
 public class TelegramUnitOfWork :
     object, ITelegramUnitOfWork
@@ -13,7 +15,7 @@ public class TelegramUnitOfWork :
 
     #region Constructor
 
-    public TelegramUnitOfWork(Models.DatabaseContext databaseContext)
+    public TelegramUnitOfWork(DatabaseContext databaseContext)
     {
         if (databaseContext == null)
         {
@@ -27,7 +29,7 @@ public class TelegramUnitOfWork :
 
     #region Properties
 
-    protected Models.DatabaseContext DatabaseContext { get; set; }
+    protected DatabaseContext DatabaseContext { get; set; }
 
     #endregion /Properties
 

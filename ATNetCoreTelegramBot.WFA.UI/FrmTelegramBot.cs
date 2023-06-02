@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATNetCoreTelegramBot.Common.Enums;
+using System;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
@@ -115,14 +116,14 @@ public partial class FrmTelegramBot : Form
         User? user = message.From;
         MessageType type = message.Type;
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        bool? groupStatus = default;
+        GroupStatus groupStatus = default;
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         try
         {
             if (user is not null)
-                groupStatus = _frmGroupIndex.InitializeGroups(id: user.Id, userName: user.Username);
+                groupStatus = _frmGroupIndex.InitializeGroups(userId: user.Id, userName: user.Username);
 
-            if ((groupStatus is null) || (groupStatus is false))
+            if (groupStatus == GroupStatus.Unknown || groupStatus == GroupStatus.Membered)
             {
 
             }

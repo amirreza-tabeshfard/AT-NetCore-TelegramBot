@@ -45,17 +45,19 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TelegramUsers",
+                name: "Users",
                 schema: "telegram",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TelegramID = table.Column<long>(type: "bigint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     IsBot = table.Column<bool>(type: "bit", nullable: false),
+                    IsPremium = table.Column<bool>(type: "bit", nullable: false),
                     LanguageCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    AddedToAttachmentMenu = table.Column<bool>(type: "bit", nullable: true),
                     CanJoinGroups = table.Column<bool>(type: "bit", nullable: true),
                     CanReadAllGroupMessages = table.Column<bool>(type: "bit", nullable: true),
                     SupportsInlineQueries = table.Column<bool>(type: "bit", nullable: true),
@@ -63,7 +65,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TelegramUsers", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
@@ -81,16 +83,9 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_telegram.Users.TelegramID",
-                schema: "telegram",
-                table: "TelegramUsers",
-                column: "TelegramID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_telegram.Users.UserName",
                 schema: "telegram",
-                table: "TelegramUsers",
+                table: "Users",
                 column: "UserName",
                 unique: true);
         }
@@ -107,7 +102,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 schema: "telegram");
 
             migrationBuilder.DropTable(
-                name: "TelegramUsers",
+                name: "Users",
                 schema: "telegram");
         }
     }

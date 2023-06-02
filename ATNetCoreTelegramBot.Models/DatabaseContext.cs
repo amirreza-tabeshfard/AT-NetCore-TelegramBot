@@ -26,7 +26,7 @@ public class DatabaseContext :
 
     public DbSet<SchemaTelegram.Group> Groups { get; set; }
 
-    public DbSet<SchemaTelegram.TelegramUser> TelegramUsers { get; set; }
+    public DbSet<SchemaTelegram.User> TelegramUsers { get; set; }
 
     #endregion
 

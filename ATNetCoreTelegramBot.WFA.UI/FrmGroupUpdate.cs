@@ -44,6 +44,8 @@ public partial class FrmGroupUpdate : Infrastructure.BaseController
 
     #endregion
 
+    #region Event(s) ==> Buttons
+        
     private void btnUpdate_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(txtName.Text))
@@ -88,5 +90,7 @@ public partial class FrmGroupUpdate : Infrastructure.BaseController
 
             FrmGroupUpdate_FormClosing(new object(), new FormClosingEventArgs(CloseReason.None, false));
         }
-    }
+    } 
+
+    #endregion
 }

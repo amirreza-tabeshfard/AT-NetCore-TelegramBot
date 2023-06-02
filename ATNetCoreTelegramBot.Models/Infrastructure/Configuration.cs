@@ -12,7 +12,7 @@ internal static class Configuration
         {
             modelBuilder.ApplyConfiguration(new SchemaTelegram.Channel.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaTelegram.Group.Configuration());
-            modelBuilder.ApplyConfiguration(new SchemaTelegram.TelegramUser.Configuration());
+            modelBuilder.ApplyConfiguration(new SchemaTelegram.User.Configuration());
         }
     }
 }

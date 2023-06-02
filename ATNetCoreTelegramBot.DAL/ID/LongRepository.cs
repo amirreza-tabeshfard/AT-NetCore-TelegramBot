@@ -4,12 +4,12 @@ using ATNetCoreTelegramBot.Models;
 
 namespace ATNetCoreTelegramBot.DAL.ID;
 
-public class GuidRepository<T> : 
-    Object, IGuidRepository<T> where T : Models.ID.BaseEntityGuid
+public class LongRepository<T> :
+    Object, ILongRepository<T> where T : Models.ID.BaseEntityLong
 {
     #region Constructor
 
-    public GuidRepository(DatabaseContext databaseContext)
+    public LongRepository(DatabaseContext databaseContext)
     {
         DatabaseContext = databaseContext ?? throw new ArgumentNullException("DatabaseContext");
         DbSet = DatabaseContext.Set<T>();
@@ -23,7 +23,7 @@ public class GuidRepository<T> :
 
     protected DatabaseContext DatabaseContext { get; set; }
 
-    #endregion
+    #endregion /Properties
 
     #region Implement Interface(s)
 
@@ -54,7 +54,8 @@ public class GuidRepository<T> :
 
             case EntityState.Detached:
             case EntityState.Modified:
-                DatabaseContext.Entry(entity).State = EntityState.Modified;
+                DatabaseContext.Entry(entity).State =
+                    EntityState.Modified;
                 break;
 
             default:
