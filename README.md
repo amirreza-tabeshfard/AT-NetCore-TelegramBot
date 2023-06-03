@@ -38,3 +38,33 @@ English | [Persian](./README.fa-IR.md)
     <li>/setting</li>
   </ul>
 </div>
+
+# Where does the Messenger live?
+<div align="justify">
+	Telegram stores all data, i.e. all chats and also the bots, encrypted in the cloud. An external backup of the Telegram data is therefore not absolutely necessary and the entire personal settings are available to the logged-in users across platforms at any time and everywhere. However, the sensitive data and commands that the bot then accesses externally can be available outside the cloud, e.g. on local company-owned servers in their own databases.
+</div>
+
+# Who can use the functionality?
+<div align="justify">
+	Normal Telegram bots are not private. Anyone can find and use them. However, Telegram bots can also only be made accessible to certain users if a separate communication channel with the bot is set up. This channel is a “private” group with the bot, to which only you, users approved by you and the actual bot belong. In this way, the Telegram Bot can only be used by the user group controlled by you.
+</div>
+
+# Can it become a personal assistant?
+<div align="justify">
+	Many of us admire the Internet of Things (IoT) and this is where a Telegram Bot comes in. It can, in environments defined by you, comfortably inform and react. Telegram can not only enable communication between people, but with a Telegram Bot, it can also enable communication between people and programmable machines. We can thus forward messages to multiple devices with one click or receive them from you.
+</div>
+
+# Where is the bot running?
+<div align="justify">
+	If one considers the Telegram Bot in the context of the data source, the actual data usually remains on the local servers of the data source. The bot accesses the required data sets there and then prepares them for message output as requested on the end device. As listed in 'Where does the Messenger live?', only the actual programme structure is permanently located in the cloud on the Telegram servers.
+</div>
+
+# How high is the application security?
+<div align="justify">
+	The actual Telegram bot application with the relevant data is stored on its own computers and databases. Here, the application security depends on the administrator of the local PC environment on site. The Telegram Bot only delivers the message outputs defined in the application to the respective end devices. Only these message outputs are then located in the Telegram Cloud.
+</div>
+
+# How is the Telegram data encrypted?
+<div align="justify">
+	All messages and thus also the communication with a bot are secured via client-server/server-client encryption. In the Telegram Cloud, this data is also divided among a number of servers and stored there in encrypted form.
+</div>
