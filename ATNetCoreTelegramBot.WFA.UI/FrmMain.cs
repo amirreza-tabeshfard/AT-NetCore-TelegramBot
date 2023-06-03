@@ -8,6 +8,7 @@ public partial class FrmMain : Form
 
     private FrmTelegramBot _frmTelegramBot;
     private FrmGroupIndex _frmGroupIndex;
+    private FrmUsers _frmUsers;
 
     #endregion
 
@@ -50,6 +51,25 @@ public partial class FrmMain : Form
         }
     }
 
+    private void UsersShow()
+    {
+        _frmUsers = new FrmUsers();
+
+        if (this.MdiChildren.Count() == 2)
+        {
+            _frmUsers.MdiParent = this;
+            _frmUsers.Show();
+        }
+        else
+        {
+            foreach (Form form in this.MdiChildren)
+            {
+                if (form.Name == "FrmUsers")
+                    form.Show();
+            }
+        }
+    }
+
     private void Online()
     {
         toolStriplblCheckOnline.Text = "Online";
@@ -67,6 +87,7 @@ public partial class FrmMain : Form
             toolStriplblSeperator3.Visible = true;
 
         GroupIndexShow();
+        UsersShow();
     }
 
     private void Offline()

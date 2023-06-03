@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230602221620_Initialize")]
+    [Migration("20230603174302_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -106,6 +106,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasColumnType("bit")
                         .HasColumnOrder(10);
 
+                    b.Property<long>("ChatID")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(1);
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -120,18 +124,16 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasColumnType("bit")
                         .HasColumnOrder(5);
 
-                    b.Property<bool>("IsPremium")
+                    b.Property<bool?>("IsPremium")
                         .HasColumnType("bit")
                         .HasColumnOrder(6);
 
                     b.Property<string>("LanguageCode")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
                         .HasColumnOrder(7);
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnOrder(4);
@@ -140,12 +142,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasColumnType("bit")
                         .HasColumnOrder(11);
 
-                    b.Property<long>("TelegramID")
-                        .HasColumnType("bigint")
-                        .HasColumnOrder(1);
-
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)")
                         .HasColumnOrder(2);
@@ -154,7 +151,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.HasIndex("UserName")
                         .IsUnique()
-                        .HasDatabaseName("IX_telegram.Users.UserName");
+                        .HasDatabaseName("IX_telegram.Users.UserName")
+                        .HasFilter("[UserName] IS NOT NULL");
 
                     b.ToTable("Users", "telegram");
                 });

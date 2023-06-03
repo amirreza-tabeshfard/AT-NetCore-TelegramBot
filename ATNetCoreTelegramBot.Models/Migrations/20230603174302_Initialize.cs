@@ -50,13 +50,13 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TelegramID = table.Column<long>(type: "bigint", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ChatID = table.Column<long>(type: "bigint", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     IsBot = table.Column<bool>(type: "bit", nullable: false),
-                    IsPremium = table.Column<bool>(type: "bit", nullable: false),
-                    LanguageCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    IsPremium = table.Column<bool>(type: "bit", nullable: true),
+                    LanguageCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     AddedToAttachmentMenu = table.Column<bool>(type: "bit", nullable: true),
                     CanJoinGroups = table.Column<bool>(type: "bit", nullable: true),
                     CanReadAllGroupMessages = table.Column<bool>(type: "bit", nullable: true),
@@ -87,7 +87,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 schema: "telegram",
                 table: "Users",
                 column: "UserName",
-                unique: true);
+                unique: true,
+                filter: "[UserName] IS NOT NULL");
         }
 
         /// <inheritdoc />

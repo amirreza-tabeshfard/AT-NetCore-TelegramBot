@@ -36,15 +36,15 @@ public static class DateTimeExtensions
         return currentDate >= beginDate && currentDate <= endDate;
     }
 
-    public static System.Collections.Generic.IEnumerable<DateTime> GetDateRangeTo(this DateTime self, DateTime toDate)
+    public static IEnumerable<DateTime> GetDateRangeTo(this DateTime self, DateTime toDate)
     {
         //var range = Enumerable.Range(0, new System.TimeSpan(toDate.Ticks - self.Ticks).Days);
 
         //return from p in range
         //       select self.Date.AddDays(p);
 
-        System.Collections.Generic.IEnumerable<int> range = default(System.Collections.Generic.IEnumerable<int>);
-        System.Collections.Generic.IEnumerable<DateTime> result = default(System.Collections.Generic.IEnumerable<DateTime>);
+        IEnumerable<int> range = default(IEnumerable<int>);
+        IEnumerable<DateTime> result = default(IEnumerable<DateTime>);
 
         if (self.Ticks > toDate.Ticks)
             Swap(ref self, ref toDate);
@@ -138,12 +138,12 @@ public static class DateTimeExtensions
         return age;
     }
 
-    public static System.Collections.Generic.IEnumerable<DateTime> MonthsBetween(DateTime d0, DateTime d1)
+    public static IEnumerable<DateTime> MonthsBetween(DateTime d0, DateTime d1)
     {
         return Enumerable.Range(0, (d1.Year - d0.Year) * 12 + (d1.Month - d0.Month) + 1).Select(m => new DateTime(d0.Year, d0.Month, 1).AddMonths(m));
     }
 
-    public static System.Collections.Generic.IEnumerable<DateTime> GetDaysBetween(DateTime fromDate, DateTime toDate)
+    public static IEnumerable<DateTime> GetDaysBetween(DateTime fromDate, DateTime toDate)
     {
         return Enumerable.Range(0, toDate.Subtract(fromDate).Days + 1).Select(x => fromDate.AddDays(x).Date);
     }

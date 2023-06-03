@@ -134,10 +134,10 @@ public class GroupRepository :
     #region Full Items
 
     // All Items
-    public System.Collections.Generic.IEnumerable<Models.SchemaTelegram.Group> GetByAllGroups
+    public IEnumerable<Models.SchemaTelegram.Group> GetByAllGroups
         ()
     {
-        System.Collections.Generic.IEnumerable<Models.SchemaTelegram.Group> oEntities =
+        IEnumerable<Models.SchemaTelegram.Group> oEntities =
             Get()
             .OrderBy(current => current.Name)
             .ToList()
@@ -146,10 +146,10 @@ public class GroupRepository :
         return oEntities;
     }
 
-    public Task<System.Collections.Generic.List<Models.SchemaTelegram.Group>> GetByAllGroupsAsync
+    public Task<List<Models.SchemaTelegram.Group>> GetByAllGroupsAsync
         ()
     {
-        Task<System.Collections.Generic.List<Models.SchemaTelegram.Group>> oEntities =
+        Task<List<Models.SchemaTelegram.Group>> oEntities =
             Get()
             .OrderBy(current => current.Name)
             .ToListAsync()

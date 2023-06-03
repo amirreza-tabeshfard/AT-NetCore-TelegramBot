@@ -12,12 +12,23 @@ public interface IUserRepository :
     Task<Models.SchemaTelegram.User> GetByIdAsync
         (Guid id, bool isExceptID = false);
 
-    // TelegramID 
-    Models.SchemaTelegram.User GetByTelegramID
-        (long telegramID, bool isExceptTelegramID = false);
+    // ChatID 
+    Models.SchemaTelegram.User GetByChatID
+        (long chatID, bool isExceptChatID = false);
 
-    Task<Models.SchemaTelegram.User> GetByTelegramIDAsync
-        (long telegramID, bool isExceptTelegramID = false);
+    Task<Models.SchemaTelegram.User> GetByChatIDAsync
+        (long chatID, bool isExceptChatID = false);
 
     #endregion /Argument 2
+
+    #region Full Items
+
+    // All Items
+    IEnumerable<Models.SchemaTelegram.User> GetByAllUsers
+        ();
+
+    Task<List<Models.SchemaTelegram.User>> GetByAllUsersAsync
+        ();
+
+    #endregion
 }

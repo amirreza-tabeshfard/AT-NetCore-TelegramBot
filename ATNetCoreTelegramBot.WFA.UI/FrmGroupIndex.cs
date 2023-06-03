@@ -7,7 +7,6 @@ using Telegram.Bot.Types.Enums;
 
 using ATNetCoreTelegramBot.Common.Extensions;
 using ATNetCoreTelegramBot.Common.Enums;
-using System.Runtime.InteropServices;
 
 namespace ATNetCoreTelegramBot.WFA.UI;
 

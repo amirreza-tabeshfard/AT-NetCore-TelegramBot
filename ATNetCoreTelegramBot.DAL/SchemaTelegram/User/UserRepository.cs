@@ -74,27 +74,27 @@ public class UserRepository :
         return (oEntities);
     }
 
-    // TelegramID 
-    public Models.SchemaTelegram.User GetByTelegramID
-        (long telegramID, bool isExceptTelegramID = false)
+    // ChatID 
+    public Models.SchemaTelegram.User GetByChatID
+        (long chatID, bool isExceptChatID = false)
     {
         Models.SchemaTelegram.User oEntities = default;
 
-        if (isExceptTelegramID == false)
+        if (isExceptChatID == false)
         {
             oEntities =
                 Get()
-                .Where(current => current.TelegramID == telegramID)
-                .OrderBy(current => current.TelegramID)
+                .Where(current => current.ChatID == chatID)
+                .OrderBy(current => current.ChatID)
                 .FirstOrDefault()
                 ;
         }
-        else if (isExceptTelegramID == true)
+        else if (isExceptChatID == true)
         {
             oEntities =
                 Get()
-                .Where(current => current.TelegramID != telegramID)
-                .OrderBy(current => current.TelegramID)
+                .Where(current => current.ChatID != chatID)
+                .OrderBy(current => current.ChatID)
                 .FirstOrDefault()
                 ;
         }
@@ -102,26 +102,26 @@ public class UserRepository :
         return (oEntities);
     }
 
-    public Task<Models.SchemaTelegram.User> GetByTelegramIDAsync
-        (long telegramID, bool isExceptTelegramID = false)
+    public Task<Models.SchemaTelegram.User> GetByChatIDAsync
+        (long chatID, bool isExceptChatID = false)
     {
         Task<Models.SchemaTelegram.User> oEntities = default;
 
-        if (isExceptTelegramID == false)
+        if (isExceptChatID == false)
         {
             oEntities =
                 Get()
-                .Where(current => current.TelegramID == telegramID)
-                .OrderBy(current => current.TelegramID)
+                .Where(current => current.ChatID == chatID)
+                .OrderBy(current => current.ChatID)
                 .FirstOrDefaultAsync()
                 ;
         }
-        else if (isExceptTelegramID == true)
+        else if (isExceptChatID == true)
         {
             oEntities =
                 Get()
-                .Where(current => current.TelegramID != telegramID)
-                .OrderBy(current => current.TelegramID)
+                .Where(current => current.ChatID != chatID)
+                .OrderBy(current => current.ChatID)
                 .FirstOrDefaultAsync()
                 ;
         }
@@ -130,4 +130,33 @@ public class UserRepository :
     }
 
     #endregion /Argument 2
+
+    #region Full Items
+
+    // All Items
+    public IEnumerable<Models.SchemaTelegram.User> GetByAllUsers
+        ()
+    {
+        IEnumerable<Models.SchemaTelegram.User> oEntities =
+            Get()
+            .OrderBy(current => current.ChatID)
+            .ToList()
+            ;
+
+        return oEntities;
+    }
+
+    public Task<List<Models.SchemaTelegram.User>> GetByAllUsersAsync
+        ()
+    {
+        Task<List<Models.SchemaTelegram.User>> oEntities =
+            Get()
+            .OrderBy(current => current.ChatID)
+            .ToListAsync()
+            ;
+
+        return oEntities;
+    }
+
+    #endregion
 }

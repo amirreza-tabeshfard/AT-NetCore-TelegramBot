@@ -22,17 +22,10 @@ public class User : ID.BaseEntityGuid
 
     #endregion
 
-    #region Fields
-
-    private string _firstName;
-    private string _lastName;
-
-    #endregion
-
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 1)]
-    public long TelegramID { get; set; }
+    public long ChatID { get; set; }
     // **********
 
     // **********
@@ -44,7 +37,7 @@ public class User : ID.BaseEntityGuid
 
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 2)]
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
     // **********
 
     // **********
@@ -56,22 +49,7 @@ public class User : ID.BaseEntityGuid
 
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 3)]
-    public string FirstName
-    {
-        get
-        {
-            if (string.IsNullOrWhiteSpace(_firstName))
-                return string.Empty;
-
-            _firstName = _firstName.Trim();
-
-            while (_firstName.Contains(value: "  "))
-                _firstName = _firstName.Replace(oldValue: "  ", newValue: " ");
-
-            return _firstName;
-        }
-        set { _firstName = value; }
-    }
+    public string FirstName { get; set; }
     // **********
 
     // **********
@@ -83,22 +61,7 @@ public class User : ID.BaseEntityGuid
 
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 4)]
-    public string LastName
-    {
-        get
-        {
-            if (string.IsNullOrWhiteSpace(_lastName))
-                return string.Empty;
-
-            _lastName = _lastName.Trim();
-
-            while (_lastName.Contains(value: "  "))
-                _lastName = _lastName.Replace(oldValue: "  ", newValue: " ");
-
-            return _lastName;
-        }
-        set { _lastName = value; }
-    }
+    public string? LastName { get; set; }
     // **********
 
     // **********
@@ -110,7 +73,7 @@ public class User : ID.BaseEntityGuid
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 6)]
-    public bool IsPremium { get; set; }
+    public bool? IsPremium { get; set; }
     // **********
 
     // **********
@@ -122,7 +85,7 @@ public class User : ID.BaseEntityGuid
 
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 7)]
-    public string LanguageCode { get; set; }
+    public string? LanguageCode { get; set; }
     // **********
 
     // **********

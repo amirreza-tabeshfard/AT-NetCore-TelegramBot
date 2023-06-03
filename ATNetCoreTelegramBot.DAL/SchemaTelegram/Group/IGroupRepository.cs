@@ -24,10 +24,10 @@ public interface IGroupRepository :
     #region Full Items
 
     // All Items
-    System.Collections.Generic.IEnumerable<Models.SchemaTelegram.Group> GetByAllGroups
+    IEnumerable<Models.SchemaTelegram.Group> GetByAllGroups
         ();
 
-    Task<System.Collections.Generic.List<Models.SchemaTelegram.Group>> GetByAllGroupsAsync
+    Task<List<Models.SchemaTelegram.Group>> GetByAllGroupsAsync
         ();
 
     #endregion /Full Items

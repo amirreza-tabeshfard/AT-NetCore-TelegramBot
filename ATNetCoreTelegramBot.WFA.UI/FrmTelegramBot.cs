@@ -17,6 +17,7 @@ public partial class FrmTelegramBot : Form
     internal static User telegramBotUser;
     internal static bool isOnline;
 
+    private FrmUsers _frmUsers;
     private FrmGroupIndex _frmGroupIndex;
 
     #endregion
@@ -26,6 +27,7 @@ public partial class FrmTelegramBot : Form
     public FrmTelegramBot()
     {
         InitializeComponent();
+        _frmUsers = new FrmUsers();
         _frmGroupIndex = new FrmGroupIndex();
     }
 
@@ -125,7 +127,10 @@ public partial class FrmTelegramBot : Form
 
             if (groupStatus == GroupStatus.Unknown || groupStatus == GroupStatus.Membered)
             {
+                if (_frmUsers.InitializeUser(user))
+                {
 
+                }
             }
             else
             {
