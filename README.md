@@ -68,3 +68,18 @@ English | [Persian](./README.fa-IR.md)
 <div align="justify">
 	All messages and thus also the communication with a bot are secured via client-server/server-client encryption. In the Telegram Cloud, this data is also divided among a number of servers and stored there in encrypted form.
 </div>
+
+# How can you use a Telegram bot for resource control?
+<div align="justify">
+	In the injection moulding industry, for example, a Telegram bot can send an automated message to a smartphone when the level of plastic granulate required for the production of injection moulded products falls below a certain level. In this way, it is possible to react ahead of time with a reorder or additional delivery and there is no downtime due to a shortage of material.
+</div>
+
+# How can I use the functionality for fault messages or alarms?
+<div align="justify">
+	Effective fault or alarm reporting systems with smartphone connection can be configured via bot. For this purpose, fault messages that are managed, generated and stored in an SQL database, for example, are sent to the logged-in Telegram clients via the bot. The OPC Router can also offer commands to the clients so that fault message acknowledgements and comment functions can be designed. With the Telegram Plug-ins access to the SQL data, the Telegram user can also be offered queries, for example to access detailed data on fault messages.
+</div>
+
+# What maintenance information can a Telegram bot send me?
+<div align="justify">
+	If the functionality of production machines reaches certain predefined threshold values, a Telegram bot could automatically generate maintenance recommendations and send them to the respective machine operators. In this way, maintenance-related failures can be avoided and downtimes can be effectively planned in advance.
+</div>
