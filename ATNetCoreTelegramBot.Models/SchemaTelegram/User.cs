@@ -14,6 +14,9 @@ public class User : ID.BaseEntityGuid
         [Obsolete]
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.Property(current => current.Id)
+                   .HasDefaultValueSql("newsequentialid()");
+
             builder.HasIndex(current => current.UserName)
                    .IsUnique(unique: true)
                    .HasName("IX_telegram.Users.UserName");

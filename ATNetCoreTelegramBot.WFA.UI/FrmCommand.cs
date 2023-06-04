@@ -12,7 +12,8 @@ public partial class FrmCommand : Form
 {
     #region Field(s)
 
-    private FrmReplyKeyboardMarkup _frmReplyKeyboardMarkup;
+    private ViewModels.ReplyKeyboardMarkupViewModel _replyKeyboardMarkupVM;
+    private ViewModels.InlineKeyboardMarkupViewModel _inlineKeyboardMarkupVM;
 
     #endregion
 
@@ -21,7 +22,8 @@ public partial class FrmCommand : Form
     public FrmCommand()
     {
         InitializeComponent();
-        _frmReplyKeyboardMarkup = new FrmReplyKeyboardMarkup();
+        _replyKeyboardMarkupVM = new ViewModels.ReplyKeyboardMarkupViewModel();
+        _inlineKeyboardMarkupVM = new ViewModels.InlineKeyboardMarkupViewModel();
     }
 
     #endregion
@@ -34,7 +36,7 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         if (groupStatus == GroupStatus.Membered)
         {
             textBuilder.AppendLine("☑️ عضویت شما در کلیه گروه ها و کانال ها تایید شد");
@@ -52,7 +54,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -63,15 +65,16 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine("دستواراتی که شما می توانید در بات 'GoGoldis' استفاده کنید:");
-        textBuilder.AppendLine("🔹 /start ==> شروع به کار");
-        textBuilder.AppendLine("🔹 /help ==> راهنما");
-        textBuilder.AppendLine("🔹 /home ==> صفحه اصلی");
-        textBuilder.AppendLine("🔹 /profile ==> پروفایل کاربری");
-        textBuilder.AppendLine("🔹 /support ==> پشتیبانی");
-        textBuilder.AppendLine("🔹 /aboutus ==> درباره ما");
-        textBuilder.AppendLine("🔹 /setting ==> تنظیمات");
+        textBuilder.AppendLine();
+        textBuilder.AppendLine("🔹 /start | شروع به کار");
+        textBuilder.AppendLine("🔹 /help | راهنما");
+        textBuilder.AppendLine("🔹 /home | صفحه اصلی");
+        textBuilder.AppendLine("🔹 /profile | پروفایل کاربری");
+        textBuilder.AppendLine("🔹 /support | پشتیبانی");
+        textBuilder.AppendLine("🔹 /aboutus | درباره ما");
+        textBuilder.AppendLine("🔹 /setting | تنظیمات");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         await Program.telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
                                                              text: Convert.ToString(textBuilder),
@@ -83,7 +86,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -94,7 +97,7 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine(string.Concat("به ", "<strong>صفحه اصلی</strong> ", "خیلی خوش آمدید"));
         textBuilder.AppendLine("👇گزینه دلخواه را انتخاب کنید👇");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -108,7 +111,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -119,7 +122,7 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine("👇گزینه دلخواه را انتخاب کنید👇");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         await Program.telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
@@ -132,7 +135,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -143,7 +146,7 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine("👇گزینه دلخواه را انتخاب کنید👇");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         await Program.telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
@@ -156,7 +159,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -167,7 +170,7 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine("👇گزینه دلخواه را انتخاب کنید👇");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         await Program.telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
@@ -180,7 +183,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -191,7 +194,7 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine("👇گزینه دلخواه را انتخاب کنید👇");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         await Program.telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
@@ -204,7 +207,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }
@@ -215,9 +218,10 @@ public partial class FrmCommand : Form
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         textBuilder.AppendLine($"سرکار/جناب: {message.From.FirstName + " " + message.From.LastName}");
         textBuilder.AppendLine($"با نام کاربری: @{message.From.Username}");
-        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖➖➖➖");
+        textBuilder.AppendLine("➖➖➖➖➖➖➖➖➖➖");
         textBuilder.AppendLine("دستور وارد شده در بات تعریف نشده است");
-        textBuilder.AppendLine("👇گزینه دلخواه را انتخاب کنید👇");
+        textBuilder.AppendLine();
+        textBuilder.AppendLine("لطفا دستور /help را انتخاب کرده، تا با دستورات این بات آشنا شوید.");
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         await Program.telegramBotClient.SendTextMessageAsync(chatId: chat.Id,
                                                              text: Convert.ToString(textBuilder),
@@ -229,7 +233,7 @@ public partial class FrmCommand : Form
                                                              protectContent: false,
                                                              replyToMessageId: message.MessageId,
                                                              allowSendingWithoutReply: false,
-                                                             replyMarkup: _frmReplyKeyboardMarkup.Main(),
+                                                             replyMarkup: _replyKeyboardMarkupVM.Main(),
                                                              cancellationToken: CancellationToken.None
                                                              );
     }

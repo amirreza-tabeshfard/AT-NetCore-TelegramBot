@@ -19,11 +19,13 @@ public interface IUnitOfWork :
 
     void RollBack();
 
-    Task<T> FindAsync<T>(Guid id); 
+    Task<T> FindAsync<T>(Guid id);
 
     #endregion
 
     #region Properties
+
+    SchemaBase.IBaseUnitOfWork SchemaBaseUnitOfWork { get; }
 
     SchemaTelegram.ITelegramUnitOfWork SchemaTelegramUnitOfWork { get; }
 

@@ -17,12 +17,7 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
     private FrmGroupInsert _frmGroupInsert;
     private FrmGroupUpdate _frmGroupUpdate;
 
-    #endregion
-
-    #region Field(s) ==> Telegram
-
-    private long id = default(long);
-    private string userName = default(string);
+    private ViewModels.ReplyKeyboardMarkupViewModel _replyKeyboardMarkupVM;
 
     #endregion
 
@@ -31,6 +26,7 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
     public FrmGroupIndex()
     {
         InitializeComponent();
+        _replyKeyboardMarkupVM = new ViewModels.ReplyKeyboardMarkupViewModel();
     }
 
     #endregion
@@ -160,7 +156,7 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
                                                                  protectContent: default,
                                                                  replyToMessageId: default,
                                                                  allowSendingWithoutReply: default,
-                                                                 replyMarkup: default,
+                                                                 replyMarkup: _replyKeyboardMarkupVM.MembershipConfirmation(),
                                                                  cancellationToken: CancellationToken.None
                                                                  );
 

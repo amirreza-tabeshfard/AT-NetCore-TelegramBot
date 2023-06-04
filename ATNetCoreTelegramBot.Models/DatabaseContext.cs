@@ -20,6 +20,16 @@ public class DatabaseContext :
         Database.EnsureCreated();
     }
 
+    #region SchemaBase
+
+    public DbSet<SchemaBase.City> Cities { get; set; }
+
+    public DbSet<SchemaBase.Country> Countries { get; set; }
+
+    public DbSet<SchemaBase.Province> Provinces { get; set; }
+
+    #endregion
+
     #region SchemaTelegram
 
     public DbSet<SchemaTelegram.Channel> Channels { get; set; }
@@ -32,6 +42,7 @@ public class DatabaseContext :
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        Infrastructure.Configuration.Base.ApplyConfiguration(modelBuilder);
         Infrastructure.Configuration.Telegram.ApplyConfiguration(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

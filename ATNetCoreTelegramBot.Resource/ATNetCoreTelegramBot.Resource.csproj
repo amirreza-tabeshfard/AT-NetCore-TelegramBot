@@ -17,6 +17,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Message.resx</DependentUpon>
     </Compile>
+    <Compile Update="Models\SchemaBase\Cities\City.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>City.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaBase\Countries\Country.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Country.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaBase\Provinces\Province.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Province.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +48,27 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Messages\Messages.fa-IR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\Cities\City.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\Cities\City.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>City.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\Countries\Country.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\Countries\Country.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Country.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\Provinces\Province.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\Provinces\Province.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Province.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

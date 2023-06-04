@@ -1,21 +1,23 @@
-﻿namespace ATNetCoreTelegramBot.WFA.UI.Infrastructure;
+﻿using ATNetCoreTelegramBot.DAL;
+
+namespace ATNetCoreTelegramBot.WFA.UI.Infrastructure;
 
 public partial class BaseController : Form
 {
     #region Field(s)
 
-    private DAL.UnitOfWork _unitOfWork;
+    private UnitOfWork _unitOfWork;
 
     #endregion
 
     #region Properties
 
-    protected virtual DAL.UnitOfWork UnitOfWork
+    protected virtual UnitOfWork UnitOfWork
     {
         get
         {
             if (_unitOfWork == null)
-                _unitOfWork = new DAL.UnitOfWork();
+                _unitOfWork = new UnitOfWork();
 
             return (_unitOfWork);
         }

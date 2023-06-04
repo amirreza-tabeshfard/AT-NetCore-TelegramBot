@@ -22,6 +22,107 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(0)
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<DateTime>("InsertDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(500);
+
+                    b.Property<DateTime?>("LastUpdateDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(501);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("ProvinceId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId", "Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_base.Cities.ProvinceId_Name");
+
+                    b.ToTable("Cities", "base");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.Country", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(0)
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<DateTime>("InsertDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(500);
+
+                    b.Property<DateTime?>("LastUpdateDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(501);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_base.Countries.Name");
+
+                    b.ToTable("Countries", "base");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.Province", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(0)
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(2);
+
+                    b.Property<DateTime>("InsertDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(500);
+
+                    b.Property<DateTime?>("LastUpdateDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(501);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnOrder(3);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId", "Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_base.Provinces.CountryId_Name");
+
+                    b.ToTable("Provinces", "base");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaTelegram.Channel", b =>
                 {
                     b.Property<Guid>("Id")
@@ -89,7 +190,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasDefaultValueSql("newsequentialid()");
 
                     b.Property<bool?>("AddedToAttachmentMenu")
                         .HasColumnType("bit")
@@ -152,6 +254,38 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasFilter("[UserName] IS NOT NULL");
 
                     b.ToTable("Users", "telegram");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.City", b =>
+                {
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaBase.Province", "Province")
+                        .WithMany("Cities")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Province");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.Province", b =>
+                {
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaBase.Country", "Country")
+                        .WithMany("Provinces")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.Country", b =>
+                {
+                    b.Navigation("Provinces");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaBase.Province", b =>
+                {
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }
