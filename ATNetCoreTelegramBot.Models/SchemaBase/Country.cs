@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ATNetCoreTelegramBot.Models.SchemaBase;
 
@@ -15,11 +15,21 @@ public class Country : ID.BaseEntityGuid
         public void Configure(EntityTypeBuilder<Country> builder)
         {
             builder.Property(current => current.Id)
-                   .HasDefaultValueSql("newsequentialid()");
+                    .HasDefaultValueSql("newsequentialid()");
+
+            builder.HasIndex(current => current.CultureId)
+                   .IsUnique(unique: false)
+                   .HasName("IX_base.Country.CultureId");
 
             builder.HasIndex(current => current.Name)
                    .IsUnique(unique: true)
-                   .HasName("IX_base.Countries.Name");
+                   .HasName("IX_base.Country.Name");
+
+            builder.HasOne(current => current.CultureName)
+                    .WithMany(current => current.Countries)
+                    .HasForeignKey(current => current.CultureId)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
         }
     }
 
@@ -30,6 +40,16 @@ public class Country : ID.BaseEntityGuid
     private string _name;
 
     #endregion
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
+            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
+
+    [System.ComponentModel.DataAnnotations.Schema.Column
+        (Order = 1)]
+    public int CultureId { get; set; }
+    // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
@@ -93,12 +113,19 @@ public class Country : ID.BaseEntityGuid
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
+            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
+    public virtual Culture CultureName { get; set; }
+    // **********
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaBase.Provinces.Province),
             Name = nameof(Resource.Models.SchemaBase.Provinces.Province.EntitiesName))]
     public virtual IList<Province> Provinces { get; set; }
     // **********
 
-    #endregion
+    #endregion /SchemaBase
 
-    #endregion
+    #endregion /RelationShip
 }

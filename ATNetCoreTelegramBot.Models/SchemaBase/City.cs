@@ -17,12 +17,23 @@ public class City : ID.BaseEntityGuid
             builder.Property(current => current.Id)
                     .HasDefaultValueSql("newsequentialid()");
 
-            builder.HasIndex(current => new {
-                                                current.ProvinceId,
-                                                current.Name
-                                            })
-                   .IsUnique(unique: true)
-                   .HasName("IX_base.Cities.ProvinceId_Name");
+            builder.HasIndex(current => current.CultureId)
+                   .IsUnique(unique: false)
+                   .HasName("IX_base.City.CultureId");
+
+            builder.HasIndex(current => new
+            {
+                current.ProvinceId,
+                current.Name
+            })
+            .IsUnique(unique: true)
+            .HasName("IX_base.City.ProvinceId_Name");
+
+            builder.HasOne(current => current.CultureName)
+                    .WithMany(current => current.Cities)
+                    .HasForeignKey(current => current.CultureId)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
             builder.HasOne(current => current.Province)
                     .WithMany(current => current.Cities)
@@ -32,13 +43,23 @@ public class City : ID.BaseEntityGuid
         }
     }
 
-    #endregion
+    #endregion /Configuration
 
     #region Variables
 
     private string _name;
 
-    #endregion
+    #endregion /Variables
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
+            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
+
+    [System.ComponentModel.DataAnnotations.Schema.Column
+        (Order = 1)]
+    public int CultureId { get; set; }
+    // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
@@ -117,10 +138,28 @@ public class City : ID.BaseEntityGuid
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
+            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
+    public virtual Culture CultureName { get; set; }
+    // **********
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaBase.Provinces.Province),
             Name = nameof(Resource.Models.SchemaBase.Provinces.Province.EntityName))]
     public Province Province { get; set; }
     // **********
+
+    #endregion
+
+    #region SchemaPerson
+    
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaPerson.Addresses.Address),
+            Name = nameof(Resource.Models.SchemaPerson.Addresses.Address.EntitiesName))]
+    public virtual IList<SchemaPerson.Address> Addresses { get; set; }
+    // ********** 
 
     #endregion
 

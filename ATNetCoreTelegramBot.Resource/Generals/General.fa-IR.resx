@@ -381,4 +381,10 @@
   <data name="Comment" xml:space="preserve">
     <value>نظر</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
 </root>

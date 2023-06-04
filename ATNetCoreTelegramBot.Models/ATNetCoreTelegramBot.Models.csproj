@@ -19,8 +19,4 @@
     <ProjectReference Include="..\ATNetCoreTelegramBot.Resource\ATNetCoreTelegramBot.Resource.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SchemaPerson\" />
-  </ItemGroup>
-
 </Project>

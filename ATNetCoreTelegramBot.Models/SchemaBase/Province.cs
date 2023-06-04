@@ -11,17 +11,29 @@ public class Province : ID.BaseEntityGuid
 
     internal class Configuration : IEntityTypeConfiguration<Province>
     {
+        [Obsolete]
         public void Configure(EntityTypeBuilder<Province> builder)
         {
             builder.Property(current => current.Id)
                     .HasDefaultValueSql("newsequentialid()");
 
-            builder.HasIndex(current => new {
-                                                current.CountryId,
-                                                current.Name
-                                            })
-                   .IsUnique(unique: true)
-                   .HasName("IX_base.Provinces.CountryId_Name");
+            builder.HasIndex(current => current.CultureId)
+                   .IsUnique(unique: false)
+                   .HasName("IX_base.Province.CultureId");
+
+            builder.HasIndex(current => new
+            {
+                current.CountryId,
+                current.Name
+            })
+            .IsUnique(unique: true)
+            .HasName("IX_base.Province.CountryId_Name");
+
+            builder.HasOne(current => current.CultureName)
+                    .WithMany(current => current.Provinces)
+                    .HasForeignKey(current => current.CultureId)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
             builder.HasOne(current => current.Country)
                     .WithMany(current => current.Provinces)
@@ -31,13 +43,23 @@ public class Province : ID.BaseEntityGuid
         }
     }
 
-    #endregion
+    #endregion /Configuration
 
     #region Variables
 
     private string _name;
 
-    #endregion
+    #endregion /Variables
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
+            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
+
+    [System.ComponentModel.DataAnnotations.Schema.Column
+        (Order = 1)]
+    public int CultureId { get; set; }
+    // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
@@ -128,7 +150,14 @@ public class Province : ID.BaseEntityGuid
     public virtual Country Country { get; set; }
     // **********
 
-    #endregion
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
+            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
+    public virtual Culture CultureName { get; set; }
+    // **********
 
-    #endregion
+    #endregion /SchemaBase
+
+    #endregion /RelationShip
 }

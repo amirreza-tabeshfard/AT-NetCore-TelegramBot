@@ -4,7 +4,7 @@ namespace ATNetCoreTelegramBot.Models.Data.BasicInformation.Linq.SchemaBase
 {
     public static class Country : object
     {
-        public static System.Guid GuidCountry(
+        public static Guid GuidCountry(
             string country)
         {
             DatabaseContext db = new DatabaseContext();
@@ -14,7 +14,7 @@ namespace ATNetCoreTelegramBot.Models.Data.BasicInformation.Linq.SchemaBase
 
             if (singleOrDefault != null)
             {
-                System.Guid guidCountyIran =
+                Guid guidCountyIran =
                     singleOrDefault
                         .Id;
 

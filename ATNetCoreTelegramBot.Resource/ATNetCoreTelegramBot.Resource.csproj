@@ -27,10 +27,95 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Country.resx</DependentUpon>
     </Compile>
+    <Compile Update="Models\SchemaBase\CultureNames\CultureName.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CultureName.resx</DependentUpon>
+    </Compile>
     <Compile Update="Models\SchemaBase\Provinces\Province.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Province.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\Addresses\Address.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Address.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\AddressTypes\AddressType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddressType.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\Emails\Email.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Email.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\EmailTypes\EmailType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmailType.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\Genders\Gender.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Gender.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\InstantMessages\InstantMessage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InstantMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\InstantMessageTypes\InstantMessageType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InstantMessageType.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\MaritalStatuses\MaritalStatus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MaritalStatus.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\MilitaryServiceStatuses\MilitaryServiceStatus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MilitaryServiceStatus.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\People\Person.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Person.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\Phones\Phone.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Phone.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\PhoneTypes\PhoneType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PhoneType.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\Socials\Social.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Social.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\SocialTypes\SocialType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SocialType.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\Urls\Url.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Url.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Models\SchemaPerson\UrlTypes\UrlType.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UrlType.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -63,12 +148,131 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Country.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\CultureNames\CultureName.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaBase\CultureNames\CultureName.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CultureName.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Models\SchemaBase\Provinces\Province.fa-IR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Models\SchemaBase\Provinces\Province.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Province.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Addresses\Address.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Addresses\Address.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Address.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\AddressTypes\AddressType.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\AddressTypes\AddressType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddressType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Emails\Email.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Emails\Email.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Email.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\EmailTypes\EmailType.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\EmailTypes\EmailType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Genders\Gender.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Genders\Gender.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Gender.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\InstantMessages\InstantMessage.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\InstantMessages\InstantMessage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InstantMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\InstantMessageTypes\InstantMessageType.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\InstantMessageTypes\InstantMessageType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InstantMessageType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\MaritalStatuses\MaritalStatus.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\MaritalStatuses\MaritalStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaritalStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\MilitaryServiceStatuses\MilitaryServiceStatus.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\MilitaryServiceStatuses\MilitaryServiceStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MilitaryServiceStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\People\Person.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\People\Person.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Person.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Phones\Phone.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Phones\Phone.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Phone.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\PhoneTypes\PhoneType.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\PhoneTypes\PhoneType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PhoneType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Socials\Social.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Socials\Social.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Social.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\SocialTypes\SocialType.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\SocialTypes\SocialType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SocialType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Urls\Url.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Urls\Url.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Url.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\UrlTypes\UrlType.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\UrlTypes\UrlType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UrlType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

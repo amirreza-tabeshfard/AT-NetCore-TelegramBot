@@ -4,7 +4,7 @@ namespace ATNetCoreTelegramBot.Models.Data.BasicInformation.Linq.SchemaBase
 {
     public static class Province : object
     {
-        public static System.Guid GuidProvince(
+        public static Guid GuidProvince(
             string country,
             string province)
         {
@@ -25,7 +25,7 @@ namespace ATNetCoreTelegramBot.Models.Data.BasicInformation.Linq.SchemaBase
             //    where oCountries.Title == strCountryName && oProvinces.Title == strProvinceName
             //    select oProvinces.ID;
 
-            System.Guid guidCity =
+            Guid guidCity =
                 db.Provinces
                 .Join(inner: db.Countries,
                         outerKeySelector: oProvinces => oProvinces.CountryId,

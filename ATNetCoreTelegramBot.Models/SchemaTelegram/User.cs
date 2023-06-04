@@ -123,5 +123,16 @@ public class User : ID.BaseEntityGuid
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 12)]
     public DateTime InsertDateTime { get; set; }
+
     // **********
+
+    #region RelationShip
+
+    #region SchemaPerson
+
+    public virtual IList<SchemaPerson.Person> People { get; set; }
+
+    #endregion
+
+    #endregion
 }

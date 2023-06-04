@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ATNetCoreTelegramBot.Models;
@@ -26,7 +25,43 @@ public class DatabaseContext :
 
     public DbSet<SchemaBase.Country> Countries { get; set; }
 
+    public DbSet<SchemaBase.Culture> Cultures { get; set; }
+
     public DbSet<SchemaBase.Province> Provinces { get; set; }
+
+    #endregion
+
+    #region SchemaPerson
+
+    public DbSet<SchemaPerson.Address> Addresses { get; set; }
+
+    public DbSet<SchemaPerson.AddressType> AddressTypes { get; set; }
+
+    public DbSet<SchemaPerson.Email> Emails { get; set; }
+
+    public DbSet<SchemaPerson.EmailType> EmailTypes { get; set; }
+
+    public DbSet<SchemaPerson.Gender> Genders { get; set; }
+
+    public DbSet<SchemaPerson.InstantMessage> InstantMessages { get; set; }
+
+    public DbSet<SchemaPerson.InstantMessageType> InstantMessageType { get; set; }
+
+    public DbSet<SchemaPerson.MaritalStatus> MaritalStatuses { get; set; }
+
+    public DbSet<SchemaPerson.MilitaryServiceStatus> MilitaryServiceStatuses { get; set; }
+
+    public DbSet<SchemaPerson.Phone> Phones { get; set; }
+
+    public DbSet<SchemaPerson.PhoneType> PhoneTypes { get; set; }
+
+    public DbSet<SchemaPerson.Social> Socials { get; set; }
+
+    public DbSet<SchemaPerson.SocialType> SocialTypes { get; set; }
+
+    public DbSet<SchemaPerson.Url> Urls { get; set; }
+
+    public DbSet<SchemaPerson.UrlType> UrlTypes { get; set; }
 
     #endregion
 
@@ -43,6 +78,7 @@ public class DatabaseContext :
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         Infrastructure.Configuration.Base.ApplyConfiguration(modelBuilder);
+        Infrastructure.Configuration.Person.ApplyConfiguration(modelBuilder);
         Infrastructure.Configuration.Telegram.ApplyConfiguration(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
