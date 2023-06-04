@@ -28,155 +28,172 @@ partial class FrmMain
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.MenuStrip = new System.Windows.Forms.MenuStrip();
-        this.MnuFile = new System.Windows.Forms.ToolStripMenuItem();
-        this.MnuFile_StartStop = new System.Windows.Forms.ToolStripMenuItem();
-        this.timer = new System.Windows.Forms.Timer(this.components);
-        this.statusStrip = new System.Windows.Forms.StatusStrip();
-        this.toolStriplblCheckOnline = new System.Windows.Forms.ToolStripStatusLabel();
-        this.toolStriplblSeperator1 = new System.Windows.Forms.ToolStripStatusLabel();
-        this.toolStriplblListen = new System.Windows.Forms.ToolStripStatusLabel();
-        this.toolStriplblSeperator2 = new System.Windows.Forms.ToolStripStatusLabel();
-        this.toolStriplblCurrentDateTime = new System.Windows.Forms.ToolStripStatusLabel();
-        this.toolStriplblSeperator3 = new System.Windows.Forms.ToolStripStatusLabel();
-        this.toolStriplblDateTimeAge = new System.Windows.Forms.ToolStripStatusLabel();
-        this.MenuStrip.SuspendLayout();
-        this.statusStrip.SuspendLayout();
-        this.SuspendLayout();
+        components = new System.ComponentModel.Container();
+        MenuStrip = new MenuStrip();
+        MnuFile = new ToolStripMenuItem();
+        MnuFile_StartStop = new ToolStripMenuItem();
+        MnuManage = new ToolStripMenuItem();
+        MnuManage_Groups = new ToolStripMenuItem();
+        MnuManage_Users = new ToolStripMenuItem();
+        timer = new System.Windows.Forms.Timer(components);
+        statusStrip = new StatusStrip();
+        toolStriplblCheckOnline = new ToolStripStatusLabel();
+        toolStriplblSeperator1 = new ToolStripStatusLabel();
+        toolStriplblListen = new ToolStripStatusLabel();
+        toolStriplblSeperator2 = new ToolStripStatusLabel();
+        toolStriplblCurrentDateTime = new ToolStripStatusLabel();
+        toolStriplblSeperator3 = new ToolStripStatusLabel();
+        toolStriplblDateTimeAge = new ToolStripStatusLabel();
+        MenuStrip.SuspendLayout();
+        statusStrip.SuspendLayout();
+        SuspendLayout();
         // 
         // MenuStrip
         // 
-        this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        this.MnuFile});
-        this.MenuStrip.Location = new System.Drawing.Point(0, 0);
-        this.MenuStrip.Name = "MenuStrip";
-        this.MenuStrip.Size = new System.Drawing.Size(634, 24);
-        this.MenuStrip.TabIndex = 1;
-        this.MenuStrip.Text = "menuStrip1";
+        MenuStrip.Items.AddRange(new ToolStripItem[] { MnuFile, MnuManage });
+        MenuStrip.Location = new Point(0, 0);
+        MenuStrip.Name = "MenuStrip";
+        MenuStrip.Size = new Size(634, 24);
+        MenuStrip.TabIndex = 1;
+        MenuStrip.Text = "menuStrip1";
         // 
         // MnuFile
         // 
-        this.MnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        this.MnuFile_StartStop});
-        this.MnuFile.Name = "MnuFile";
-        this.MnuFile.Size = new System.Drawing.Size(37, 20);
-        this.MnuFile.Text = "&File";
+        MnuFile.DropDownItems.AddRange(new ToolStripItem[] { MnuFile_StartStop });
+        MnuFile.Name = "MnuFile";
+        MnuFile.Size = new Size(37, 20);
+        MnuFile.Text = "&File";
         // 
         // MnuFile_StartStop
         // 
-        this.MnuFile_StartStop.Name = "MnuFile_StartStop";
-        this.MnuFile_StartStop.Size = new System.Drawing.Size(180, 22);
-        this.MnuFile_StartStop.Text = "Start/Stop";
-        this.MnuFile_StartStop.Click += new System.EventHandler(this.MnuFile_StartStop_Click);
+        MnuFile_StartStop.Name = "MnuFile_StartStop";
+        MnuFile_StartStop.Size = new Size(127, 22);
+        MnuFile_StartStop.Text = "Start/Stop";
+        MnuFile_StartStop.Click += MnuFile_StartStop_Click;
+        // 
+        // MnuManage
+        // 
+        MnuManage.DropDownItems.AddRange(new ToolStripItem[] { MnuManage_Groups, MnuManage_Users });
+        MnuManage.Name = "MnuManage";
+        MnuManage.Size = new Size(62, 20);
+        MnuManage.Text = "&Manage";
+        // 
+        // MnuManage_Groups
+        // 
+        MnuManage_Groups.Name = "MnuManage_Groups";
+        MnuManage_Groups.Size = new Size(180, 22);
+        MnuManage_Groups.Text = "Groups";
+        MnuManage_Groups.Click += MnuManage_Groups_Click;
+        // 
+        // MnuManage_Users
+        // 
+        MnuManage_Users.Name = "MnuManage_Users";
+        MnuManage_Users.Size = new Size(180, 22);
+        MnuManage_Users.Text = "Users";
+        MnuManage_Users.Click += MnuManage_Users_Click;
         // 
         // timer
         // 
-        this.timer.Enabled = true;
-        this.timer.Interval = 1000;
-        this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+        timer.Enabled = true;
+        timer.Interval = 1000;
+        timer.Tick += Timer_Tick;
         // 
         // statusStrip
         // 
-        this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        this.toolStriplblCheckOnline,
-        this.toolStriplblSeperator1,
-        this.toolStriplblListen,
-        this.toolStriplblSeperator2,
-        this.toolStriplblCurrentDateTime,
-        this.toolStriplblSeperator3,
-        this.toolStriplblDateTimeAge});
-        this.statusStrip.Location = new System.Drawing.Point(0, 339);
-        this.statusStrip.Name = "statusStrip";
-        this.statusStrip.Size = new System.Drawing.Size(634, 22);
-        this.statusStrip.TabIndex = 8;
-        this.statusStrip.Text = "statusStrip1";
+        statusStrip.Items.AddRange(new ToolStripItem[] { toolStriplblCheckOnline, toolStriplblSeperator1, toolStriplblListen, toolStriplblSeperator2, toolStriplblCurrentDateTime, toolStriplblSeperator3, toolStriplblDateTimeAge });
+        statusStrip.Location = new Point(0, 339);
+        statusStrip.Name = "statusStrip";
+        statusStrip.Size = new Size(634, 22);
+        statusStrip.TabIndex = 8;
+        statusStrip.Text = "statusStrip1";
         // 
         // toolStriplblCheckOnline
         // 
-        this.toolStriplblCheckOnline.ForeColor = System.Drawing.Color.Red;
-        this.toolStriplblCheckOnline.Name = "toolStriplblCheckOnline";
-        this.toolStriplblCheckOnline.Size = new System.Drawing.Size(46, 17);
-        this.toolStriplblCheckOnline.Text = "OffLine";
+        toolStriplblCheckOnline.ForeColor = Color.Red;
+        toolStriplblCheckOnline.Name = "toolStriplblCheckOnline";
+        toolStriplblCheckOnline.Size = new Size(46, 17);
+        toolStriplblCheckOnline.Text = "OffLine";
         // 
         // toolStriplblSeperator1
         // 
-        this.toolStriplblSeperator1.Name = "toolStriplblSeperator1";
-        this.toolStriplblSeperator1.Size = new System.Drawing.Size(10, 17);
-        this.toolStriplblSeperator1.Text = "|";
-        this.toolStriplblSeperator1.Visible = false;
+        toolStriplblSeperator1.Name = "toolStriplblSeperator1";
+        toolStriplblSeperator1.Size = new Size(10, 17);
+        toolStriplblSeperator1.Text = "|";
+        toolStriplblSeperator1.Visible = false;
         // 
         // toolStriplblListen
         // 
-        this.toolStriplblListen.Name = "toolStriplblListen";
-        this.toolStriplblListen.Size = new System.Drawing.Size(10, 17);
-        this.toolStriplblListen.Text = " ";
-        this.toolStriplblListen.Visible = false;
+        toolStriplblListen.Name = "toolStriplblListen";
+        toolStriplblListen.Size = new Size(10, 17);
+        toolStriplblListen.Text = " ";
+        toolStriplblListen.Visible = false;
         // 
         // toolStriplblSeperator2
         // 
-        this.toolStriplblSeperator2.Name = "toolStriplblSeperator2";
-        this.toolStriplblSeperator2.Size = new System.Drawing.Size(10, 17);
-        this.toolStriplblSeperator2.Text = "|";
-        this.toolStriplblSeperator2.Visible = false;
+        toolStriplblSeperator2.Name = "toolStriplblSeperator2";
+        toolStriplblSeperator2.Size = new Size(10, 17);
+        toolStriplblSeperator2.Text = "|";
+        toolStriplblSeperator2.Visible = false;
         // 
         // toolStriplblCurrentDateTime
         // 
-        this.toolStriplblCurrentDateTime.Name = "toolStriplblCurrentDateTime";
-        this.toolStriplblCurrentDateTime.Size = new System.Drawing.Size(10, 17);
-        this.toolStriplblCurrentDateTime.Text = " ";
-        this.toolStriplblCurrentDateTime.Visible = false;
+        toolStriplblCurrentDateTime.Name = "toolStriplblCurrentDateTime";
+        toolStriplblCurrentDateTime.Size = new Size(10, 17);
+        toolStriplblCurrentDateTime.Text = " ";
+        toolStriplblCurrentDateTime.Visible = false;
         // 
         // toolStriplblSeperator3
         // 
-        this.toolStriplblSeperator3.Name = "toolStriplblSeperator3";
-        this.toolStriplblSeperator3.Size = new System.Drawing.Size(10, 17);
-        this.toolStriplblSeperator3.Text = "|";
-        this.toolStriplblSeperator3.Visible = false;
+        toolStriplblSeperator3.Name = "toolStriplblSeperator3";
+        toolStriplblSeperator3.Size = new Size(10, 17);
+        toolStriplblSeperator3.Text = "|";
+        toolStriplblSeperator3.Visible = false;
         // 
         // toolStriplblDateTimeAge
         // 
-        this.toolStriplblDateTimeAge.Name = "toolStriplblDateTimeAge";
-        this.toolStriplblDateTimeAge.Size = new System.Drawing.Size(10, 17);
-        this.toolStriplblDateTimeAge.Text = " ";
-        this.toolStriplblDateTimeAge.Visible = false;
+        toolStriplblDateTimeAge.Name = "toolStriplblDateTimeAge";
+        toolStriplblDateTimeAge.Size = new Size(10, 17);
+        toolStriplblDateTimeAge.Text = " ";
+        toolStriplblDateTimeAge.Visible = false;
         // 
         // FrmMain
         // 
-        this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(634, 361);
-        this.Controls.Add(this.statusStrip);
-        this.Controls.Add(this.MenuStrip);
-        this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-        this.IsMdiContainer = true;
-        this.Name = "FrmMain";
-        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        this.Text = "Telegram Bot";
-        this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-        this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
-        this.MenuStrip.ResumeLayout(false);
-        this.MenuStrip.PerformLayout();
-        this.statusStrip.ResumeLayout(false);
-        this.statusStrip.PerformLayout();
-        this.ResumeLayout(false);
-        this.PerformLayout();
-
+        AutoScaleDimensions = new SizeF(9F, 18F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(634, 361);
+        Controls.Add(statusStrip);
+        Controls.Add(MenuStrip);
+        Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        FormBorderStyle = FormBorderStyle.Fixed3D;
+        IsMdiContainer = true;
+        Name = "FrmMain";
+        StartPosition = FormStartPosition.CenterScreen;
+        Text = "Telegram Bot";
+        WindowState = FormWindowState.Maximized;
+        FormClosing += FrmMain_FormClosing;
+        MenuStrip.ResumeLayout(false);
+        MenuStrip.PerformLayout();
+        statusStrip.ResumeLayout(false);
+        statusStrip.PerformLayout();
+        ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
-    private System.Windows.Forms.MenuStrip MenuStrip;
-    private System.Windows.Forms.ToolStripMenuItem MnuFile;
-    private System.Windows.Forms.ToolStripMenuItem MnuFile_StartStop;
+    private MenuStrip MenuStrip;
+    private ToolStripMenuItem MnuFile;
+    private ToolStripMenuItem MnuFile_StartStop;
     private System.Windows.Forms.Timer timer;
-    private System.Windows.Forms.StatusStrip statusStrip;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblCheckOnline;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblSeperator1;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblListen;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblSeperator2;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblCurrentDateTime;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblSeperator3;
-    private System.Windows.Forms.ToolStripStatusLabel toolStriplblDateTimeAge;
+    private StatusStrip statusStrip;
+    private ToolStripStatusLabel toolStriplblCheckOnline;
+    private ToolStripStatusLabel toolStriplblSeperator1;
+    private ToolStripStatusLabel toolStriplblListen;
+    private ToolStripStatusLabel toolStriplblSeperator2;
+    private ToolStripStatusLabel toolStriplblCurrentDateTime;
+    private ToolStripStatusLabel toolStriplblSeperator3;
+    private ToolStripStatusLabel toolStriplblDateTimeAge;
+    private ToolStripMenuItem MnuManage;
+    private ToolStripMenuItem MnuManage_Groups;
+    private ToolStripMenuItem MnuManage_Users;
 }

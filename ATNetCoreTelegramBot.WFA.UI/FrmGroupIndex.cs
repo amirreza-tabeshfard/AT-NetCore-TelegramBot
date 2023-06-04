@@ -194,14 +194,6 @@ public partial class FrmGroupIndex : Infrastructure.BaseController
         }
     }
 
-    private void FrmGroupIndex_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        if (FrmTelegramBot.isOnline)
-            e.Cancel = true;
-        else
-            e.Cancel = false;
-    }
-
     #endregion
 
     #region Event(s) ==> Menu(s)

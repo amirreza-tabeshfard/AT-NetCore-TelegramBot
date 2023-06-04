@@ -1,5 +1,6 @@
 ﻿using ATNetCoreTelegramBot.Common.Enums;
 using System;
+using System.Drawing.Imaging;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
@@ -19,6 +20,7 @@ public partial class FrmTelegramBot : Form
 
     private FrmUsers _frmUsers;
     private FrmGroupIndex _frmGroupIndex;
+    private FrmCommand _frmCommand;
 
     #endregion
 
@@ -29,6 +31,7 @@ public partial class FrmTelegramBot : Form
         InitializeComponent();
         _frmUsers = new FrmUsers();
         _frmGroupIndex = new FrmGroupIndex();
+        _frmCommand = new FrmCommand();
     }
 
     #endregion
@@ -113,29 +116,31 @@ public partial class FrmTelegramBot : Form
 
     private async Task UpdateHandler(ITelegramBotClient telegramBotClient, Update update, CancellationToken cancellationToken)
     {
-        Telegram.Bot.Types.Message? message = update.Message;
-        Chat chat = message.Chat;
-        User? user = message.From;
-        MessageType type = message.Type;
-        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Telegram.Bot.Types.Message? message = default;
+        Chat? chat = default;
+        User? user = default;
+        MessageType type = default;
         GroupStatus groupStatus = default;
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        message = update.Message;
+        chat = message?.Chat;
+        user = message?.From;
+        type = message.Type;
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         try
         {
             if (user is not null)
                 groupStatus = _frmGroupIndex.InitializeGroups(userId: user.Id, userName: user.Username);
 
-            if (groupStatus == GroupStatus.Unknown || groupStatus == GroupStatus.Membered)
-            {
-                if (_frmUsers.InitializeUser(user))
-                {
+            if (groupStatus == GroupStatus.UnMembered)
+                return;
 
-                }
-            }
-            else
-            {
+            if (!_frmUsers.InitializeUser(user))
+                return;
 
-            }
+            if (message.Text is not null)
+                if (message.Text.StartsWith("/") && type.Equals(MessageType.Text))
+                    await _frmCommand.InitializeCommands(groupStatus, message, chat);
         }
         catch (Exception ex)
         {

@@ -149,13 +149,5 @@ public partial class FrmUsers : Infrastructure.BaseController
         RefreshAllDataGrid();
     }
 
-    private void FrmUsers_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        if (FrmTelegramBot.isOnline)
-            e.Cancel = true;
-        else
-            e.Cancel = false;
-    }
-
     #endregion
 }

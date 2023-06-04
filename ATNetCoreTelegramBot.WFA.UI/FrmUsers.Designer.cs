@@ -155,7 +155,7 @@ partial class FrmUsers
         InsertDateTime.HeaderText = "Insert DateTime";
         InsertDateTime.Name = "InsertDateTime";
         InsertDateTime.ReadOnly = true;
-        InsertDateTime.Width = 150;
+        InsertDateTime.Width = 200;
         // 
         // contextMenuStrip
         // 
@@ -220,7 +220,6 @@ partial class FrmUsers
         Name = "FrmUsers";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "User [Index]";
-        FormClosing += FrmUsers_FormClosing;
         Load += FrmUsers_Load;
         ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
         contextMenuStrip.ResumeLayout(false);

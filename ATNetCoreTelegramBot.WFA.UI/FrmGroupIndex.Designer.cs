@@ -28,174 +28,163 @@ partial class FrmGroupIndex
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.menuStrip = new System.Windows.Forms.MenuStrip();
-        this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
-        this.mnuFileInsert = new System.Windows.Forms.ToolStripMenuItem();
-        this.mnuFileUpdate = new System.Windows.Forms.ToolStripMenuItem();
-        this.mnuFileDelete = new System.Windows.Forms.ToolStripMenuItem();
-        this.dataGridView = new System.Windows.Forms.DataGridView();
-        this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.Ordering = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.InsertDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-        this.ContextMenuStripRefresh = new System.Windows.Forms.ToolStripMenuItem();
-        this.menuStrip.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-        this.contextMenuStrip.SuspendLayout();
-        this.SuspendLayout();
+        components = new System.ComponentModel.Container();
+        menuStrip = new MenuStrip();
+        mnuFile = new ToolStripMenuItem();
+        mnuFileInsert = new ToolStripMenuItem();
+        mnuFileUpdate = new ToolStripMenuItem();
+        mnuFileDelete = new ToolStripMenuItem();
+        dataGridView = new DataGridView();
+        Id = new DataGridViewTextBoxColumn();
+        GroupName = new DataGridViewTextBoxColumn();
+        Ordering = new DataGridViewTextBoxColumn();
+        InsertDateTime = new DataGridViewTextBoxColumn();
+        contextMenuStrip = new ContextMenuStrip(components);
+        ContextMenuStripRefresh = new ToolStripMenuItem();
+        menuStrip.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+        contextMenuStrip.SuspendLayout();
+        SuspendLayout();
         // 
         // menuStrip
         // 
-        this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        this.mnuFile});
-        this.menuStrip.Location = new System.Drawing.Point(0, 0);
-        this.menuStrip.Name = "menuStrip";
-        this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-        this.menuStrip.Size = new System.Drawing.Size(780, 24);
-        this.menuStrip.TabIndex = 0;
-        this.menuStrip.Text = "menuStrip1";
+        menuStrip.Items.AddRange(new ToolStripItem[] { mnuFile });
+        menuStrip.Location = new Point(0, 0);
+        menuStrip.Name = "menuStrip";
+        menuStrip.Padding = new Padding(5, 1, 0, 1);
+        menuStrip.Size = new Size(780, 24);
+        menuStrip.TabIndex = 0;
+        menuStrip.Text = "menuStrip1";
         // 
         // mnuFile
         // 
-        this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        this.mnuFileInsert,
-        this.mnuFileUpdate,
-        this.mnuFileDelete});
-        this.mnuFile.Name = "mnuFile";
-        this.mnuFile.Size = new System.Drawing.Size(37, 22);
-        this.mnuFile.Text = "File";
+        mnuFile.DropDownItems.AddRange(new ToolStripItem[] { mnuFileInsert, mnuFileUpdate, mnuFileDelete });
+        mnuFile.Name = "mnuFile";
+        mnuFile.Size = new Size(37, 22);
+        mnuFile.Text = "File";
         // 
         // mnuFileInsert
         // 
-        this.mnuFileInsert.Name = "mnuFileInsert";
-        this.mnuFileInsert.Size = new System.Drawing.Size(112, 22);
-        this.mnuFileInsert.Text = "Insert";
-        this.mnuFileInsert.Click += new System.EventHandler(this.mnuFileInsert_Click);
+        mnuFileInsert.Name = "mnuFileInsert";
+        mnuFileInsert.Size = new Size(112, 22);
+        mnuFileInsert.Text = "Insert";
+        mnuFileInsert.Click += mnuFileInsert_Click;
         // 
         // mnuFileUpdate
         // 
-        this.mnuFileUpdate.Name = "mnuFileUpdate";
-        this.mnuFileUpdate.Size = new System.Drawing.Size(112, 22);
-        this.mnuFileUpdate.Text = "Update";
-        this.mnuFileUpdate.Click += new System.EventHandler(this.mnuFileUpdate_Click);
+        mnuFileUpdate.Name = "mnuFileUpdate";
+        mnuFileUpdate.Size = new Size(112, 22);
+        mnuFileUpdate.Text = "Update";
+        mnuFileUpdate.Click += mnuFileUpdate_Click;
         // 
         // mnuFileDelete
         // 
-        this.mnuFileDelete.Name = "mnuFileDelete";
-        this.mnuFileDelete.Size = new System.Drawing.Size(112, 22);
-        this.mnuFileDelete.Text = "Delete";
-        this.mnuFileDelete.Click += new System.EventHandler(this.mnuFileDelete_Click);
+        mnuFileDelete.Name = "mnuFileDelete";
+        mnuFileDelete.Size = new Size(112, 22);
+        mnuFileDelete.Text = "Delete";
+        mnuFileDelete.Click += mnuFileDelete_Click;
         // 
         // dataGridView
         // 
-        this.dataGridView.AllowUserToAddRows = false;
-        this.dataGridView.AllowUserToDeleteRows = false;
-        this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-        this.Id,
-        this.GroupName,
-        this.Ordering,
-        this.InsertDateTime});
-        this.dataGridView.ContextMenuStrip = this.contextMenuStrip;
-        this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-        this.dataGridView.Location = new System.Drawing.Point(0, 24);
-        this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-        this.dataGridView.Name = "dataGridView";
-        this.dataGridView.ReadOnly = true;
-        this.dataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-        this.dataGridView.RowTemplate.Height = 25;
-        this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-        this.dataGridView.Size = new System.Drawing.Size(780, 433);
-        this.dataGridView.TabIndex = 1;
+        dataGridView.AllowUserToAddRows = false;
+        dataGridView.AllowUserToDeleteRows = false;
+        dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, GroupName, Ordering, InsertDateTime });
+        dataGridView.ContextMenuStrip = contextMenuStrip;
+        dataGridView.Dock = DockStyle.Fill;
+        dataGridView.Location = new Point(0, 24);
+        dataGridView.Margin = new Padding(3, 2, 3, 2);
+        dataGridView.Name = "dataGridView";
+        dataGridView.ReadOnly = true;
+        dataGridView.RightToLeft = RightToLeft.Yes;
+        dataGridView.RowTemplate.Height = 25;
+        dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dataGridView.Size = new Size(780, 433);
+        dataGridView.TabIndex = 1;
         // 
         // Id
         // 
-        this.Id.FillWeight = 5.21159F;
-        this.Id.HeaderText = "شناسه";
-        this.Id.Name = "Id";
-        this.Id.ReadOnly = true;
-        this.Id.Width = 170;
+        Id.FillWeight = 5.21159F;
+        Id.HeaderText = "شناسه";
+        Id.Name = "Id";
+        Id.ReadOnly = true;
+        Id.Width = 170;
         // 
         // GroupName
         // 
-        this.GroupName.FillWeight = 449.2386F;
-        this.GroupName.HeaderText = "نام";
-        this.GroupName.Name = "GroupName";
-        this.GroupName.ReadOnly = true;
-        this.GroupName.Width = 287;
+        GroupName.FillWeight = 449.2386F;
+        GroupName.HeaderText = "نام";
+        GroupName.Name = "GroupName";
+        GroupName.ReadOnly = true;
+        GroupName.Width = 287;
         // 
         // Ordering
         // 
-        this.Ordering.FillWeight = 28.58869F;
-        this.Ordering.HeaderText = "ترتیب";
-        this.Ordering.Name = "Ordering";
-        this.Ordering.ReadOnly = true;
-        this.Ordering.Width = 60;
+        Ordering.FillWeight = 28.58869F;
+        Ordering.HeaderText = "ترتیب";
+        Ordering.Name = "Ordering";
+        Ordering.ReadOnly = true;
+        Ordering.Width = 60;
         // 
         // InsertDateTime
         // 
-        this.InsertDateTime.FillWeight = 14.03406F;
-        this.InsertDateTime.HeaderText = "تاریخ ثبت";
-        this.InsertDateTime.Name = "InsertDateTime";
-        this.InsertDateTime.ReadOnly = true;
-        this.InsertDateTime.Width = 220;
+        InsertDateTime.FillWeight = 14.03406F;
+        InsertDateTime.HeaderText = "تاریخ ثبت";
+        InsertDateTime.Name = "InsertDateTime";
+        InsertDateTime.ReadOnly = true;
+        InsertDateTime.Width = 220;
         // 
         // contextMenuStrip
         // 
-        this.contextMenuStrip.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-        this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        this.ContextMenuStripRefresh});
-        this.contextMenuStrip.Name = "contextMenuStrip";
-        this.contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+        contextMenuStrip.Font = new Font("Arial", 14.25F, FontStyle.Italic, GraphicsUnit.Point);
+        contextMenuStrip.Items.AddRange(new ToolStripItem[] { ContextMenuStripRefresh });
+        contextMenuStrip.Name = "contextMenuStrip";
+        contextMenuStrip.Size = new Size(122, 26);
         // 
         // ContextMenuStripRefresh
         // 
-        this.ContextMenuStripRefresh.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-        this.ContextMenuStripRefresh.Name = "ContextMenuStripRefresh";
-        this.ContextMenuStripRefresh.Size = new System.Drawing.Size(180, 22);
-        this.ContextMenuStripRefresh.Text = "Refresh";
-        this.ContextMenuStripRefresh.Click += new System.EventHandler(this.ContextMenuStripRefresh_Click);
+        ContextMenuStripRefresh.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+        ContextMenuStripRefresh.Name = "ContextMenuStripRefresh";
+        ContextMenuStripRefresh.Size = new Size(121, 22);
+        ContextMenuStripRefresh.Text = "Refresh";
+        ContextMenuStripRefresh.Click += ContextMenuStripRefresh_Click;
         // 
         // FrmGroupIndex
         // 
-        this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(780, 457);
-        this.Controls.Add(this.dataGridView);
-        this.Controls.Add(this.menuStrip);
-        this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-        this.MainMenuStrip = this.menuStrip;
-        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-        this.MaximizeBox = false;
-        this.Name = "FrmGroupIndex";
-        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        this.Text = "Group [Index]";
-        this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGroupIndex_FormClosing);
-        this.Load += new System.EventHandler(this.FrmGroupIndex_Load);
-        this.menuStrip.ResumeLayout(false);
-        this.menuStrip.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-        this.contextMenuStrip.ResumeLayout(false);
-        this.ResumeLayout(false);
-        this.PerformLayout();
-
+        AutoScaleDimensions = new SizeF(9F, 18F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(780, 457);
+        Controls.Add(dataGridView);
+        Controls.Add(menuStrip);
+        Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        FormBorderStyle = FormBorderStyle.Fixed3D;
+        MainMenuStrip = menuStrip;
+        Margin = new Padding(4, 3, 4, 3);
+        MaximizeBox = false;
+        Name = "FrmGroupIndex";
+        StartPosition = FormStartPosition.CenterScreen;
+        Text = "Group [Index]";
+        Load += FrmGroupIndex_Load;
+        menuStrip.ResumeLayout(false);
+        menuStrip.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+        contextMenuStrip.ResumeLayout(false);
+        ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
-    private System.Windows.Forms.MenuStrip menuStrip;
-    private System.Windows.Forms.ToolStripMenuItem mnuFile;
-    private System.Windows.Forms.ToolStripMenuItem mnuFileInsert;
-    private System.Windows.Forms.ToolStripMenuItem mnuFileUpdate;
-    private System.Windows.Forms.ToolStripMenuItem mnuFileDelete;
-    private System.Windows.Forms.DataGridView dataGridView;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-    private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Ordering;
-    private System.Windows.Forms.DataGridViewTextBoxColumn InsertDateTime;
-    private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-    private System.Windows.Forms.ToolStripMenuItem ContextMenuStripRefresh;
+    private MenuStrip menuStrip;
+    private ToolStripMenuItem mnuFile;
+    private ToolStripMenuItem mnuFileInsert;
+    private ToolStripMenuItem mnuFileUpdate;
+    private ToolStripMenuItem mnuFileDelete;
+    private DataGridView dataGridView;
+    private DataGridViewTextBoxColumn Id;
+    private DataGridViewTextBoxColumn GroupName;
+    private DataGridViewTextBoxColumn Ordering;
+    private DataGridViewTextBoxColumn InsertDateTime;
+    private ContextMenuStrip contextMenuStrip;
+    private ToolStripMenuItem ContextMenuStripRefresh;
 }

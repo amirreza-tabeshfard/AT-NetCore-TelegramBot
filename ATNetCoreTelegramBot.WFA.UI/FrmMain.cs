@@ -9,6 +9,7 @@ public partial class FrmMain : Form
     private FrmTelegramBot _frmTelegramBot;
     private FrmGroupIndex _frmGroupIndex;
     private FrmUsers _frmUsers;
+    private FrmCommand _frmCommand;
 
     #endregion
 
@@ -32,44 +33,6 @@ public partial class FrmMain : Form
         }
     }
 
-    private void GroupIndexShow()
-    {
-        _frmGroupIndex = new FrmGroupIndex();
-
-        if (this.MdiChildren.Count() == 1)
-        {
-            _frmGroupIndex.MdiParent = this;
-            _frmGroupIndex.Show();
-        }
-        else
-        {
-            foreach (Form form in this.MdiChildren)
-            {
-                if (form.Name == "FrmGroupIndex")
-                    form.Show();
-            }
-        }
-    }
-
-    private void UsersShow()
-    {
-        _frmUsers = new FrmUsers();
-
-        if (this.MdiChildren.Count() == 2)
-        {
-            _frmUsers.MdiParent = this;
-            _frmUsers.Show();
-        }
-        else
-        {
-            foreach (Form form in this.MdiChildren)
-            {
-                if (form.Name == "FrmUsers")
-                    form.Show();
-            }
-        }
-    }
-
     private void Online()
     {
         toolStriplblCheckOnline.Text = "Online";
@@ -86,8 +49,9 @@ public partial class FrmMain : Form
         if (!string.IsNullOrEmpty(toolStriplblDateTimeAge.Text))
             toolStriplblSeperator3.Visible = true;
 
-        GroupIndexShow();
-        UsersShow();
+        //GroupIndexShow();
+        //UsersShow();
+        //CommandShow();
     }
 
     private void Offline()
@@ -132,20 +96,57 @@ public partial class FrmMain : Form
     {
         _frmTelegramBot = new FrmTelegramBot();
 
-        if (this.MdiChildren.Count() == 0)
+        Form? formChild = this.MdiChildren.Where(current => current.Name.Equals("FrmTelegramBot")).FirstOrDefault();
+
+        if (formChild is null)
         {
             _frmTelegramBot.MdiParent = this;
             _frmTelegramBot.Text = $"Telegram Bot (Start/Stop)";
             _frmTelegramBot.Show();
         }
         else
-        {
             foreach (Form form in this.MdiChildren)
-            {
                 if (form.Name == "FrmTelegramBot")
                     form.Show();
-            }
+    }
+
+    #endregion
+
+    #region Event(s) ==> Manage
+
+    private void MnuManage_Groups_Click(object sender, EventArgs e)
+    {
+        _frmGroupIndex = new FrmGroupIndex();
+
+        Form? formChild = this.MdiChildren.Where(current => current.Name.Equals("FrmGroupIndex")).FirstOrDefault();
+
+        if (formChild is null)
+        {
+            _frmGroupIndex.MdiParent = this;
+            _frmGroupIndex.Show();
         }
+        else
+            foreach (Form form in this.MdiChildren)
+                if (form.Name == "FrmGroupIndex")
+                    form.Show();
+
+    }
+
+    private void MnuManage_Users_Click(object sender, EventArgs e)
+    {
+        _frmUsers = new FrmUsers();
+
+        Form? formChild = this.MdiChildren.Where(current => current.Name.Equals("FrmUsers")).FirstOrDefault();
+
+        if (formChild is null)
+        {
+            _frmUsers.MdiParent = this;
+            _frmUsers.Show();
+        }
+        else
+            foreach (Form form in this.MdiChildren)
+                if (form.Name == "FrmUsers")
+                    form.Show();
     }
 
     #endregion
