@@ -112,26 +112,6 @@ public class City : ID.BaseEntityGuid
     }
     // **********
 
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Generals.General),
-            Name = nameof(Resource.Generals.General.InsertDateTime), Order = 500)]
-
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 500)]
-    public DateTime InsertDateTime { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Generals.General),
-            Name = nameof(Resource.Generals.General.LastUpdateDateTime), Order = 501)]
-
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 501)]
-    public DateTime? LastUpdateDateTime { get; set; }
-    // **********
-
     #region RelationShip
 
     #region SchemaBase

@@ -25,6 +25,8 @@ public interface IUnitOfWork :
 
     #region Properties
 
+    SchemaBase.IBaseUnitOfWork SchemaBaseUnitOfWork { get; }
+
     SchemaPerson.IPersonUnitOfWork SchemaPersonUnitOfWork { get; }
 
     SchemaTelegram.ITelegramUnitOfWork SchemaTelegramUnitOfWork { get; }

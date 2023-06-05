@@ -121,9 +121,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     CultureId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InsertDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -277,9 +275,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     CultureId = table.Column<int>(type: "int", nullable: false),
                     CountryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InsertDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -581,9 +577,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
                     CultureId = table.Column<int>(type: "int", nullable: false),
                     ProvinceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InsertDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

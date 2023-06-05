@@ -12,6 +12,8 @@ public class UnitOfWork :
 
     private DatabaseContext _databaseContext;
 
+    private SchemaBase.IBaseUnitOfWork _schemaBaseUnitOfWork;
+
     private SchemaPerson.IPersonUnitOfWork _schemaPersonUnitOfWork;
 
     private SchemaTelegram.ITelegramUnitOfWork _schemaTelegramUnitOfWork;
@@ -101,6 +103,19 @@ public class UnitOfWork :
     #endregion
 
     #region Implement Interface(s)
+
+    public SchemaBase.IBaseUnitOfWork SchemaBaseUnitOfWork
+    {
+        get
+        {
+            if (_schemaBaseUnitOfWork == null)
+            {
+                _schemaBaseUnitOfWork =
+                    new SchemaBase.BaseUnitOfWork(DatabaseContext);
+            }
+            return (_schemaBaseUnitOfWork);
+        }
+    }
 
     public SchemaPerson.IPersonUnitOfWork SchemaPersonUnitOfWork
     {

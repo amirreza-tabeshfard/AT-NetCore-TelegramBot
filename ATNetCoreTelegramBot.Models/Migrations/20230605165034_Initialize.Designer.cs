@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230605123305_Initialize")]
+    [Migration("20230605165034_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -36,14 +36,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
-
-                    b.Property<DateTime>("InsertDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(500);
-
-                    b.Property<DateTime?>("LastUpdateDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(501);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -78,14 +70,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
-
-                    b.Property<DateTime>("InsertDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(500);
-
-                    b.Property<DateTime?>("LastUpdateDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(501);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -176,14 +160,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
-
-                    b.Property<DateTime>("InsertDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(500);
-
-                    b.Property<DateTime?>("LastUpdateDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(501);
 
                     b.Property<string>("Name")
                         .IsRequired()

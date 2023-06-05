@@ -34,14 +34,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasColumnType("int")
                         .HasColumnOrder(1);
 
-                    b.Property<DateTime>("InsertDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(500);
-
-                    b.Property<DateTime?>("LastUpdateDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(501);
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -75,14 +67,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
-
-                    b.Property<DateTime>("InsertDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(500);
-
-                    b.Property<DateTime?>("LastUpdateDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(501);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -173,14 +157,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
-
-                    b.Property<DateTime>("InsertDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(500);
-
-                    b.Property<DateTime?>("LastUpdateDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnOrder(501);
 
                     b.Property<string>("Name")
                         .IsRequired()

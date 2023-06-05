@@ -17,7 +17,7 @@ internal static class Configuration
     }
 
     internal static class Person
-        : System.Object
+        : object
     {
         internal static void ApplyConfiguration(ModelBuilder modelBuilder)
         {
