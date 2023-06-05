@@ -17,14 +17,6 @@ public class Person : ID.BaseEntityGuid
             builder.HasIndex(current => new
             {
                 current.UserId,
-                current.GenderId
-            })
-            .IsUnique(unique: true)
-            .HasName("IX_person.Person.UserId_GenderId");
-            // **********
-            builder.HasIndex(current => new
-            {
-                current.UserId,
                 current.MaritalStatusId
             })
             .IsUnique(unique: true)
@@ -46,10 +38,6 @@ public class Person : ID.BaseEntityGuid
             .IsUnique(unique: true)
             .HasName("IX_person.Person.CultureId_UserId");
             // **********
-            builder.HasIndex(current => current.GenderId)
-                   .IsUnique(unique: false)
-                   .HasName("IX_person.Person.GenderId");
-            // **********
             builder.HasIndex(current => current.MaritalStatusId)
                    .IsUnique(unique: false)
                    .HasName("IX_person.Person.MaritalStatusId");
@@ -69,11 +57,6 @@ public class Person : ID.BaseEntityGuid
                     .HasForeignKey(current => current.CultureId)
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
-            // **********
-            builder.HasOne(current => current.Gender)
-                    .WithMany(current => current.People)
-                    .HasForeignKey(current => current.GenderId)
-                    .OnDelete(DeleteBehavior.NoAction);
             // **********
             builder.HasOne(current => current.MaritalStatus)
                     .WithMany(current => current.People)
@@ -110,18 +93,12 @@ public class Person : ID.BaseEntityGuid
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 3)]
-    public Nullable<int> GenderId { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 4)]
     public Nullable<int> MaritalStatusId { get; set; }
     // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 5)]
+        (Order = 4)]
     public Nullable<int> MilitaryServiceStatusId { get; set; }
     // **********
 
@@ -142,7 +119,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 6)]
+        (Order = 5)]
     public string FirstName { get; set; }
     // **********
 
@@ -163,13 +140,13 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 7)]
+        (Order = 6)]
     public string LastName { get; set; }
     // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 8)]
+        (Order = 7)]
     public DateTime? Birthday { get; set; }
     // **********
 
@@ -181,7 +158,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 9)]
+        (Order = 8)]
     public string? BirthCertificate { get; set; }
     // **********
 
@@ -193,7 +170,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 10)]
+        (Order = 9)]
     public string? NationalCode { get; set; }
     // **********
 
@@ -205,13 +182,13 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 11)]
+        (Order = 10)]
     public string? AboutMe { get; set; }
     // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 12)]
+        (Order = 11)]
     public byte[]? Avatar { get; set; }
     // **********
 
@@ -247,8 +224,8 @@ public class Person : ID.BaseEntityGuid
     // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.Genders.Gender),
-            Name = nameof(Resource.Models.SchemaPerson.Genders.Gender.EntityName))]
-    public virtual Gender Gender { get; set; }
+            Name = nameof(Resource.Models.SchemaPerson.Genders.Gender.EntitiesName))]
+    public virtual IList<Gender> Genders { get; set; }
     // **********
 
     // **********

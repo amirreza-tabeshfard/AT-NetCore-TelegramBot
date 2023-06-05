@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230604185505_Initialize")]
+    [Migration("20230605090001_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -359,6 +359,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(2);
 
                     b.HasKey("Id");
@@ -369,6 +373,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.HasIndex("Name")
                         .IsUnique()
                         .HasDatabaseName("IX_person.Gender.Name");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Gender.PersonId");
 
                     b.ToTable("Gender", "person");
                 });
@@ -508,20 +516,20 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<string>("AboutMe")
                         .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(11);
+                        .HasColumnOrder(10);
 
                     b.Property<byte[]>("Avatar")
                         .HasColumnType("varbinary(max)")
-                        .HasColumnOrder(12);
+                        .HasColumnOrder(11);
 
                     b.Property<string>("BirthCertificate")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(9);
+                        .HasColumnOrder(8);
 
                     b.Property<DateTime?>("Birthday")
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(8);
+                        .HasColumnOrder(7);
 
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
@@ -531,42 +539,34 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
-                        .HasColumnOrder(6);
-
-                    b.Property<int?>("GenderId")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnOrder(3);
+                        .HasColumnOrder(5);
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
-                        .HasColumnOrder(7);
+                        .HasColumnOrder(6);
 
                     b.Property<int?>("MaritalStatusId")
                         .IsRequired()
                         .HasColumnType("int")
-                        .HasColumnOrder(4);
+                        .HasColumnOrder(3);
 
                     b.Property<int?>("MilitaryServiceStatusId")
                         .IsRequired()
                         .HasColumnType("int")
-                        .HasColumnOrder(5);
+                        .HasColumnOrder(4);
 
                     b.Property<string>("NationalCode")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(10);
+                        .HasColumnOrder(9);
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(2);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GenderId")
-                        .HasDatabaseName("IX_person.Person.GenderId");
 
                     b.HasIndex("MaritalStatusId")
                         .HasDatabaseName("IX_person.Person.MaritalStatusId");
@@ -577,10 +577,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.HasIndex("CultureId", "UserId")
                         .IsUnique()
                         .HasDatabaseName("IX_person.Person.CultureId_UserId");
-
-                    b.HasIndex("UserId", "GenderId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_person.Person.UserId_GenderId");
 
                     b.HasIndex("UserId", "MaritalStatusId")
                         .IsUnique()
@@ -1048,7 +1044,15 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
+                        .WithMany("Genders")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Culture");
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.InstantMessage", b =>
@@ -1111,12 +1115,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Gender", "Gender")
-                        .WithMany("People")
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.MaritalStatus", "MaritalStatus")
                         .WithMany("People")
                         .HasForeignKey("MaritalStatusId")
@@ -1136,8 +1134,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .IsRequired();
 
                     b.Navigation("Culture");
-
-                    b.Navigation("Gender");
 
                     b.Navigation("MaritalStatus");
 
@@ -1292,11 +1288,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Emails");
                 });
 
-            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Gender", b =>
-                {
-                    b.Navigation("People");
-                });
-
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.InstantMessageType", b =>
                 {
                     b.Navigation("InstantMessages");
@@ -1317,6 +1308,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Addresses");
 
                     b.Navigation("Emails");
+
+                    b.Navigation("Genders");
 
                     b.Navigation("InstantMessages");
 
