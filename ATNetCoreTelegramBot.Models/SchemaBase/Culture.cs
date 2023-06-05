@@ -175,30 +175,9 @@ public class Culture : ID.BaseEntityInt
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Models.SchemaPerson.Genders.Gender),
-            Name = nameof(Resource.Models.SchemaPerson.Genders.Gender.EntitiesName))]
-    public virtual IList<SchemaPerson.Gender> Genders { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.InstantMessageTypes.InstantMessageType),
             Name = nameof(Resource.Models.SchemaPerson.InstantMessageTypes.InstantMessageType.EntitiesName))]
     public virtual IList<SchemaPerson.InstantMessageType> InstantMessageTypes { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Models.SchemaPerson.MaritalStatuses.MaritalStatus),
-            Name = nameof(Resource.Models.SchemaPerson.MaritalStatuses.MaritalStatus.EntitiesName))]
-    public virtual IList<SchemaPerson.MaritalStatus> MaritalStatuses { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus),
-            Name = nameof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus.EntitiesName))]
-    public virtual IList<SchemaPerson.MilitaryServiceStatus> MilitaryServiceStatuses { get; set; }
     // **********
 
     // **********

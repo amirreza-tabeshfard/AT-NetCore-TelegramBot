@@ -14,10 +14,6 @@ public class Gender : ID.BaseEntityInt
         [Obsolete]
         public void Configure(EntityTypeBuilder<Gender> builder)
         {
-            builder.HasIndex(current => current.CultureId)
-                   .IsUnique(unique: false)
-                   .HasName("IX_person.Gender.CultureId");
-            // **********
             builder.HasIndex(current => current.PersonId)
                    .IsUnique(unique: true)
                    .HasName("IX_person.Gender.PersonId");
@@ -25,12 +21,6 @@ public class Gender : ID.BaseEntityInt
             builder.HasIndex(current => current.Name)
                    .IsUnique(unique: true)
                    .HasName("IX_person.Gender.Name");
-            // **********
-            builder.HasOne(current => current.Culture)
-                    .WithMany(current => current.Genders)
-                    .HasForeignKey(current => current.CultureId)
-                    .OnDelete(DeleteBehavior.NoAction)
-                    .IsRequired();
             // **********
             builder.HasOne(current => current.Person)
                     .WithMany(current => current.Genders)
@@ -40,16 +30,6 @@ public class Gender : ID.BaseEntityInt
     }
 
     #endregion /Configuration
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
-            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
-
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 1)]
-    public int CultureId { get; set; }
-    // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
@@ -83,17 +63,6 @@ public class Gender : ID.BaseEntityInt
     // **********
 
     #region RelationShip
-
-    #region SchemaBase
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Display
-        (ResourceType = typeof(Resource.Models.SchemaBase.CultureNames.CultureName),
-            Name = nameof(Resource.Models.SchemaBase.CultureNames.CultureName.EntityName))]
-    public virtual SchemaBase.Culture Culture { get; set; }
-    // **********
-
-    #endregion
 
     #region SchemaPerson
 

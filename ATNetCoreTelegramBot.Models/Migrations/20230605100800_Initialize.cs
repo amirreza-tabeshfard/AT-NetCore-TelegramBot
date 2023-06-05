@@ -337,19 +337,12 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CultureId = table.Column<int>(type: "int", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Gender", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Gender_Culture_CultureId",
-                        column: x => x.CultureId,
-                        principalSchema: "base",
-                        principalTable: "Culture",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Gender_Person_PersonId",
                         column: x => x.PersonId,
@@ -392,19 +385,12 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CultureId = table.Column<int>(type: "int", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MaritalStatus", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MaritalStatus_Culture_CultureId",
-                        column: x => x.CultureId,
-                        principalSchema: "base",
-                        principalTable: "Culture",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_MaritalStatus_Person_PersonId",
                         column: x => x.PersonId,
@@ -420,19 +406,12 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CultureId = table.Column<int>(type: "int", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MilitaryServiceStatus", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MilitaryServiceStatus_Culture_CultureId",
-                        column: x => x.CultureId,
-                        principalSchema: "base",
-                        principalTable: "Culture",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_MilitaryServiceStatus_Person_PersonId",
                         column: x => x.PersonId,
@@ -709,12 +688,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_person.Gender.CultureId",
-                schema: "person",
-                table: "Gender",
-                column: "CultureId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_person.Gender.Name",
                 schema: "person",
                 table: "Gender",
@@ -761,12 +734,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_person.MaritalStatus.CultureId",
-                schema: "person",
-                table: "MaritalStatus",
-                column: "CultureId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_person.MaritalStatus.Name",
                 schema: "person",
                 table: "MaritalStatus",
@@ -779,12 +746,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 table: "MaritalStatus",
                 column: "PersonId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_person.MilitaryServiceStatus.CultureId",
-                schema: "person",
-                table: "MilitaryServiceStatus",
-                column: "CultureId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_person.MilitaryServiceStatus.Name",
