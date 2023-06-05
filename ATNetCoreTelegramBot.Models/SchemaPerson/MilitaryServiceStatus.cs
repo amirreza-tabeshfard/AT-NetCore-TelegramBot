@@ -5,7 +5,7 @@ namespace ATNetCoreTelegramBot.Models.SchemaPerson;
 
 [System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.MilitaryServiceStatus,
                                                     Schema = Infrastructure.SchemaName.SchemaPerson)]
-public class MilitaryServiceStatus : ID.BaseEntityInt
+public class MilitaryServiceStatus : ID.BaseEntityGuid
 {
     #region Configuration
 

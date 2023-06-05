@@ -251,7 +251,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    BirthCertificate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     AboutMe = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
@@ -303,14 +302,33 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BirthCertificate",
+                schema: "person",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BirthCertificate", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BirthCertificate_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalSchema: "person",
+                        principalTable: "Person",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Birthday",
                 schema: "person",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                    Name = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -355,8 +373,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 schema: "person",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
                 },
@@ -403,8 +420,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 schema: "person",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
                 },
@@ -424,8 +440,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 schema: "person",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
                 },
@@ -629,14 +644,28 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_person.Gender.Name",
+                name: "IX_person.BirthCertificate.Name",
+                schema: "person",
+                table: "BirthCertificate",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_person.BirthCertificate.PersonId",
+                schema: "person",
+                table: "BirthCertificate",
+                column: "PersonId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_person.Birthday.Name",
                 schema: "person",
                 table: "Birthday",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_person.Gender.PersonId",
+                name: "IX_person.Birthday.PersonId",
                 schema: "person",
                 table: "Birthday",
                 column: "PersonId",
@@ -910,6 +939,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Address",
+                schema: "person");
+
+            migrationBuilder.DropTable(
+                name: "BirthCertificate",
                 schema: "person");
 
             migrationBuilder.DropTable(

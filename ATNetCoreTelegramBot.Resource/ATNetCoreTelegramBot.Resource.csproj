@@ -47,6 +47,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AddressType.resx</DependentUpon>
     </Compile>
+    <Compile Update="Models\SchemaPerson\BirthCertificates\BirthCertificate.Designer.cs">
+      <DependentUpon>BirthCertificate.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Models\SchemaPerson\Birthdays\Birthday.Designer.cs">
       <DependentUpon>Birthday.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -180,6 +185,13 @@
     <EmbeddedResource Update="Models\SchemaPerson\AddressTypes\AddressType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddressType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\BirthCertificates\BirthCertificate.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\BirthCertificates\BirthCertificate.resx">
+      <LastGenOutput>BirthCertificate.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Models\SchemaPerson\Birthdays\Birthday.fa-IR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

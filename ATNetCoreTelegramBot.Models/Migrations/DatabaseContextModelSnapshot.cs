@@ -276,14 +276,12 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.ToTable("AddressType", "person");
                 });
 
-            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Birthday", b =>
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.BirthCertificate", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -299,11 +297,39 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.HasIndex("Name")
                         .IsUnique()
-                        .HasDatabaseName("IX_person.Gender.Name");
+                        .HasDatabaseName("IX_person.BirthCertificate.Name");
 
                     b.HasIndex("PersonId")
                         .IsUnique()
-                        .HasDatabaseName("IX_person.Gender.PersonId");
+                        .HasDatabaseName("IX_person.BirthCertificate.PersonId");
+
+                    b.ToTable("BirthCertificate", "person");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Birthday", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(0);
+
+                    b.Property<DateTime>("Name")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Birthday.Name");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Birthday.PersonId");
 
                     b.ToTable("Birthday", "person");
                 });
@@ -373,12 +399,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Gender", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -468,12 +492,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.MaritalStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -500,12 +522,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.MilitaryServiceStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -545,11 +565,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<byte[]>("Avatar")
                         .HasColumnType("varbinary(max)")
                         .HasColumnOrder(8);
-
-                    b.Property<string>("BirthCertificate")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(5);
 
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
@@ -1004,6 +1019,17 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Culture");
                 });
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.BirthCertificate", b =>
+                {
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
+                        .WithMany("BirthCertificates")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Birthday", b =>
                 {
                     b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
@@ -1275,6 +1301,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Person", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("BirthCertificates");
 
                     b.Navigation("Birthdays");
 

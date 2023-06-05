@@ -5,7 +5,7 @@ namespace ATNetCoreTelegramBot.Models.SchemaPerson;
 
 [System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.Gender,
                                                     Schema = Infrastructure.SchemaName.SchemaPerson)]
-public class Gender : ID.BaseEntityInt
+public class Gender : ID.BaseEntityGuid
 {
     #region Configuration
 

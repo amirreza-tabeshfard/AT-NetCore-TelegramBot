@@ -104,18 +104,6 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 5)]
-    public string? BirthCertificate { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.StringLength
-        (maximumLength: 10,
-            MinimumLength = 10,
-            ErrorMessageResourceType = typeof(Resource.Messages.Message),
-            ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
-
-    [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 6)]
     public string? NationalCode { get; set; }
     // **********
@@ -160,6 +148,13 @@ public class Person : ID.BaseEntityGuid
     public virtual IList<Address> Addresses { get; set; }
     // ********** 
 
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaPerson.BirthCertificates.BirthCertificate),
+            Name = nameof(Resource.Models.SchemaPerson.BirthCertificates.BirthCertificate.EntitiesName))]
+    public virtual IList<BirthCertificate> BirthCertificates { get; set; }
+    // **********
+    
     // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.Birthdays.Birthday),

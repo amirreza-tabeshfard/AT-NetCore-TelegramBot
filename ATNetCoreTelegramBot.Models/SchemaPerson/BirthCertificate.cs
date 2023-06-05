@@ -3,27 +3,27 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ATNetCoreTelegramBot.Models.SchemaPerson;
 
-[System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.Birthday,
+[System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.BirthCertificate,
                                                     Schema = Infrastructure.SchemaName.SchemaPerson)]
-public class Birthday : ID.BaseEntityGuid
+public class BirthCertificate : ID.BaseEntityGuid
 {
     #region Configuration
 
-    internal class Configuration : IEntityTypeConfiguration<Birthday>
+    internal class Configuration : IEntityTypeConfiguration<BirthCertificate>
     {
         [Obsolete]
-        public void Configure(EntityTypeBuilder<Birthday> builder)
+        public void Configure(EntityTypeBuilder<BirthCertificate> builder)
         {
             builder.HasIndex(current => current.PersonId)
                    .IsUnique(unique: true)
-                   .HasName("IX_person.Birthday.PersonId");
+                   .HasName("IX_person.BirthCertificate.PersonId");
             // **********
             builder.HasIndex(current => current.Name)
                    .IsUnique(unique: true)
-                   .HasName("IX_person.Birthday.Name");
+                   .HasName("IX_person.BirthCertificate.Name");
             // **********
             builder.HasOne(current => current.Person)
-                    .WithMany(current => current.Birthdays)
+                    .WithMany(current => current.BirthCertificates)
                     .HasForeignKey(current => current.PersonId)
                     .OnDelete(DeleteBehavior.NoAction);
         }
@@ -51,9 +51,15 @@ public class Birthday : ID.BaseEntityGuid
             ErrorMessageResourceType = typeof(Resource.Messages.Message),
             ErrorMessageResourceName = nameof(Resource.Messages.Message.Required))]
 
+    [System.ComponentModel.DataAnnotations.StringLength
+        (maximumLength: 6,
+            MinimumLength = 2,
+            ErrorMessageResourceType = typeof(Resource.Messages.Message),
+            ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
+
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 3)]
-    public DateTime Name { get; set; }
+    public string Name { get; set; }
     // **********
 
     #region RelationShip

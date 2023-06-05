@@ -37,6 +37,8 @@ public class DatabaseContext :
 
     public DbSet<SchemaPerson.AddressType> AddressTypes { get; set; }
 
+    public DbSet<SchemaPerson.BirthCertificate> BirthCertificates { get; set; }
+
     public DbSet<SchemaPerson.Birthday> Birthdays { get; set; }
 
     public DbSet<SchemaPerson.Email> Emails { get; set; }
