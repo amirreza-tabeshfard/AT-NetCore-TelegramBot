@@ -18,6 +18,10 @@ public class MaritalStatus : ID.BaseEntityInt
                    .IsUnique(unique: false)
                    .HasName("IX_person.MaritalStatus.CultureId");
             // **********
+            builder.HasIndex(current => current.PersonId)
+                   .IsUnique(unique: true)
+                   .HasName("IX_person.MaritalStatus.PersonId");
+            // **********
             builder.HasIndex(current => current.Name)
                    .IsUnique(unique: true)
                    .HasName("IX_person.MaritalStatus.Name");
@@ -27,6 +31,11 @@ public class MaritalStatus : ID.BaseEntityInt
                     .HasForeignKey(current => current.CultureId)
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
+            // **********
+            builder.HasOne(current => current.Person)
+                    .WithMany(current => current.MaritalStatuses)
+                    .HasForeignKey(current => current.PersonId)
+                    .OnDelete(DeleteBehavior.NoAction);
         }
     }
 
@@ -40,6 +49,16 @@ public class MaritalStatus : ID.BaseEntityInt
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 1)]
     public int CultureId { get; set; }
+    // **********
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaPerson.People.Person),
+            Name = nameof(Resource.Models.SchemaPerson.People.Person.EntityName))]
+
+    [System.ComponentModel.DataAnnotations.Schema.Column
+        (Order = 2)]
+    public Guid PersonId { get; set; }
     // **********
 
     // **********
@@ -59,7 +78,7 @@ public class MaritalStatus : ID.BaseEntityInt
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 2)]
+        (Order = 3)]
     public string Name { get; set; }
     // **********
 
@@ -81,8 +100,8 @@ public class MaritalStatus : ID.BaseEntityInt
     // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.People.Person),
-            Name = nameof(Resource.Models.SchemaPerson.People.Person.EntitiesName))]
-    public virtual IList<Person> People { get; set; }
+            Name = nameof(Resource.Models.SchemaPerson.People.Person.EntityName))]
+    public virtual Person Person { get; set; }
     // ********** 
 
     #endregion

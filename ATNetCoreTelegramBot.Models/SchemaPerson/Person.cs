@@ -17,14 +17,6 @@ public class Person : ID.BaseEntityGuid
             builder.HasIndex(current => new
             {
                 current.UserId,
-                current.MaritalStatusId
-            })
-            .IsUnique(unique: true)
-            .HasName("IX_person.Person.UserId_MaritalStatusId");
-            // **********
-            builder.HasIndex(current => new
-            {
-                current.UserId,
                 current.MilitaryServiceStatusId
             })
             .IsUnique(unique: true)
@@ -37,10 +29,6 @@ public class Person : ID.BaseEntityGuid
             })
             .IsUnique(unique: true)
             .HasName("IX_person.Person.CultureId_UserId");
-            // **********
-            builder.HasIndex(current => current.MaritalStatusId)
-                   .IsUnique(unique: false)
-                   .HasName("IX_person.Person.MaritalStatusId");
             // **********
             builder.HasIndex(current => current.MilitaryServiceStatusId)
                    .IsUnique(unique: false)
@@ -58,17 +46,10 @@ public class Person : ID.BaseEntityGuid
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
             // **********
-            builder.HasOne(current => current.MaritalStatus)
-                    .WithMany(current => current.People)
-                    .HasForeignKey(current => current.MaritalStatusId)
-                    .OnDelete(DeleteBehavior.NoAction);
-            // **********
             builder.HasOne(current => current.MilitaryServiceStatus)
                     .WithMany(current => current.People)
                     .HasForeignKey(current => current.MilitaryServiceStatusId)
                     .OnDelete(DeleteBehavior.NoAction);
-            // **********
-            
         }
     }
 
@@ -88,12 +69,6 @@ public class Person : ID.BaseEntityGuid
     [System.ComponentModel.DataAnnotations.Schema.Column
         (Order = 2)]
     public Guid UserId { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 3)]
-    public Nullable<int> MaritalStatusId { get; set; }
     // **********
 
     // **********
@@ -238,8 +213,8 @@ public class Person : ID.BaseEntityGuid
     // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.MaritalStatuses.MaritalStatus),
-            Name = nameof(Resource.Models.SchemaPerson.MaritalStatuses.MaritalStatus.EntityName))]
-    public virtual MaritalStatus MaritalStatus { get; set; }
+            Name = nameof(Resource.Models.SchemaPerson.MaritalStatuses.MaritalStatus.EntitiesName))]
+    public virtual IList<MaritalStatus> MaritalStatuses { get; set; }
     // **********
 
     // **********

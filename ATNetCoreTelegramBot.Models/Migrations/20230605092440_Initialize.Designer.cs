@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230605090001_Initialize")]
+    [Migration("20230605092440_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -461,6 +461,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(2);
 
                     b.HasKey("Id");
@@ -471,6 +475,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.HasIndex("Name")
                         .IsUnique()
                         .HasDatabaseName("IX_person.MaritalStatus.Name");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.MaritalStatus.PersonId");
 
                     b.ToTable("MaritalStatus", "person");
                 });
@@ -547,11 +555,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasColumnOrder(6);
 
-                    b.Property<int?>("MaritalStatusId")
-                        .IsRequired()
-                        .HasColumnType("int")
-                        .HasColumnOrder(3);
-
                     b.Property<int?>("MilitaryServiceStatusId")
                         .IsRequired()
                         .HasColumnType("int")
@@ -568,19 +571,12 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MaritalStatusId")
-                        .HasDatabaseName("IX_person.Person.MaritalStatusId");
-
                     b.HasIndex("MilitaryServiceStatusId")
                         .HasDatabaseName("IX_person.Person.MilitaryServiceStatusId");
 
                     b.HasIndex("CultureId", "UserId")
                         .IsUnique()
                         .HasDatabaseName("IX_person.Person.CultureId_UserId");
-
-                    b.HasIndex("UserId", "MaritalStatusId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_person.Person.UserId_MaritalStatusId");
 
                     b.HasIndex("UserId", "MilitaryServiceStatusId")
                         .IsUnique()
@@ -1093,7 +1089,15 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
+                        .WithMany("MaritalStatuses")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Culture");
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.MilitaryServiceStatus", b =>
@@ -1115,12 +1119,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.MaritalStatus", "MaritalStatus")
-                        .WithMany("People")
-                        .HasForeignKey("MaritalStatusId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.MilitaryServiceStatus", "MilitaryServiceStatus")
                         .WithMany("People")
                         .HasForeignKey("MilitaryServiceStatusId")
@@ -1134,8 +1132,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .IsRequired();
 
                     b.Navigation("Culture");
-
-                    b.Navigation("MaritalStatus");
 
                     b.Navigation("MilitaryServiceStatus");
 
@@ -1293,11 +1289,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("InstantMessages");
                 });
 
-            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.MaritalStatus", b =>
-                {
-                    b.Navigation("People");
-                });
-
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.MilitaryServiceStatus", b =>
                 {
                     b.Navigation("People");
@@ -1312,6 +1303,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Genders");
 
                     b.Navigation("InstantMessages");
+
+                    b.Navigation("MaritalStatuses");
 
                     b.Navigation("Phones");
 
