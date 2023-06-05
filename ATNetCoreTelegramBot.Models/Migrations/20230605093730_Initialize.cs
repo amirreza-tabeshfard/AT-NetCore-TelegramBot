@@ -179,27 +179,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MilitaryServiceStatus",
-                schema: "person",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CultureId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MilitaryServiceStatus", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MilitaryServiceStatus_Culture_CultureId",
-                        column: x => x.CultureId,
-                        principalSchema: "base",
-                        principalTable: "Culture",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PhoneType",
                 schema: "person",
                 columns: table => new
@@ -263,6 +242,39 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Person",
+                schema: "person",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CultureId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    BirthCertificate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    AboutMe = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
+                    Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Person", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Person_Culture_CultureId",
+                        column: x => x.CultureId,
+                        principalSchema: "base",
+                        principalTable: "Culture",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Person_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "telegram",
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Province",
                 schema: "base",
                 columns: table => new
@@ -288,75 +300,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         column: x => x.CultureId,
                         principalSchema: "base",
                         principalTable: "Culture",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Person",
-                schema: "person",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CultureId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MilitaryServiceStatusId = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    BirthCertificate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    AboutMe = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
-                    Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Person", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Person_Culture_CultureId",
-                        column: x => x.CultureId,
-                        principalSchema: "base",
-                        principalTable: "Culture",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Person_MilitaryServiceStatus_MilitaryServiceStatusId",
-                        column: x => x.MilitaryServiceStatusId,
-                        principalSchema: "person",
-                        principalTable: "MilitaryServiceStatus",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Person_Users_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "telegram",
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "City",
-                schema: "base",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
-                    CultureId = table.Column<int>(type: "int", nullable: false),
-                    ProvinceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InsertDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_City", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_City_Culture_CultureId",
-                        column: x => x.CultureId,
-                        principalSchema: "base",
-                        principalTable: "Culture",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_City_Province_ProvinceId",
-                        column: x => x.ProvinceId,
-                        principalSchema: "base",
-                        principalTable: "Province",
                         principalColumn: "Id");
                 });
 
@@ -471,6 +414,34 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MilitaryServiceStatus",
+                schema: "person",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CultureId = table.Column<int>(type: "int", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MilitaryServiceStatus", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MilitaryServiceStatus_Culture_CultureId",
+                        column: x => x.CultureId,
+                        principalSchema: "base",
+                        principalTable: "Culture",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MilitaryServiceStatus_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalSchema: "person",
+                        principalTable: "Person",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Phone",
                 schema: "person",
                 columns: table => new
@@ -548,6 +519,35 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         column: x => x.UrlTypeId,
                         principalSchema: "person",
                         principalTable: "UrlType",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "City",
+                schema: "base",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newsequentialid()"),
+                    CultureId = table.Column<int>(type: "int", nullable: false),
+                    ProvinceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    InsertDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_City_Culture_CultureId",
+                        column: x => x.CultureId,
+                        principalSchema: "base",
+                        principalTable: "Culture",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_City_Province_ProvinceId",
+                        column: x => x.ProvinceId,
+                        principalSchema: "base",
+                        principalTable: "Province",
                         principalColumn: "Id");
                 });
 
@@ -794,23 +794,23 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_person.MilitaryServiceStatus.PersonId",
+                schema: "person",
+                table: "MilitaryServiceStatus",
+                column: "PersonId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_UserId",
+                schema: "person",
+                table: "Person",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_person.Person.CultureId_UserId",
                 schema: "person",
                 table: "Person",
                 columns: new[] { "CultureId", "UserId" },
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_person.Person.MilitaryServiceStatusId",
-                schema: "person",
-                table: "Person",
-                column: "MilitaryServiceStatusId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_person.Person.UserId_MilitaryServiceStatusId",
-                schema: "person",
-                table: "Person",
-                columns: new[] { "UserId", "MilitaryServiceStatusId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -942,6 +942,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 schema: "person");
 
             migrationBuilder.DropTable(
+                name: "MilitaryServiceStatus",
+                schema: "person");
+
+            migrationBuilder.DropTable(
                 name: "Phone",
                 schema: "person");
 
@@ -988,10 +992,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
             migrationBuilder.DropTable(
                 name: "Province",
                 schema: "base");
-
-            migrationBuilder.DropTable(
-                name: "MilitaryServiceStatus",
-                schema: "person");
 
             migrationBuilder.DropTable(
                 name: "Users",

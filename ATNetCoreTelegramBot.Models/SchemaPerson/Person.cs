@@ -16,23 +16,11 @@ public class Person : ID.BaseEntityGuid
         {
             builder.HasIndex(current => new
             {
-                current.UserId,
-                current.MilitaryServiceStatusId
-            })
-            .IsUnique(unique: true)
-            .HasName("IX_person.Person.UserId_MilitaryServiceStatusId");
-            // **********
-            builder.HasIndex(current => new
-            {
                 current.CultureId,
                 current.UserId
             })
             .IsUnique(unique: true)
             .HasName("IX_person.Person.CultureId_UserId");
-            // **********
-            builder.HasIndex(current => current.MilitaryServiceStatusId)
-                   .IsUnique(unique: false)
-                   .HasName("IX_person.Person.MilitaryServiceStatusId");
             // **********
             builder.HasOne(current => current.User)
                     .WithMany(current => current.People)
@@ -45,11 +33,6 @@ public class Person : ID.BaseEntityGuid
                     .HasForeignKey(current => current.CultureId)
                     .OnDelete(DeleteBehavior.NoAction)
                     .IsRequired();
-            // **********
-            builder.HasOne(current => current.MilitaryServiceStatus)
-                    .WithMany(current => current.People)
-                    .HasForeignKey(current => current.MilitaryServiceStatusId)
-                    .OnDelete(DeleteBehavior.NoAction);
         }
     }
 
@@ -72,12 +55,6 @@ public class Person : ID.BaseEntityGuid
     // **********
 
     // **********
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 4)]
-    public Nullable<int> MilitaryServiceStatusId { get; set; }
-    // **********
-
-    // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Generals.General),
             Name = nameof(Resource.Generals.General.FirstName))]
@@ -94,7 +71,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 5)]
+        (Order = 3)]
     public string FirstName { get; set; }
     // **********
 
@@ -115,13 +92,13 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 6)]
+        (Order = 4)]
     public string LastName { get; set; }
     // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 7)]
+        (Order = 5)]
     public DateTime? Birthday { get; set; }
     // **********
 
@@ -133,7 +110,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 8)]
+        (Order = 6)]
     public string? BirthCertificate { get; set; }
     // **********
 
@@ -145,7 +122,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 9)]
+        (Order = 7)]
     public string? NationalCode { get; set; }
     // **********
 
@@ -157,13 +134,13 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 10)]
+        (Order = 8)]
     public string? AboutMe { get; set; }
     // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 11)]
+        (Order = 9)]
     public byte[]? Avatar { get; set; }
     // **********
 
@@ -220,8 +197,8 @@ public class Person : ID.BaseEntityGuid
     // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus),
-            Name = nameof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus.EntityName))]
-    public virtual MilitaryServiceStatus MilitaryServiceStatus { get; set; }
+            Name = nameof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus.EntitiesName))]
+    public virtual IList<MilitaryServiceStatus> MilitaryServiceStatuses { get; set; }
     // **********
 
     // **********
