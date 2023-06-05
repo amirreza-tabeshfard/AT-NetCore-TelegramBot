@@ -97,12 +97,6 @@ public class Person : ID.BaseEntityGuid
     // **********
 
     // **********
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 5)]
-    public DateTime? Birthday { get; set; }
-    // **********
-
-    // **********
     [System.ComponentModel.DataAnnotations.StringLength
         (maximumLength: 10,
             MinimumLength = 10,
@@ -110,7 +104,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 6)]
+        (Order = 5)]
     public string? BirthCertificate { get; set; }
     // **********
 
@@ -122,7 +116,7 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 7)]
+        (Order = 6)]
     public string? NationalCode { get; set; }
     // **********
 
@@ -134,13 +128,13 @@ public class Person : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 8)]
+        (Order = 7)]
     public string? AboutMe { get; set; }
     // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 9)]
+        (Order = 8)]
     public byte[]? Avatar { get; set; }
     // **********
 
@@ -165,6 +159,13 @@ public class Person : ID.BaseEntityGuid
             Name = nameof(Resource.Models.SchemaPerson.Addresses.Address.EntitiesName))]
     public virtual IList<Address> Addresses { get; set; }
     // ********** 
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaPerson.Birthdays.Birthday),
+            Name = nameof(Resource.Models.SchemaPerson.Birthdays.Birthday.EntitiesName))]
+    public virtual IList<Birthday> Birthdays { get; set; }
+    // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Display

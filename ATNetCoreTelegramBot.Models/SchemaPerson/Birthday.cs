@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ATNetCoreTelegramBot.Models.SchemaPerson;
 
-[System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.Gender,
+[System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.Birthday,
                                                     Schema = Infrastructure.SchemaName.SchemaPerson)]
-public class Gender : ID.BaseEntityInt
+public class Birthday : ID.BaseEntityInt
 {
     #region Configuration
 
-    internal class Configuration : IEntityTypeConfiguration<Gender>
+    internal class Configuration : IEntityTypeConfiguration<Birthday>
     {
         [Obsolete]
-        public void Configure(EntityTypeBuilder<Gender> builder)
+        public void Configure(EntityTypeBuilder<Birthday> builder)
         {
             builder.HasIndex(current => current.PersonId)
                    .IsUnique(unique: true)
@@ -23,7 +23,7 @@ public class Gender : ID.BaseEntityInt
                    .HasName("IX_person.Gender.Name");
             // **********
             builder.HasOne(current => current.Person)
-                    .WithMany(current => current.Genders)
+                    .WithMany(current => current.Birthdays)
                     .HasForeignKey(current => current.PersonId)
                     .OnDelete(DeleteBehavior.NoAction);
         }

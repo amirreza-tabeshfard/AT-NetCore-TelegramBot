@@ -47,6 +47,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AddressType.resx</DependentUpon>
     </Compile>
+    <Compile Update="Models\SchemaPerson\Birthdays\Birthday.Designer.cs">
+      <DependentUpon>Birthday.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Models\SchemaPerson\Emails\Email.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -175,6 +180,13 @@
     <EmbeddedResource Update="Models\SchemaPerson\AddressTypes\AddressType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddressType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Birthdays\Birthday.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\Birthdays\Birthday.resx">
+      <LastGenOutput>Birthday.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Models\SchemaPerson\Emails\Email.fa-IR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

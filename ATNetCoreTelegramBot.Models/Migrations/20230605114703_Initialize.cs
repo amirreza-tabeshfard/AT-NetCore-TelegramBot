@@ -251,7 +251,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BirthCertificate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     AboutMe = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
@@ -300,6 +299,27 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         column: x => x.CultureId,
                         principalSchema: "base",
                         principalTable: "Culture",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Birthday",
+                schema: "person",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Birthday", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Birthday_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalSchema: "person",
+                        principalTable: "Person",
                         principalColumn: "Id");
                 });
 
@@ -609,6 +629,20 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_person.Gender.Name",
+                schema: "person",
+                table: "Birthday",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_person.Gender.PersonId",
+                schema: "person",
+                table: "Birthday",
+                column: "PersonId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_telegram.Channels.Name",
                 schema: "telegram",
                 table: "Channels",
@@ -876,6 +910,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Address",
+                schema: "person");
+
+            migrationBuilder.DropTable(
+                name: "Birthday",
                 schema: "person");
 
             migrationBuilder.DropTable(

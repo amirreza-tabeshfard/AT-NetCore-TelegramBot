@@ -14,6 +14,7 @@ public static class TableName
     {
         public const string Address = "Address";
         public const string AddressType = "AddressType";
+        public const string Birthday = "Birthday";
         public const string Email = "Email";
         public const string EmailType = "EmailType";
         public const string Gender = "Gender";

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230605100800_Initialize")]
+    [Migration("20230605114703_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -279,6 +279,38 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.ToTable("AddressType", "person");
                 });
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Birthday", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Gender.Name");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Gender.PersonId");
+
+                    b.ToTable("Birthday", "person");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Email", b =>
                 {
                     b.Property<Guid>("Id")
@@ -511,19 +543,15 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<string>("AboutMe")
                         .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(8);
+                        .HasColumnOrder(7);
 
                     b.Property<byte[]>("Avatar")
                         .HasColumnType("varbinary(max)")
-                        .HasColumnOrder(9);
+                        .HasColumnOrder(8);
 
                     b.Property<string>("BirthCertificate")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(6);
-
-                    b.Property<DateTime?>("Birthday")
-                        .HasColumnType("datetime2")
                         .HasColumnOrder(5);
 
                     b.Property<int>("CultureId")
@@ -545,7 +573,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Property<string>("NationalCode")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(7);
+                        .HasColumnOrder(6);
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier")
@@ -979,6 +1007,17 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Culture");
                 });
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Birthday", b =>
+                {
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
+                        .WithMany("Birthdays")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Email", b =>
                 {
                     b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.EmailType", "EmailType")
@@ -1239,6 +1278,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Person", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("Birthdays");
 
                     b.Navigation("Emails");
 

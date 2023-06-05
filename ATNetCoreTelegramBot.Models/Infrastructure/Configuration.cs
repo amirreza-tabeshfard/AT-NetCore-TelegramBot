@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using ATNetCoreTelegramBot.Models.SchemaPerson;
-
 namespace ATNetCoreTelegramBot.Models.Infrastructure;
 
 internal static class Configuration
@@ -14,7 +12,6 @@ internal static class Configuration
         {
             modelBuilder.ApplyConfiguration(new SchemaBase.City.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaBase.Country.Configuration());
-            modelBuilder.ApplyConfiguration(new Gender.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaBase.Province.Configuration());
         }
     }
@@ -26,6 +23,7 @@ internal static class Configuration
         {
             modelBuilder.ApplyConfiguration(new SchemaPerson.Address.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.AddressType.Configuration());
+            modelBuilder.ApplyConfiguration(new SchemaPerson.Birthday.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.Email.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.EmailType.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.Gender.Configuration());
