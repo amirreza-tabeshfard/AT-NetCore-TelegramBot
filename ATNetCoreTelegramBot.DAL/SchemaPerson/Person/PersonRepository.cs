@@ -2,14 +2,14 @@
 
 using ATNetCoreTelegramBot.Models;
 
-namespace ATNetCoreTelegramBot.DAL.SchemaTelegram.User;
+namespace ATNetCoreTelegramBot.DAL.SchemaPerson.Person;
 
-public class UserRepository :
-    ID.GuidRepository<Models.SchemaTelegram.User>, IUserRepository
+public class PersonRepository :
+    ID.GuidRepository<Models.SchemaPerson.Person>, IPersonRepository
 {
     #region Constructor
 
-    public UserRepository(DatabaseContext databaseContext)
+    public PersonRepository(DatabaseContext databaseContext)
         : base(databaseContext)
     {
 
@@ -20,10 +20,10 @@ public class UserRepository :
     #region Argument 2
 
     // ID
-    public Models.SchemaTelegram.User GetByID
+    public Models.SchemaPerson.Person GetByID
         (Guid id, bool isExceptID = false)
     {
-        Models.SchemaTelegram.User? oEntities = default;
+        Models.SchemaPerson.Person? oEntities = default;
 
         if (isExceptID == false)
         {
@@ -47,10 +47,10 @@ public class UserRepository :
         return (oEntities);
     }
 
-    public Task<Models.SchemaTelegram.User> GetByIdAsync
+    public Task<Models.SchemaPerson.Person> GetByIdAsync
         (Guid id, bool isExceptID = false)
     {
-        Task<Models.SchemaTelegram.User?> oEntities = default;
+        Task<Models.SchemaPerson.Person?> oEntities = default;
 
         if (isExceptID == false)
         {
@@ -74,27 +74,27 @@ public class UserRepository :
         return (oEntities);
     }
 
-    // ChatID 
-    public Models.SchemaTelegram.User GetByChatID
-        (long chatID, bool isExceptChatID = false)
+    // UserId
+    public Models.SchemaPerson.Person GetByUserId
+        (Guid userId, bool isExceptUserId = false)
     {
-        Models.SchemaTelegram.User? oEntities = default;
+        Models.SchemaPerson.Person? oEntities = default;
 
-        if (isExceptChatID == false)
+        if (isExceptUserId == false)
         {
             oEntities =
                 Get()
-                .Where(current => current.ChatID == chatID)
-                .OrderBy(current => current.ChatID)
+                .Where(current => current.UserId == userId)
+                .OrderBy(current => current.UserId)
                 .FirstOrDefault()
                 ;
         }
-        else if (isExceptChatID == true)
+        else if (isExceptUserId == true)
         {
             oEntities =
                 Get()
-                .Where(current => current.ChatID != chatID)
-                .OrderBy(current => current.ChatID)
+                .Where(current => current.UserId != userId)
+                .OrderBy(current => current.UserId)
                 .FirstOrDefault()
                 ;
         }
@@ -102,26 +102,26 @@ public class UserRepository :
         return (oEntities);
     }
 
-    public Task<Models.SchemaTelegram.User> GetByChatIDAsync
-        (long chatID, bool isExceptChatID = false)
+    public Task<Models.SchemaPerson.Person> GetByUserIdAsync
+        (Guid userId, bool isExceptUserId = false)
     {
-        Task<Models.SchemaTelegram.User?> oEntities = default;
+        Task<Models.SchemaPerson.Person?> oEntities = default;
 
-        if (isExceptChatID == false)
+        if (isExceptUserId == false)
         {
             oEntities =
                 Get()
-                .Where(current => current.ChatID == chatID)
-                .OrderBy(current => current.ChatID)
+                .Where(current => current.UserId == userId)
+                .OrderBy(current => current.UserId)
                 .FirstOrDefaultAsync()
                 ;
         }
-        else if (isExceptChatID == true)
+        else if (isExceptUserId == true)
         {
             oEntities =
                 Get()
-                .Where(current => current.ChatID != chatID)
-                .OrderBy(current => current.ChatID)
+                .Where(current => current.UserId != userId)
+                .OrderBy(current => current.UserId)
                 .FirstOrDefaultAsync()
                 ;
         }
@@ -131,27 +131,28 @@ public class UserRepository :
 
     #endregion /Argument 2
 
-    #region Full Items
+    #region All Items
 
-    // All Items
-    public IEnumerable<Models.SchemaTelegram.User> GetByAllUsers
+    public IEnumerable<Models.SchemaPerson.Person> GetAllPeople
         ()
     {
-        IEnumerable<Models.SchemaTelegram.User> oEntities =
+        IEnumerable<Models.SchemaPerson.Person> oEntities =
             Get()
-            .OrderBy(current => current.ChatID)
+            .OrderBy(current => current.FirstName)
+            .ThenBy(current => current.LastName)
             .ToList()
             ;
 
         return oEntities;
     }
 
-    public Task<List<Models.SchemaTelegram.User>> GetByAllUsersAsync
+    public Task<List<Models.SchemaPerson.Person>> GetAllPeopleAsync
         ()
     {
-        Task<List<Models.SchemaTelegram.User>> oEntities =
+        Task<List<Models.SchemaPerson.Person>> oEntities =
             Get()
-            .OrderBy(current => current.ChatID)
+            .OrderBy(current => current.FirstName)
+            .ThenBy(current => current.LastName)
             .ToListAsync()
             ;
 
