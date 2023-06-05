@@ -276,6 +276,35 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.ToTable("AddressType", "person");
                 });
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Avatar", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(0);
+
+                    b.Property<byte[]>("Name")
+                        .IsRequired()
+                        .HasColumnType("varbinary(900)")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Avatar.Name");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.Avatar.PersonId");
+
+                    b.ToTable("Avatar", "person");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.BirthCertificate", b =>
                 {
                     b.Property<Guid>("Id")
@@ -586,15 +615,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(0);
-
-                    b.Property<string>("AboutMe")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(7);
-
-                    b.Property<byte[]>("Avatar")
-                        .HasColumnType("varbinary(max)")
-                        .HasColumnOrder(8);
 
                     b.Property<int>("CultureId")
                         .HasColumnType("int")
@@ -1044,6 +1064,17 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Culture");
                 });
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Avatar", b =>
+                {
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
+                        .WithMany("Avatars")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.BirthCertificate", b =>
                 {
                     b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
@@ -1337,6 +1368,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Person", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("Avatars");
 
                     b.Navigation("BirthCertificates");
 

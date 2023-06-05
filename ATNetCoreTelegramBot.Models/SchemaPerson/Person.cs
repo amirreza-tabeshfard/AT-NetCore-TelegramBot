@@ -96,24 +96,6 @@ public class Person : ID.BaseEntityGuid
     public string LastName { get; set; }
     // **********
 
-    // **********
-    [System.ComponentModel.DataAnnotations.StringLength
-        (maximumLength: 5000,
-            MinimumLength = 30,
-            ErrorMessageResourceType = typeof(Resource.Messages.Message),
-            ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
-
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 7)]
-    public string? AboutMe { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 8)]
-    public byte[]? Avatar { get; set; }
-    // **********
-
     #region RelationShip
 
     #region SchemaBase
@@ -135,6 +117,13 @@ public class Person : ID.BaseEntityGuid
             Name = nameof(Resource.Models.SchemaPerson.Addresses.Address.EntitiesName))]
     public virtual IList<Address> Addresses { get; set; }
     // ********** 
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaPerson.Avatars.Avatar),
+            Name = nameof(Resource.Models.SchemaPerson.Avatars.Avatar.EntitiesName))]
+    public virtual IList<Avatar> Avatars { get; set; }
+    // **********
 
     // **********
     [System.ComponentModel.DataAnnotations.Display
