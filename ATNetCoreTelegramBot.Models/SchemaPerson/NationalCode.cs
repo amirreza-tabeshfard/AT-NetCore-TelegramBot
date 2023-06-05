@@ -1,29 +1,29 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 
 namespace ATNetCoreTelegramBot.Models.SchemaPerson;
 
-[System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.MaritalStatus,
+[System.ComponentModel.DataAnnotations.Schema.Table(name: Infrastructure.TableName.SchemaPerson.NationalCode,
                                                     Schema = Infrastructure.SchemaName.SchemaPerson)]
-public class MaritalStatus : ID.BaseEntityGuid
+public class NationalCode : ID.BaseEntityGuid
 {
     #region Configuration
 
-    internal class Configuration : IEntityTypeConfiguration<MaritalStatus>
+    internal class Configuration : IEntityTypeConfiguration<NationalCode>
     {
         [Obsolete]
-        public void Configure(EntityTypeBuilder<MaritalStatus> builder)
+        public void Configure(EntityTypeBuilder<NationalCode> builder)
         {
             builder.HasIndex(current => current.PersonId)
                    .IsUnique(unique: true)
-                   .HasName("IX_person.MaritalStatus.PersonId");
+                   .HasName("IX_person.NationalCode.PersonId");
             // **********
             builder.HasIndex(current => current.Name)
                    .IsUnique(unique: true)
-                   .HasName("IX_person.MaritalStatus.Name");
+                   .HasName("IX_person.NationalCode.Name");
             // **********
             builder.HasOne(current => current.Person)
-                    .WithMany(current => current.MaritalStatuses)
+                    .WithMany(current => current.NationalCodes)
                     .HasForeignKey(current => current.PersonId)
                     .OnDelete(DeleteBehavior.NoAction);
         }
@@ -52,8 +52,8 @@ public class MaritalStatus : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.Required))]
 
     [System.ComponentModel.DataAnnotations.StringLength
-        (maximumLength: 50,
-            MinimumLength = 2,
+        (maximumLength: 10,
+            MinimumLength = 10,
             ErrorMessageResourceType = typeof(Resource.Messages.Message),
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
 
@@ -65,13 +65,13 @@ public class MaritalStatus : ID.BaseEntityGuid
     #region RelationShip
 
     #region SchemaPerson
-    
+
     // **********
     [System.ComponentModel.DataAnnotations.Display
         (ResourceType = typeof(Resource.Models.SchemaPerson.People.Person),
             Name = nameof(Resource.Models.SchemaPerson.People.Person.EntityName))]
     public virtual Person Person { get; set; }
-    // ********** 
+    // **********
 
     #endregion
 

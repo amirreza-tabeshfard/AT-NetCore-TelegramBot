@@ -92,6 +92,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MilitaryServiceStatus.resx</DependentUpon>
     </Compile>
+    <Compile Update="Models\SchemaPerson\NationalCodes\NationalCode.Designer.cs">
+      <DependentUpon>NationalCode.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Models\SchemaPerson\People\Person.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -248,6 +253,13 @@
     <EmbeddedResource Update="Models\SchemaPerson\MilitaryServiceStatuses\MilitaryServiceStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MilitaryServiceStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\NationalCodes\NationalCode.fa-IR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\SchemaPerson\NationalCodes\NationalCode.resx">
+      <LastGenOutput>NationalCode.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Models\SchemaPerson\People\Person.fa-IR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -251,7 +251,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     AboutMe = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
@@ -422,7 +421,7 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -442,13 +441,33 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MilitaryServiceStatus", x => x.Id);
                     table.ForeignKey(
                         name: "FK_MilitaryServiceStatus_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalSchema: "person",
+                        principalTable: "Person",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NationalCode",
+                schema: "person",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NationalCode", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_NationalCode_Person_PersonId",
                         column: x => x.PersonId,
                         principalSchema: "person",
                         principalTable: "Person",
@@ -825,6 +844,20 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_person.NationalCode.Name",
+                schema: "person",
+                table: "NationalCode",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_person.NationalCode.PersonId",
+                schema: "person",
+                table: "NationalCode",
+                column: "PersonId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Person_UserId",
                 schema: "person",
                 table: "Person",
@@ -975,6 +1008,10 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "MilitaryServiceStatus",
+                schema: "person");
+
+            migrationBuilder.DropTable(
+                name: "NationalCode",
                 schema: "person");
 
             migrationBuilder.DropTable(

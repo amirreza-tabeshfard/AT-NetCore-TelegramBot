@@ -32,6 +32,8 @@ internal static class Configuration
             modelBuilder.ApplyConfiguration(new SchemaPerson.InstantMessageType.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.MaritalStatus.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.MilitaryServiceStatus.Configuration());
+            modelBuilder.ApplyConfiguration(new SchemaPerson.NationalCode.Configuration());
+            modelBuilder.ApplyConfiguration(new SchemaPerson.Person.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.Phone.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.PhoneType.Configuration());
             modelBuilder.ApplyConfiguration(new SchemaPerson.Social.Configuration());

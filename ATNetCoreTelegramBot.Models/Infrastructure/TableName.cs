@@ -23,6 +23,7 @@ public static class TableName
         public const string InstantMessageType = "InstantMessageType";
         public const string MaritalStatus = "MaritalStatus";
         public const string MilitaryServiceStatus = "MilitaryServiceStatus";
+        public const string NationalCode = "NationalCode";
         public const string Person = "Person";
         public const string Phone = "Phone";
         public const string PhoneType = "PhoneType";

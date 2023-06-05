@@ -499,8 +499,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnOrder(3);
 
                     b.Property<Guid>("PersonId")
@@ -529,8 +529,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnOrder(3);
 
                     b.Property<Guid>("PersonId")
@@ -548,6 +548,36 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasDatabaseName("IX_person.MilitaryServiceStatus.PersonId");
 
                     b.ToTable("MilitaryServiceStatus", "person");
+                });
+
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.NationalCode", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(0);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasColumnOrder(3);
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.NationalCode.Name");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_person.NationalCode.PersonId");
+
+                    b.ToTable("NationalCode", "person");
                 });
 
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Person", b =>
@@ -581,11 +611,6 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
                         .HasColumnOrder(4);
-
-                    b.Property<string>("NationalCode")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)")
-                        .HasColumnOrder(6);
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier")
@@ -1134,6 +1159,17 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("Person");
                 });
 
+            modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.NationalCode", b =>
+                {
+                    b.HasOne("ATNetCoreTelegramBot.Models.SchemaPerson.Person", "Person")
+                        .WithMany("NationalCodes")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("ATNetCoreTelegramBot.Models.SchemaPerson.Person", b =>
                 {
                     b.HasOne("ATNetCoreTelegramBot.Models.SchemaBase.Culture", "Culture")
@@ -1315,6 +1351,8 @@ namespace ATNetCoreTelegramBot.Models.Migrations
                     b.Navigation("MaritalStatuses");
 
                     b.Navigation("MilitaryServiceStatuses");
+
+                    b.Navigation("NationalCodes");
 
                     b.Navigation("Phones");
 

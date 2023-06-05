@@ -55,6 +55,8 @@ public class DatabaseContext :
 
     public DbSet<SchemaPerson.MilitaryServiceStatus> MilitaryServiceStatuses { get; set; }
 
+    public DbSet<SchemaPerson.NationalCode> NationalCodes { get; set; }
+
     public DbSet<SchemaPerson.Phone> Phones { get; set; }
 
     public DbSet<SchemaPerson.PhoneType> PhoneTypes { get; set; }

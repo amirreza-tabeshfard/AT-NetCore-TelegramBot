@@ -98,18 +98,6 @@ public class Person : ID.BaseEntityGuid
 
     // **********
     [System.ComponentModel.DataAnnotations.StringLength
-        (maximumLength: 10,
-            MinimumLength = 10,
-            ErrorMessageResourceType = typeof(Resource.Messages.Message),
-            ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
-
-    [System.ComponentModel.DataAnnotations.Schema.Column
-        (Order = 6)]
-    public string? NationalCode { get; set; }
-    // **********
-
-    // **********
-    [System.ComponentModel.DataAnnotations.StringLength
         (maximumLength: 5000,
             MinimumLength = 30,
             ErrorMessageResourceType = typeof(Resource.Messages.Message),
@@ -195,6 +183,13 @@ public class Person : ID.BaseEntityGuid
         (ResourceType = typeof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus),
             Name = nameof(Resource.Models.SchemaPerson.MilitaryServiceStatuses.MilitaryServiceStatus.EntitiesName))]
     public virtual IList<MilitaryServiceStatus> MilitaryServiceStatuses { get; set; }
+    // **********
+
+    // **********
+    [System.ComponentModel.DataAnnotations.Display
+        (ResourceType = typeof(Resource.Models.SchemaPerson.NationalCodes.NationalCode),
+            Name = nameof(Resource.Models.SchemaPerson.NationalCodes.NationalCode.EntitiesName))]
+    public virtual IList<NationalCode> NationalCodes { get; set; }
     // **********
 
     // **********

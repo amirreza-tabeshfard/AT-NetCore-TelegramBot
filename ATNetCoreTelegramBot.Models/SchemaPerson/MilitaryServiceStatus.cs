@@ -52,7 +52,7 @@ public class MilitaryServiceStatus : ID.BaseEntityGuid
             ErrorMessageResourceName = nameof(Resource.Messages.Message.Required))]
 
     [System.ComponentModel.DataAnnotations.StringLength
-        (maximumLength: 6,
+        (maximumLength: 50,
             MinimumLength = 2,
             ErrorMessageResourceType = typeof(Resource.Messages.Message),
             ErrorMessageResourceName = nameof(Resource.Messages.Message.MaxLength))]
