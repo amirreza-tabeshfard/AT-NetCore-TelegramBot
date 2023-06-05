@@ -23,6 +23,7 @@ internal class Culture : Infrastructure.BaseController
 
     internal void CreateByDefault()
     {
+        Console.ForegroundColor = ConsoleColor.White;
         Console.Write("Table [ Culture ]  ==> ");
 
         int countInsert = default;
@@ -205,7 +206,7 @@ internal class Culture : Infrastructure.BaseController
         {
             Models.SchemaBase.Culture culture = GetByLanguageCultureName_DisplayName(languageCultureName, displayName);
 
-            if (culture is null)
+            if (culture is default(Models.SchemaBase.Culture))
             {
                 culture = new Models.SchemaBase.Culture()
                 {
