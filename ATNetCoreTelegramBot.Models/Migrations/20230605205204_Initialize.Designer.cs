@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATNetCoreTelegramBot.Models.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230605165034_Initialize")]
+    [Migration("20230605205204_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
