@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using ATNetCoreTelegramBot.Models;
-
 namespace ATNetCoreTelegramBot.DAL.SchemaPerson.Person;
 
 public class PersonRepository :
@@ -9,7 +7,7 @@ public class PersonRepository :
 {
     #region Constructor
 
-    public PersonRepository(DatabaseContext databaseContext)
+    public PersonRepository(Models.DatabaseContext databaseContext)
         : base(databaseContext)
     {
 

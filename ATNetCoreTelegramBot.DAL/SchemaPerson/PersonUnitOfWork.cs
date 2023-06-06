@@ -3,10 +3,11 @@
 namespace ATNetCoreTelegramBot.DAL.SchemaPerson;
 
 public class PersonUnitOfWork
-    : Object, IPersonUnitOfWork
+    : object, IPersonUnitOfWork
 {
     #region Field(s)
 
+    private Address.IAddressRepository _addressRepository;
     private Person.IPersonRepository _personRepository;
 
     #endregion
@@ -32,6 +33,19 @@ public class PersonUnitOfWork
     #endregion /Properties
 
     #region Implement Interface(s)
+
+    public Address.IAddressRepository AddressRepository
+    {
+        get
+        {
+            if (_addressRepository == null)
+            {
+                _addressRepository =
+                    new Address.AddressRepository(DatabaseContext);
+            }
+            return (_addressRepository);
+        }
+    }
 
     public Person.IPersonRepository PersonRepository
     {
