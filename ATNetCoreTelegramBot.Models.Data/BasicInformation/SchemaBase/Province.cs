@@ -117,7 +117,7 @@ internal class Province : Infrastructure.BaseController
     {
         #region Private Method(s)
 
-        private int GetByLanguageCultureName(string languageCultureName)
+        private int GetByCultureID(string languageCultureName)
         {
             int result = default;
 
@@ -133,7 +133,7 @@ internal class Province : Infrastructure.BaseController
             return result;
         }
 
-        private Guid GetByName(string countryName)
+        private Guid GetByCountryID(string countryName)
         {
             Guid result = default;
 
@@ -149,7 +149,7 @@ internal class Province : Infrastructure.BaseController
             return result;
         }
 
-        private Models.SchemaBase.Province GetByProvinceName(string provinceName)
+        private Models.SchemaBase.Province GetByProvince(string provinceName)
         {
             Models.SchemaBase.Province result = default;
 
@@ -171,14 +171,14 @@ internal class Province : Infrastructure.BaseController
                              string provinceName,
                              ref int countInsert)
         {
-            Models.SchemaBase.Province province = GetByProvinceName(provinceName);
+            Models.SchemaBase.Province province = GetByProvince(provinceName);
 
             if (province is default(Models.SchemaBase.Province))
             {
                 province = new Models.SchemaBase.Province()
                 {
-                    CultureId = GetByLanguageCultureName(languageCultureName),
-                    CountryId = GetByName(countryName),
+                    CultureId = GetByCultureID(languageCultureName),
+                    CountryId = GetByCountryID(countryName),
                     Name = provinceName
                 };
 

@@ -7,6 +7,7 @@
 Culture culture = new Culture();
 Country country = new Country();
 Province province = new Province();
+City city = new City();
 
 #endregion
 
@@ -30,6 +31,7 @@ void SchemaBase()
     culture.CreateByDefault();
     country.CreateByDefault();
     province.CreateByDefault();
+    city.CreateByDefault();
 }
 
 Console.ForegroundColor = ConsoleColor.Yellow;
