@@ -17,6 +17,20 @@ internal class Country : Infrastructure.BaseController
 
     #endregion
 
+    #region Private Method(s)
+
+    private void Persian(ref int countInsert)
+    {
+        _crud.Insert(languageCultureName: Common.Infrastructure.Culture.Farsi_Iran, countryName: "ایران", ref countInsert);
+    }
+
+    private void English(ref int countInsert)
+    {
+        _crud.Insert(languageCultureName: Common.Infrastructure.Culture.English_UnitedStates, countryName: "Iran", ref countInsert);
+    }
+
+    #endregion
+
     #region Method(s)
 
     internal void CreateByDefault()
@@ -26,11 +40,8 @@ internal class Country : Infrastructure.BaseController
 
         int countInsert = default;
 
-        _crud.Insert(languageCultureName: Common.Infrastructure.Culture.Farsi_Iran, countryName: "ایران", ref countInsert);
-        _crud.Insert(languageCultureName: Common.Infrastructure.Culture.English_UnitedStates, countryName: "Iran", ref countInsert);
-
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write($"Insert Country: ");
+        Persian(ref countInsert);
+        English(ref countInsert);
 
         if (countInsert is default(int))
             Console.ForegroundColor = ConsoleColor.Red;
@@ -39,7 +50,7 @@ internal class Country : Infrastructure.BaseController
 
         Console.WriteLine(countInsert);
     }
-
+    
     #endregion
 
     internal class CRUD

@@ -6,6 +6,7 @@
 
 Culture culture = new Culture();
 Country country = new Country();
+Province province = new Province();
 
 #endregion
 
@@ -23,11 +24,12 @@ void SchemaBase()
 {
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("---------------------------------------------------------------------------------");
-    Console.WriteLine("\t\t\t\t\t(( SchemaBase ))");
+    Console.WriteLine("\t\t\t\t\t(( SchemaBase [Insert] ))");
     Console.WriteLine("---------------------------------------------------------------------------------");
 
     culture.CreateByDefault();
     country.CreateByDefault();
+    province.CreateByDefault();
 }
 
 Console.ForegroundColor = ConsoleColor.Yellow;

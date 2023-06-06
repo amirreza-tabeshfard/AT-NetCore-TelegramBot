@@ -165,9 +165,6 @@ internal class Culture : Infrastructure.BaseController
         _crud.Insert(languageCultureName: "Lt-uz-UZ", displayName: "Uzbek(Latin) - Uzbekistan", cultureCode: "0x0443", isActive: default, ref countInsert);
         _crud.Insert(languageCultureName: "vi-VN", displayName: "Vietnamese - Vietnam", cultureCode: "0x042A", isActive: default, ref countInsert);
 
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write($"Insert Culture: ");
-
         if (countInsert is default(int))
             Console.ForegroundColor = ConsoleColor.Red;
         else
