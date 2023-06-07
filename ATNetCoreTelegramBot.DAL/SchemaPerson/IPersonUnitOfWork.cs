@@ -8,6 +8,8 @@ public interface IPersonUnitOfWork
 
     AddressType.IAddressTypeRepository AddressTypeRepository { get; }
 
+    Avatar.IAvatarRepository AvatarRepository { get; }
+
     Person.IPersonRepository PersonRepository { get; }
 
     #endregion

@@ -9,6 +9,7 @@ public class PersonUnitOfWork
 
     private Address.IAddressRepository _addressRepository;
     private AddressType.IAddressTypeRepository _addressTypeRepository;
+    private Avatar.IAvatarRepository _avatarRepository;
     private Person.IPersonRepository _personRepository;
 
     #endregion
@@ -58,6 +59,19 @@ public class PersonUnitOfWork
                     new AddressType.AddressTypeRepository(DatabaseContext);
             }
             return (_addressTypeRepository);
+        }
+    }
+
+    public Avatar.IAvatarRepository AvatarRepository
+    {
+        get
+        {
+            if (_avatarRepository == null)
+            {
+                _avatarRepository =
+                    new Avatar.AvatarRepository(DatabaseContext);
+            }
+            return (_avatarRepository);
         }
     }
 
