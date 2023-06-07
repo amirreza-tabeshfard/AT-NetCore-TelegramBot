@@ -8,7 +8,7 @@
 
         Country.ICountryRepository CountryRepository { get; }
 
-        Culture.ICultureRepository CultureRepository { get; }
+        Culture.ICultureUnitOfWork CultureRepository { get; }
 
         Province.IProvinceRepository ProvinceRepository { get; } 
 

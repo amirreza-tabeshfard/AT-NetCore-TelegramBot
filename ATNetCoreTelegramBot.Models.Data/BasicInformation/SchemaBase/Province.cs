@@ -125,8 +125,8 @@ internal class Province : Infrastructure.BaseController
                 result = UnitOfWork
                                 .SchemaBaseUnitOfWork
                                 .CultureRepository
+                                .Argument2Repository
                                 .GetByLanguageCultureName(languageCultureName)
-                                .FirstOrDefault()
                                 .Id
                                 ;
 

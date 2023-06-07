@@ -7,7 +7,7 @@
 
         private City.ICityRepository _cityRepository;
         private Country.ICountryRepository _countryRepository;
-        private Culture.ICultureRepository _cultureRepository;
+        private Culture.ICultureUnitOfWork _cultureRepository;
         private Province.IProvinceRepository _provinceRepository;
 
         #endregion
@@ -60,14 +60,14 @@
             }
         }
 
-        public Culture.ICultureRepository CultureRepository
+        public Culture.ICultureUnitOfWork CultureRepository
         {
             get
             {
                 if (_cultureRepository == null)
                 {
                     _cultureRepository =
-                        new Culture.CultureRepository(DatabaseContext);
+                        new Culture.CultureUnitOfWork(DatabaseContext);
                 }
                 return (_cultureRepository);
             }

@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace ATNetCoreTelegramBot.Models.Data.BasicInformation.SchemaBase;
+﻿namespace ATNetCoreTelegramBot.Models.Data.BasicInformation.SchemaBase;
 
 internal class Culture : Infrastructure.BaseController
 {
@@ -184,11 +182,11 @@ internal class Culture : Infrastructure.BaseController
             Models.SchemaBase.Culture? result = default;
 
             result = UnitOfWork
-                            .SchemaBaseUnitOfWork
-                            .CultureRepository
-                            .GetByLanguageCultureName_DisplayName(languageCultureName, displayName)
-                            .FirstOrDefault()
-                            ;
+                     .SchemaBaseUnitOfWork
+                     .CultureRepository
+                     .Argument4Repository
+                     .GetByLanguageCultureName_DisplayName(languageCultureName, displayName)
+                     ;
 
             return result;
         }
@@ -217,6 +215,7 @@ internal class Culture : Infrastructure.BaseController
                 UnitOfWork
                     .SchemaBaseUnitOfWork
                     .CultureRepository
+                    .AllRepository
                     .Insert(culture);
 
                 UnitOfWork

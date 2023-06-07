@@ -65,8 +65,8 @@ internal class Country : Infrastructure.BaseController
                 result = UnitOfWork
                                 .SchemaBaseUnitOfWork
                                 .CultureRepository
+                                .Argument2Repository
                                 .GetByLanguageCultureName(languageCultureName)
-                                .FirstOrDefault()
                                 .Id
                                 ;
 
