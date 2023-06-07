@@ -6,6 +6,8 @@ public interface IPersonUnitOfWork
 
     Address.IAddressRepository AddressRepository { get; }
 
+    AddressType.IAddressTypeRepository AddressTypeRepository { get; }
+
     Person.IPersonRepository PersonRepository { get; }
 
     #endregion

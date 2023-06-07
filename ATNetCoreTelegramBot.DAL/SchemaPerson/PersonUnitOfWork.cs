@@ -8,6 +8,7 @@ public class PersonUnitOfWork
     #region Field(s)
 
     private Address.IAddressRepository _addressRepository;
+    private AddressType.IAddressTypeRepository _addressTypeRepository;
     private Person.IPersonRepository _personRepository;
 
     #endregion
@@ -44,6 +45,19 @@ public class PersonUnitOfWork
                     new Address.AddressRepository(DatabaseContext);
             }
             return (_addressRepository);
+        }
+    }
+
+    public AddressType.IAddressTypeRepository AddressTypeRepository
+    {
+        get
+        {
+            if (_addressTypeRepository == null)
+            {
+                _addressTypeRepository =
+                    new AddressType.AddressTypeRepository(DatabaseContext);
+            }
+            return (_addressTypeRepository);
         }
     }
 
