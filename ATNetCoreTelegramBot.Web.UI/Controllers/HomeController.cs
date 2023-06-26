@@ -6,7 +6,7 @@ using ATNetCoreTelegramBot.ViewModels;
 
 namespace ATNetCoreTelegramBot.Web.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Infrastructure.BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
