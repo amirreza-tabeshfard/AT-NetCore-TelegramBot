@@ -1,3 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>? pageMessage = TempData["PageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>;
+}
+
+@{
+    if (pageMessage is not null)
+        if (pageMessage.Any())
+        {
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    @await Component.InvokeAsync("PageMessage", pageMessage)
+                </div>
+            </div>
+        }
 }

@@ -38,6 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Components\PageMessage\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ATNetCoreTelegramBot.Common\ATNetCoreTelegramBot.Common.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.DAL\ATNetCoreTelegramBot.DAL.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.Models\ATNetCoreTelegramBot.Models.csproj" />

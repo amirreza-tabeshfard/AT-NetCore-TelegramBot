@@ -1,0 +1,113 @@
+﻿@model IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>
+
+@{
+    string? statusMessageClass = default;
+    string? iconClass = default;
+    string? direction = default;
+    string? styleForMessage = default;
+}
+
+@{
+    if (Model != null)
+    {
+        if (Model.Count() != 0)
+        {
+            foreach (IGrouping<ATNetCoreTelegramBot.Common.Enums.AlertSeverity, ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage> Group in Model.GroupBy(current => current.AlertSeverity).OrderByDescending(current => current.Key))
+            {
+                if (Group.Key != ATNetCoreTelegramBot.Common.Enums.AlertSeverity.None)
+                {
+                    foreach (ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage pageMessage in Group)
+                    {
+                        switch (pageMessage.AlertSeverity)
+                        {
+                            case ATNetCoreTelegramBot.Common.Enums.AlertSeverity.Success:
+                                {
+                                    statusMessageClass = "alert-success";
+                                    iconClass = default;
+                                }
+                                break;
+
+                            case ATNetCoreTelegramBot.Common.Enums.AlertSeverity.Information:
+                                {
+                                    statusMessageClass = "alert-info";
+                                    iconClass = "fas fa-info-circle";
+                                }
+                                break;
+
+                            case ATNetCoreTelegramBot.Common.Enums.AlertSeverity.Warning:
+                                {
+                                    statusMessageClass = "alert-warning";
+                                    iconClass = "fas fa-warning";
+                                }
+                                break;
+
+                            case ATNetCoreTelegramBot.Common.Enums.AlertSeverity.Error:
+                                {
+                                    statusMessageClass = "alert-danger";
+                                    iconClass = "fas fa-delete-left";
+                                }
+                                break;
+                        }
+
+                        <div class="Vazir-14px">
+                            <div class="alert @statusMessageClass alert-dismissible text-center Vazir-Light-14px" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-right: 15px;">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                                @{
+                                    if (!string.IsNullOrEmpty(pageMessage.Title))
+                                    {
+                                        <div class="text-center">
+                                            <i class="@iconClass"></i>
+                                            <strong class="Vazir-Bold-20px">
+                                                @pageMessage.Title
+                                            </strong>
+                                            <hr class="message-inner-separator" style="clear: both; margin-top: 10px; margin-bottom: 13px; border: 0; height: 1px; background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0)); background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0)); background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0)); background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));">
+                                        </div>
+                                    }
+
+                                    if (pageMessage.IsPrintLTR)
+                                    {
+                                        direction = "direction: ltr;";
+                                    }
+                                    else
+                                    {
+                                        direction = "direction: rtl;";
+                                    }
+
+                                    if (pageMessage.Messages.Count() == 1)
+                                    {
+                                        styleForMessage = default;
+                                    }
+                                    else
+                                    {
+                                        styleForMessage = "overflow-x: hidden; overflow-y:scroll !important; max-height: 100px;";
+                                    }
+                                    
+                                    <div style="@styleForMessage @direction">
+                                        @{
+                                            foreach (string message in pageMessage.Messages)
+                                            {
+                                                if (pageMessage.IsRenderHTML)
+                                                {
+                                                    @Html.Raw(message)
+                                                }
+                                                else
+                                                {
+                                                    @message
+                                                }
+                                                <br />
+                                            }
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        }
+    }
+}

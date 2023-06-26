@@ -8,23 +8,36 @@ public class BaseController : Controller
 {
     #region Field(s)
 
-    IConfigurationBuilder _builder;
-    IConfigurationRoot _build;
+    private IConfigurationBuilder _builder;
+    private IConfigurationRoot _build;
+    private List<PageMessage> _pageMessages;
     private string _currentLanguage;
 
     #endregion
 
     #region Constructor
-    
+
     public BaseController()
     {
         _builder = ConfigurationBuilder();
         _build = _builder.Build();
-    } 
+    }
 
     #endregion
 
     #region Properties
+
+    protected List<PageMessage> PageMessages
+    {
+        get
+        {
+            if (_pageMessages is null)
+                _pageMessages = new List<PageMessage>();
+                
+            TempData["PageMessages"] = _pageMessages;
+            return (_pageMessages);
+        }
+    }
 
     private string CurrentLanguage
     {
