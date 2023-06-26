@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using ATNetCoreTelegramBot.ViewModels;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ATNetCoreTelegramBot.Web.UI.Infrastructure;
@@ -7,6 +8,8 @@ public class BaseController : Controller
 {
     #region Field(s)
 
+    IConfigurationBuilder _builder;
+    IConfigurationRoot _build;
     private string _currentLanguage;
 
     #endregion
@@ -15,7 +18,8 @@ public class BaseController : Controller
     
     public BaseController()
     {
-
+        _builder = ConfigurationBuilder();
+        _build = _builder.Build();
     } 
 
     #endregion
@@ -38,6 +42,63 @@ public class BaseController : Controller
 
             return _currentLanguage;
         }
+    }
+
+    #endregion
+
+    #region Private Method(s): (AppSettings: AppDetails)
+
+    private string? GetVersion()
+    {
+        string? result = default;
+        // --------------------------------------------------------------------------------------------------------------------------------------------------------
+        result = _build
+                 .GetSection("AppDetails")
+                 .GetSection("Version").Value;
+
+        if (string.IsNullOrEmpty(result))
+            result = default;
+        // ---------------------------------------  -----------------------------------------------------------------------------------------------------------------
+        return result;
+    }
+
+    #endregion
+
+    #region Private Method(s)
+
+    private IConfigurationBuilder ConfigurationBuilder()
+    {
+        return new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+    }
+
+    private AppSettingsViewModel.AppDetailsViewModel GetAppDetails()
+    {
+        AppSettingsViewModel.AppDetailsViewModel result = default;
+        // --------------------------------------------------------------------------------------------------------------------------------------------------------
+        result = new AppSettingsViewModel.AppDetailsViewModel()
+        {
+            Version = GetVersion()
+        };
+        // --------------------------------------------------------------------------------------------------------------------------------------------------------
+        return result;
+    }
+
+    #endregion
+
+    #region Protected Method(s)
+
+    protected AppSettingsViewModel AppSettings()
+    {
+        AppSettingsViewModel result = default;
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------
+        result = new AppSettingsViewModel()
+        {
+            AppDetails = GetAppDetails()
+        };
+        // ---------------------------------------------------------------------------------------------------------------------------------------------------------
+        return result;
     }
 
     #endregion

@@ -43,7 +43,20 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - ATNetCoreTelegramBot.Web.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <strong>
+            Version
+            </strong>
+            : &nbsp;
+            @{
+                IConfigurationBuilder builder = new ConfigurationBuilder()
+                                                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+                IConfigurationRoot root = builder.Build();
+
+                string? version = root.GetSection("AppDetails").GetSection("Version").Value;
+            }
+            @version
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
