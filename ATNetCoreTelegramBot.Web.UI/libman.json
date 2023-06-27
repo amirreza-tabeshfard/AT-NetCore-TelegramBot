@@ -2,12 +2,14 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-    // -------------- [ bootstrap ] --------------
     {
       "library": "bootstrap@5.3.0",
       "destination": "wwwroot/lib/bootstrap/5.3.0"
     },
-    // -------------- [ IconFonts ] --------------
+    {
+      "library": "vazir-font@30.1.0",
+      "destination": "wwwroot/lib/Fonts/vazir-font/30.1.0"
+    },
     {
       "library": "boxicons@2.1.4",
       "destination": "wwwroot/lib/IconFonts/boxicons/2.1.4"
@@ -48,12 +50,10 @@
       "library": "weather-icons@2.0.12",
       "destination": "wwwroot/lib/IconFonts/weather-icons/2.0.12"
     },
-    // -------------- [ Icons ] --------------
     {
       "library": "simple-icons@9.3.0",
       "destination": "wwwroot/lib/Icons/simple-icons/9.3.0"
     },
-    // -------------- [ JQueries ] --------------
     {
       "library": "jquery@3.7.0",
       "destination": "wwwroot/lib/JQueries/jquery/3.7.0"
@@ -68,7 +68,7 @@
     },
     {
       "library": "jquery-validation-unobtrusive@4.0.0",
-      "destination": "wwwroot/lib//JQueries/jquery-validation-unobtrusive/4.0.0"
+      "destination": "wwwroot/lib/JQueries/jquery-validation-unobtrusive/4.0.0"
     }
   ]
 }
