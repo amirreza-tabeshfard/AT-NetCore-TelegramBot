@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- CSS(s) -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/5.3.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ATNetCoreTelegramBot.Web.UI.styles.css" asp-append-version="true" />
     @RenderSection(name: "Style", required: false)
@@ -28,7 +28,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="TelegramBot" asp-controller="Home" asp-action="Index">
+                                TelegramBot
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -44,13 +51,14 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             <strong>
-            Version
+                Version
             </strong>
-            : &nbsp;
+            :
+            &nbsp;
             @{
                 IConfigurationBuilder builder = new ConfigurationBuilder()
-                                                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
                 IConfigurationRoot root = builder.Build();
 
@@ -59,8 +67,8 @@
             @version
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/3.7.0/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

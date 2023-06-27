@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="fa-IR" dir="rtl">
+<head>
+    <title>@ViewBag.Title | Maintenance Mode</title>
+
+    <!-- Meta(s) -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta content="DayOne - It is one of the Major Dashboard Template which includes - HR, Employee and Job Dashboard. This template has multipurpose HTML template and also deals with Task, Project, Client and Support System Dashboard." name="description">
+    <meta content="Spruko Technologies Private Limited" name="author">
+    <meta name="author" content="Amirreza Tabeshfard" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <!-- CSS(s) -->
+    <link href="~/favicon.png" type="image/x-icon" rel="shortcut icon" />
+    <link href="~/lib/bootstrap/Version-4.6.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Layouts/style-rtl.css" rel="stylesheet" />
+    <link href="~/css/Layouts/dark.css" rel="stylesheet" />
+    <link href="~/css/Layouts/skin-modes.css" rel="stylesheet" />
+    <link href="~/css/Layouts/animated.css" rel="stylesheet" />
+    <link href="~/css/Layouts/sidemenu-rtl.css" rel="stylesheet" />
+    <link href="~/css/Layouts/p-scrollbar.css" rel="stylesheet" />
+    <link href="~/css/Layouts/sidebar.css" rel="stylesheet" />
+    <link href="~/css/Layouts/select2.min.css" rel="stylesheet" />
+    <link href="~/css/Layouts/switcher-rtl.css" rel="stylesheet" />
+    <link href="~/css/Layouts/demo.css" rel="stylesheet" />
+
+    <link href="~/lib/IconFonts/feather/css/feather.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/boxicons-2.1.2/css/animations.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/boxicons-2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/boxicons-2.1.2/css/transformations.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/flag-icon-css-6.4.5/css/flag-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/font-awesome-6.1.1/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/line-awesome-1.3.0/font-awesome-line-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/line-awesome-1.3.0/line-awesome/css/line-awesome.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/MaterialDesign-Webfont-6.7.96/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/simple-line-icons-2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/typicons-2.1.2/typicons.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/weather-icons-2.0.12/css/weather-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/IconFonts/weather-icons-2.0.12/css/weather-icons-wind.min.css" rel="stylesheet" />
+
+    <link href="~/css/Layouts/IconFonts/remixicon/remixicon.css" rel="stylesheet" />
+
+    <link href="~/css/Fonts/Farsi/IranNastaligh.css" rel="stylesheet" />
+    <link href="~/css/Fonts/Farsi/Vazir.css" rel="stylesheet" />
+    @RenderSection(name: "Style", required: false)
+
+    <!-- Script(s) -->
+    @RenderSection(name: "ScriptEndHead", required: false)
+</head>
+<body class="app sidebar-mini" id="index1">
+    @{
+        //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Switcher", model: null, viewData: null);
+        //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Loader", model: null, viewData: null);
+    }
+    <div class="page">
+        <div class="page-main">
+            @{
+                //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Sidebar", model: null, viewData: null);
+            }
+            <div class="app-content main-content">
+                <div class="side-app">
+                    @{
+                        //await RenderSectionAsync(name: "BreadCrumbs", required: false);
+                        //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Header", model: null, viewData: null);
+                    }
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        @{
+            //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Footer", model: null, viewData: null);
+            //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_NotificationSideBar", model: null, viewData: null);
+            //await RenderSectionAsync(name: "Modal", required: false);
+        }
+    </div>
+    @{
+        //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_BackToTop", model: null, viewData: null);
+    }
+    <!-- Script(s) -->
+    <script src="~/js/Layouts/moment.js"></script>
+    <script src="~/lib/jquery/Version-3.6.0/jquery.min.js"></script>
+    <script src="~/js/Layouts/popper.min.js"></script>
+    <script src="~/lib/bootstrap/Version-4.6.1/js/bootstrap.min.js"></script>
+    <script src="~/js/Layouts/jquery.sparkline.min.js"></script>
+    <script src="~/js/Layouts/circle-progress.min.js"></script>
+    <script src="~/js/Layouts/sidemenu.js"></script>
+    <script src="~/js/Layouts/p-scrollbar.js"></script>
+    <script src="~/js/Layouts/p-scroll1.js"></script>
+    <script src="~/js/Layouts/sidebar-rtl.js"></script>
+    <script src="~/js/Layouts/select2.full.min.js"></script>
+    <script src="~/js/Layouts/custom.js"></script>
+    <script src="~/js/Layouts/switcher-rtl.js"></script>
+    @RenderSection(name: "ScriptEndBody", required: false)
+</body>
+</html>
