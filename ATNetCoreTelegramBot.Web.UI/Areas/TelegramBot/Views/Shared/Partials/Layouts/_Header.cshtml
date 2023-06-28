@@ -1,0 +1,39 @@
+﻿@{
+    string? ClassMerge = default(string);
+}
+
+@{
+    ClassMerge = "mr-auto";
+}
+
+<div class="app-header header">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <div class="app-sidebar__toggle" data-toggle="sidebar">
+                <a class="open-toggle" href="#">
+                    <i class="feather feather-menu"></i>
+                </a>
+                <a class="close-toggle" href="#">
+                    <i class="feather feather-x"></i>
+                </a>
+            </div>
+            <div class="mt-0">
+                @{
+                    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Header/_Search", model: null, viewData: null);
+                }
+            </div>
+            <div class="d-flex order-lg-2 my-auto @ClassMerge">
+                <a class="nav-link my-auto icon p-0 nav-link-lg d-xl-none navsearch" href="#" data-toggle="search">
+                    <i class="feather feather-search search-icon header-icon"></i>
+                </a>
+                @{
+                    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Header/_Flags", model: null, viewData: null);
+                    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Header/_Fullscreen", model: null, viewData: null);
+                    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Header/_AllMessages", model: null, viewData: null);
+                    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Header/_Notification", model: null, viewData: null);
+                    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Header/_Profile", model: null, viewData: null);
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -39,6 +39,10 @@
 
   <ItemGroup>
     <None Include="Views\Shared\Components\PageMessage\Default.cshtml" />
+    <None Include="wwwroot\images\Areas\TelegramBot\Loader\loader-001.svg" />
+    <None Include="wwwroot\images\CountiresFlagAvatars\Full Software - Dl4All.url" />
+    <None Include="wwwroot\lib\IconFonts\feather\fonts\Descr.WD3" />
+    <None Include="wwwroot\lib\IconFonts\feather\fonts\feather-webfont.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +50,10 @@
     <ProjectReference Include="..\ATNetCoreTelegramBot.DAL\ATNetCoreTelegramBot.DAL.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.Models\ATNetCoreTelegramBot.Models.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.ViewModels\ATNetCoreTelegramBot.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Areas\TelegramBot\Layouts\" />
   </ItemGroup>
 
 </Project>

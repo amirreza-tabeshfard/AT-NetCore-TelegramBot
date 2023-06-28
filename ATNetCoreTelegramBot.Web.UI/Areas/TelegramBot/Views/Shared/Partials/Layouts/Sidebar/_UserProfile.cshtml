@@ -1,0 +1,307 @@
+﻿@{
+    float? rate = default;
+}
+
+<div class="app-sidebar__user pb-3">
+    <div class="dropdown user-pro-body text-center">
+        <div class="user-pic">
+            <img src="~/images/areas/telegrambot/nousers/noprofile-001.jpg" class="avatar-xxl rounded-circle mb-1" alt="No Profile" title="No Profile" />
+            <div class="emp-award" data-toggle="tooltip" data-placement="top" title="بهترین کاربر سال">
+                <i class="fa fa-trophy"></i>
+            </div>
+        </div>
+        <div class="user-info">
+            <h5 class=" mb-2 text-center">
+                <span class="tag tag-rounded tag-info">
+                    نام کاربری
+                </span>
+            </h5>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center text-center fs-18 mt-1 mb-3 align-items-end app-user-rating">
+        @{
+            switch (rate)
+            {
+                case (float)0:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 0 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)0.5:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z' fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' />
+                                <path d='M256 48v316L118 464l54-160-140-96h172l52-160z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 0.5 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)1:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 1 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)1.5:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z' fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' />
+                                <path d='M256 48v316L118 464l54-160-140-96h172l52-160z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 1.5 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)2:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 2 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)2.5:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z' fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' />
+                                <path d='M256 48v316L118 464l54-160-140-96h172l52-160z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 2.5 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)3:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 3 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)3.5:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z' fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' />
+                                <path d='M256 48v316L118 464l54-160-140-96h172l52-160z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 3.5 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)4:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 4 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)4.5:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z' fill='none' stroke='currentColor' stroke-linejoin='round' stroke-width='32' />
+                                <path d='M256 48v316L118 464l54-160-140-96h172l52-160z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 4.5 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+
+                case (float)5:
+                    {
+                        <div class="Rating mg-l-5">
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='ionicon active' height="18" width="18" viewBox='0 0 512 512'>
+                                <path d='M394 480a16 16 0 01-9.39-3L256 383.76 127.39 477a16 16 0 01-24.55-18.08L153 310.35 23 221.2a16 16 0 019-29.2h160.38l48.4-148.95a16 16 0 0130.44 0l48.4 149H480a16 16 0 019.05 29.2L359 310.35l50.13 148.53A16 16 0 01394 480z' />
+                            </svg>
+                            <span class="fs-13 text-white-80 mr-1 Vazir-FD-12px">
+                                ( 5 / 5 )
+                            </span>
+                        </div>
+                    }
+                    break;
+            }
+        }
+    </div>
+</div>

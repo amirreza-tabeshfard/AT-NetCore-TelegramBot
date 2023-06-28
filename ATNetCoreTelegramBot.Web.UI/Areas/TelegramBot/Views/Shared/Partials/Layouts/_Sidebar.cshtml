@@ -1,0 +1,18 @@
+﻿<aside class="app-sidebar">
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/_Logo", model: null, viewData: null);
+    }
+    <div class="app-sidebar3">
+        @{
+            await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/_UserProfile", model: null, viewData: null);
+        }
+        <ul class="side-menu">
+            @{
+                await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/_Dashboards", model: null, viewData: null);
+            }
+        </ul>
+        @{
+            await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/_Annoucement", model: null, viewData: null);
+        }
+    </div>
+</aside>

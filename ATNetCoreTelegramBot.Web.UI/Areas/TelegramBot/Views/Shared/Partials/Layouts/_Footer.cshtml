@@ -1,0 +1,26 @@
+﻿@{
+    IConfigurationBuilder builder = new ConfigurationBuilder()
+                                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+    IConfigurationRoot root = builder.Build();
+
+    string? version = root.GetSection("AppDetails").GetSection("Version").Value;
+}
+
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center Vazir-12px">
+                © 1401 تمام حقوق برای 'امیررضا تابش فرد' محفوظ است. این وبسایت بهتر است در مرورگرهای کروم، فایرفاکس، سافاری و یا مرورگرهای جدیدتر مشاهده شود.
+            </div>
+            <div class="col-md-12 col-sm-12 mt-1 text-center Vazir-12px">
+                <span class="tag tag-rounded tag-info Vazir-FD-WOL-14px">
+                    نسخه:
+                    &nbsp;
+                    @version
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>

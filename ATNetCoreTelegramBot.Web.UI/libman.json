@@ -15,10 +15,6 @@
       "destination": "wwwroot/lib/IconFonts/boxicons/2.1.4"
     },
     {
-      "library": "feathers@5.0.6",
-      "destination": "wwwroot/lib/IconFonts/feathers/5.0.6"
-    },
-    {
       "library": "flag-icon-css@6.7.0",
       "destination": "wwwroot/lib/IconFonts/flag-icon-css/6.7.0"
     },
