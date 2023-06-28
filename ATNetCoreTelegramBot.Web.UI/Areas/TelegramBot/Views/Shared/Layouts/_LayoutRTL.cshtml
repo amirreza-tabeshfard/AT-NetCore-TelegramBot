@@ -1,0 +1,104 @@
+﻿<!doctype html>
+<html lang="fa-IR" dir="rtl">
+<head>
+    <title>@ViewBag.Title | TelegramBot</title>
+
+    <!-- Meta(s) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="author" content="Amirreza Tabeshfard" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <!-- CSS(s) -->
+    <link href="~/favicon.png" type="image/x-icon" rel="shortcut icon" />
+    <link href="~/lib/bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/areas/telegrambot/style-rtl.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/dark.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/skin-modes.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/animated.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/sidemenu-rtl.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/p-scrollbar.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/sidebar.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/select2.min.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/switcher-rtl.css" rel="stylesheet" />
+    <link href="~/css/areas/telegrambot/demo.css" rel="stylesheet" />
+
+    <link href="~/lib/iconfonts/feather/css/feather.css" rel="stylesheet" />
+
+    <link href="~/lib/iconfonts/boxicons/2.1.4/css/animations.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/boxicons/2.1.4/css/transformations.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/flag-icon-css/6.7.0/css/flag-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/ionicons/7.1.2/collection/components/icon/icon.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/line-awesome/1.3.0/font-awesome-line-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/materialdesign-webfont/7.2.96/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/typicons/2.1.2/typicons.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/weather-icons/2.0.12/css/weather-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/iconfonts/weather-icons/2.0.12/css/weather-icons-wind.min.css" rel="stylesheet" />
+
+    <link href="~/lib/fonts/vazir-font/30.1.0/farsi-digits/font-face-fd.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/farsi-digits-without-latin/font-face-fd-wol.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/ui/farsi-digits/font-face-fd-ui.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/ui/farsi-digits-without-latin/font-face-fd-wol-ui.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/ui/without-latin/font-face-wol-ui.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/ui/font-face-ui.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/without-latin/font-face-wol.min.css" rel="stylesheet" />
+    <link href="~/lib/fonts/vazir-font/30.1.0/font-face.min.css" rel="stylesheet" />
+
+    @RenderSection(name: "Style", required: false)
+
+    <!-- Script(s) -->
+    @RenderSection(name: "ScriptEndHead", required: false)
+</head>
+<body class="app sidebar-mini" id="index1">
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Switcher", model: null, viewData: null);
+        await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Loader", model: null, viewData: null);
+    }
+    <div class="page">
+        <div class="page-main">
+            @{
+                await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Sidebar", model: null, viewData: null);
+            }
+            <div class="app-content main-content">
+                <div class="side-app">
+                    @{
+                        await RenderSectionAsync(name: "BreadCrumbs", required: false);
+                        await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Header", model: null, viewData: null);
+                    }
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        @{
+            await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Footer", model: null, viewData: null);
+            await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_NotificationSideBar", model: null, viewData: null);
+            await RenderSectionAsync(name: "Modal", required: false);
+        }
+    </div>
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_BackToTop", model: null, viewData: null);
+    }
+    <!-- Script(s) -->
+    <script src="~/js/areas/telegrambot/moment.js"></script>
+    <script src="~/lib/jqueries/jquery/3.7.0/jquery.min.js"></script>
+    <script src="~/js/areas/telegrambot/popper.min.js"></script>
+    <script src="~/lib/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+    <script src="~/js/areas/telegrambot/jquery.sparkline.min.js"></script>
+    <script src="~/js/areas/telegrambot/circle-progress.min.js"></script>
+    <script src="~/js/areas/telegrambot/sidemenu.js"></script>
+    <script src="~/js/areas/telegrambot/p-scrollbar.js"></script>
+    <script src="~/js/areas/telegrambot/p-scroll1.js"></script>
+    <script src="~/js/areas/telegrambot/sidebar-rtl.js"></script>
+    <script src="~/js/areas/telegrambot/select2.full.min.js"></script>
+    <script src="~/js/areas/telegrambot/custom.js"></script>
+    <script src="~/js/areas/telegrambot/switcher-rtl.js"></script>
+
+    @RenderSection(name: "ScriptEndBody", required: false)
+</body>
+</html>

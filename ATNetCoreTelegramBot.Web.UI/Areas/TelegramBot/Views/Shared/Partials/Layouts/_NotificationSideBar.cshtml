@@ -1,0 +1,85 @@
+﻿@{
+    string dropMenuAlign = default(string);
+    string classSidebarAlign = default(string);
+    string ClassMerge = default(string);
+    string ClassMergeImage = default(string);
+}
+
+@{
+    dropMenuAlign = "dropdown-menu-left";
+    classSidebarAlign = "sidebar-left";
+    ClassMerge = "mr";
+    ClassMergeImage = "ml";
+}
+
+<div class="sidebar @classSidebarAlign sidebar-animate">
+    <div class="card-header border-bottom pb-5">
+        <h4 class="card-title Vazir-Bold-18px">
+            اطلاعیه
+        </h4>
+        <div class="card-options">
+            <a href="#" class="btn btn-sm btn-icon btn-light text-primary" data-toggle="@classSidebarAlign" data-target=".@classSidebarAlign">
+                <i class="feather feather-x"></i>
+            </a>
+        </div>
+    </div>
+    <div class="">
+        @{
+            for (int i = 1; i <= 20; i++)
+            {
+                <div class="list-group-item  align-items-center border-0">
+                    <div class="d-flex">
+                        <span class="avatar avatar-lg brround @ClassMergeImage-3 bg-primary-transparent">
+                            AT
+                        </span>
+                        @*<span class="avatar avatar-lg brround @ClassMerge-3" style="background-image: url(https://laravel.spruko.com/dayone/rtl/assets/images/users/10.jpg)"></span>*@
+                        <div class="mt-1">
+                            <a href="#" class="font-weight-semibold fs-16">
+                                نام خانوادگی
+                                <span class="text-muted font-weight-normal">
+                                    ارسال پیام
+                                </span>
+                            </a>
+                            <span class="clearfix"></span>
+                            <span class="text-muted fs-13 @ClassMerge-auto">
+                                <i class="mdi mdi-clock text-muted @ClassMerge-1"></i>
+                                30 دقیقه پیش
+                            </span>
+                        </div>
+                        <div class="@ClassMerge-auto">
+                            <a href="#" class="@ClassMerge-0 option-dots" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="feather feather-more-horizontal"></span>
+                            </a>
+                            <ul class="dropdown-menu @dropMenuAlign" role="menu">
+                                <li>
+                                    <a href="#" class="Vazir-12px">
+                                        <i class="feather feather-eye @ClassMerge-2"></i>
+                                        مشاهده
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="Vazir-12px">
+                                        <i class="feather feather-plus-circle @ClassMerge-2"></i>
+                                        اضافه
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="Vazir-12px">
+                                        <i class="feather feather-trash-2 @ClassMerge-2"></i>
+                                        حدف
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="Vazir-12px">
+                                        <i class="feather feather-settings @ClassMerge-2"></i>
+                                        تنظیمات
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

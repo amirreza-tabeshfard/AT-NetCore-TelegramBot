@@ -1,0 +1,8 @@
+﻿<li class="side-item side-item-category mt-4 Vazir-14px">
+    داشبورد
+</li>
+@{
+    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/Dashboards/_Home", model: null, viewData: null);
+    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/Dashboards/_Dashboard", model: null, viewData: null);
+    await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/Sidebar/Dashboards/_SubSlide", model: null, viewData: null);
+}

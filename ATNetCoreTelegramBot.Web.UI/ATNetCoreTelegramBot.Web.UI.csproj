@@ -9,9 +9,17 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Identity\**" />
+    <Compile Remove="Areas\TelegramBot\Data\**" />
+    <Compile Remove="Views\Shared\Layouts\**" />
     <Content Remove="Areas\Identity\**" />
+    <Content Remove="Areas\TelegramBot\Data\**" />
+    <Content Remove="Views\Shared\Layouts\**" />
     <EmbeddedResource Remove="Areas\Identity\**" />
+    <EmbeddedResource Remove="Areas\TelegramBot\Data\**" />
+    <EmbeddedResource Remove="Views\Shared\Layouts\**" />
     <None Remove="Areas\Identity\**" />
+    <None Remove="Areas\TelegramBot\Data\**" />
+    <None Remove="Views\Shared\Layouts\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +38,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\TelegramBot\Controllers\" />
-    <Folder Include="Areas\TelegramBot\Data\" />
-    <Folder Include="Areas\TelegramBot\Models\" />
-    <Folder Include="Areas\TelegramBot\Views\" />
+    <None Include="Views\Shared\Components\PageMessage\Default.cshtml" />
+    <None Include="wwwroot\images\Areas\TelegramBot\Loader\loader-001.svg" />
+    <None Include="wwwroot\images\CountiresFlagAvatars\Full Software - Dl4All.url" />
+    <None Include="wwwroot\lib\IconFonts\feather\fonts\Descr.WD3" />
+    <None Include="wwwroot\lib\IconFonts\feather\fonts\feather-webfont.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +50,10 @@
     <ProjectReference Include="..\ATNetCoreTelegramBot.DAL\ATNetCoreTelegramBot.DAL.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.Models\ATNetCoreTelegramBot.Models.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.ViewModels\ATNetCoreTelegramBot.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Areas\TelegramBot\Layouts\" />
   </ItemGroup>
 
 </Project>

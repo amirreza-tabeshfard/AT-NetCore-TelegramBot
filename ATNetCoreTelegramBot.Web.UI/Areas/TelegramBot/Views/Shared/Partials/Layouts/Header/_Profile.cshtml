@@ -1,0 +1,42 @@
+﻿@{
+    string? dropMenuAlign = default(string);
+    string? ClassMerge = default(string);
+}
+
+@{
+    dropMenuAlign = "dropdown-menu-left";
+    ClassMerge = "ml-3";
+}
+
+<div class="dropdown profile-dropdown">
+    <a href="#" class="nav-link pl-1 pr-0 leading-none" data-toggle="dropdown">
+        <span>
+            <img src="~/images/NoUsers/NoProfile-001.jpg" class="avatar avatar-md bradius" alt="No Profile" title="No Profile" />
+        </span>
+    </a>
+    <div class="dropdown-menu @dropMenuAlign dropdown-menu-arrow animated">
+        <div class="p-3 text-center border-bottom">
+            <p class="text-center user-semi-title Vazir-12px">
+                ?????
+            </p>
+        </div>
+        <a class="dropdown-item d-flex" asp-area="TelegramBot" asp-controller="Faq" asp-action="Index" asp-route-Faq="ImmediateMaintenance">
+            <i class="fa fa-question @ClassMerge fs-16 my-auto"></i>
+            <div class="mt-1 Vazir-14px">
+                سوالات متداول
+            </div>
+        </a>
+        <a class="dropdown-item d-flex" asp-area="TelegramBot" asp-controller="SuggestionCriticism" asp-action="Index">
+            <i class="fa fa-list-alt @ClassMerge fs-16 my-auto"></i>
+            <div class="mt-1 Vazir-14px">
+                پیشنهاد و انتقاد
+            </div>
+        </a>
+        <a class="dropdown-item d-flex" asp-area="TelegramBot" asp-controller="Setting" asp-action="Index">
+            <i class="feather feather-settings @ClassMerge fs-16 my-auto"></i>
+            <div class="mt-1 Vazir-14px">
+                تنظیمات
+            </div>
+        </a>
+    </div>
+</div>

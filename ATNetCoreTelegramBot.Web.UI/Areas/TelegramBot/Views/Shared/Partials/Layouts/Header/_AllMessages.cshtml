@@ -1,0 +1,51 @@
+﻿@{
+    string dropMenuAlign = default(string);
+}
+
+@{
+    dropMenuAlign = "dropdown-menu-left";
+}
+
+<div class="dropdown header-message">
+    <a class="nav-link icon" data-toggle="dropdown">
+        <i class="feather feather-mail header-icon"></i>
+        <span class="badge badge-success side-badge">
+            5
+        </span>
+    </a>
+    <div class="dropdown-menu @dropMenuAlign dropdown-menu-arrow  animated">
+        <div class="header-dropdown-list message-menu" id="message-menu">
+            @{
+                for (int i = 10; i <= 15; i++)
+                {
+                    <a class="dropdown-item border-bottom" href="#">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <span class="avatar avatar-md brround align-self-center cover-image" data-image-src="../../images/NoUsers/NoProfile-001.jpg"></span>
+                            </div>
+                            <div class="d-flex">
+                                <div class="pl-3">
+                                    <h6 class="mb-1 Vazir-Bold-14px">
+                                        ?????
+                                    </h6>
+                                    <p class="fs-13 mb-1 Vazir-12px">
+                                        ????? ????? ????? ?????
+                                        ????? ????? [...]
+                                    </p>
+                                    <div class="small text-muted Vazir-10px">
+                                        @i ساعت قبل
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+        <div class=" text-center p-2">
+            <a href="#" class="Vazir-14px text-center">
+                مشاهده همه پیام ها
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿@model ATNetCoreTelegramBot.ViewModels.SearchViewModel
+
+<form class="form-inline" method="post" asp-area="TelegramBot" asp-controller="Home" asp-action="Search">
+    <div class="search-element">
+        @Html.TextBoxFor(current => current.Value, new { @type = "search", @class = "form-control header-search", @placeholder = "فعلا پیاده سازی نشده است" })
+        <button class="btn btn-primary-color">
+            <i class="feather feather-search"></i>
+        </button>
+    </div>
+</form>

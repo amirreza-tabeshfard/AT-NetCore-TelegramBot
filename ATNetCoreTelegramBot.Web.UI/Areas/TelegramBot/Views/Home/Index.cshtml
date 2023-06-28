@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>? pageMessage = TempData["PageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>;
+}
+
+@section BreadCrumbs {
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Index/_BreadCrumbs", model: null, viewData: null);
+    }
+}
+
+@{
+    if (pageMessage is not null)
+    {
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                @await Component.InvokeAsync("PageMessage", pageMessage)
+            </div>
+        </div>
+    }
+}

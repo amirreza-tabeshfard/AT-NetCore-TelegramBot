@@ -1,0 +1,20 @@
+﻿@{
+    string? requestCulture = Context.Features.Get<IRequestCultureFeature>()?.RequestCulture.Culture.ToString();
+}
+
+@{
+    switch (requestCulture)
+    {
+        case ATNetCoreTelegramBot.Common.Infrastructure.Culture.Farsi_Iran:
+            {
+                Layout = $@"/Areas/TelegramBot/Views/Shared/Layouts/_LayoutRTL.cshtml";
+            }
+            break;
+
+        case ATNetCoreTelegramBot.Common.Infrastructure.Culture.English_UnitedStates:
+            {
+                Layout = "";
+            }
+            break;
+    }
+}
