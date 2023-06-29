@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Index";
-    IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>? pageMessage = TempData["PageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Infrastructure.PageMessage>;
+    IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>? pageMessage = TempData["TelegramBotPageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>;
 }
 
 @section BreadCrumbs {
@@ -14,7 +14,7 @@
     {
         <div class="row">
             <div class="col-sm-12 col-md-12">
-                @await Component.InvokeAsync("PageMessage", pageMessage)
+                @await Component.InvokeAsync("TelegramBotPageMessage", pageMessage)
             </div>
         </div>
     }
