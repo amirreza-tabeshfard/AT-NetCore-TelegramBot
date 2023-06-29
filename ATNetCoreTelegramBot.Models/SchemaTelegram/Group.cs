@@ -56,12 +56,15 @@ public class Group : ID.BaseEntityGuid
             if (string.IsNullOrWhiteSpace(value))
                 value = default;
 
-            value = value.Trim();
+            if (value is not null)
+            {
+                value = value.Trim();
 
-            while (value.Contains(value: "  "))
-                value = value.Replace(oldValue: "  ", newValue: " ");
+                while (value.Contains(value: "  "))
+                    value = value.Replace(oldValue: "  ", newValue: " ");
 
-            _name = value;
+                _name = value;
+            }
         }
     }
     // **********

@@ -175,8 +175,23 @@ services.Configure<MvcOptions>(options =>
 
 #endregion
 
-services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel>();
+#region Add [DAL]
+
 services.AddSingleton<ATNetCoreTelegramBot.DAL.UnitOfWork>();
+
+#endregion
+
+#region Add [Models]
+
+services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Group>();
+
+#endregion
+
+#region Add [ViewModels]
+
+services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel>();
+
+#endregion
 
 #endregion
 
