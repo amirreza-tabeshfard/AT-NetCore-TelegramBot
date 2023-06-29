@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ATNetCoreTelegramBot.Common\ATNetCoreTelegramBot.Common.csproj" />
     <ProjectReference Include="..\ATNetCoreTelegramBot.Models\ATNetCoreTelegramBot.Models.csproj" />
   </ItemGroup>
 

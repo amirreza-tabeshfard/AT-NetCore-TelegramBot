@@ -1,0 +1,110 @@
+﻿@model ATNetCoreTelegramBot.Models.SchemaTelegram.Group
+
+@{
+    ViewData["Title"] = "Details";
+    IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>? pageMessage = TempData["TelegramBotPageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>;
+}
+
+@section BreadCrumbs {
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Details/_BreadCrumbs", model: null, viewData: null);
+    }
+}
+
+@{
+    if (pageMessage is not null)
+    {
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                @await Component.InvokeAsync("TelegramBotPageMessage", pageMessage)
+            </div>
+        </div>
+    }
+}
+
+@{
+    if (Model is not null)
+    {
+        <div class="row">
+            <div class="col-xl-4 col-md-4 col-lg-4">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <h4 class="card-title Vazir-16px">
+                            @ViewData["Title"]
+                        </h4>
+                        <div class="card-options">
+                            <a href="#" class="card-options-fullscreen ml-2" data-toggle="card-fullscreen">
+                                <i class="fe fe-maximize"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="card border p-0 shadow-none ">
+                                <div class="d-flex align-items-center p-4">
+                                    <div>
+                                        <img src="~/images/nousers/noprofile-001.jpg" class="avatar avatar-lg brround d-block cover-image" />
+                                    </div>
+                                    <div class="wrapper mr-3">
+                                        <p class="mb-0 mt-1 text-dark font-weight-semibold" style="direction:ltr;">
+                                            @Model.Name
+                                        </p>
+                                    </div>
+                                    <div class="float-left mr-auto">
+                                        <div class="btn-group mr-3 mb-0">
+                                            <div class="card-options">
+                                                <a href="#" class="card-options-collapse ml-2" data-toggle="card-collapse">
+                                                    <i class="fe fe-chevron-up"></i>
+                                                </a>
+                                                <a href="#" class="card-options-fullscreen ml-2" data-toggle="card-fullscreen">
+                                                    <i class="fe fe-maximize"></i>
+                                                </a>
+                                                <a href="#" class="card-options-remove" data-toggle="card-remove">
+                                                    <i class="fe fe-x"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <div class="d-flex mb-3">
+                                        <div class="h6 mb-0 mt-2">
+                                            <span class="Vazir-Bold-14px">
+                                                ترتیب
+                                            </span>
+                                            <span class="Vazir-14px">
+                                                :
+                                                @Model.Ordering
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-primary Vazir-10px mr-1" asp-area="TelegramBot" asp-controller="Group" asp-action="Index">
+                                        <i class="fe fe-x"></i>
+                                    </a>
+                                    <a class="btn btn-ligth Vazir-10px mr-1" asp-controller="Group" asp-action="Edit" asp-route-id="@Model.Id">
+                                        <i class="fe fe-edit"></i>
+                                        ویرایش
+                                    </a>
+                                    <a class="btn btn-ligth Vazir-10px mr-1" asp-area="TelegramBot" asp-controller="Group" asp-action="Delete" asp-route-id="@Model.Id">
+                                        <i class="fe fe-delete ml-2"></i>
+                                        حذف
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section ScriptEndBody {
+    <script>
+        $("#SlideBasicInformation").addClass("is-expanded");
+        $("#SlideBasicInformation_Main").addClass("active");
+        $("#SlideBasicInformation_ViewAllGroups").addClass("active");
+    </script>
+}
