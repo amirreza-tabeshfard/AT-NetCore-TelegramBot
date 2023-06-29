@@ -57,7 +57,7 @@
 </head>
 <body class="app sidebar-mini" id="index1">
     @{
-        await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Switcher", model: null, viewData: null);
+        //await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Switcher", model: null, viewData: null);
         await Html.RenderPartialAsync(partialViewName: "Partials/Layouts/_Loader", model: null, viewData: null);
     }
     <div class="page">
@@ -97,7 +97,7 @@
     <script src="~/js/areas/telegrambot/sidebar-rtl.js"></script>
     <script src="~/js/areas/telegrambot/select2.full.min.js"></script>
     <script src="~/js/areas/telegrambot/custom.js"></script>
-    <script src="~/js/areas/telegrambot/switcher-rtl.js"></script>
+    @*<script src="~/js/areas/telegrambot/switcher-rtl.js"></script>*@
 
     @RenderSection(name: "ScriptEndBody", required: false)
 </body>

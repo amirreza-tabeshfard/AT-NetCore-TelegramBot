@@ -68,19 +68,20 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private async Task PollingErrorHandler(ITelegramBotClient telegramBotClient, Exception exception, CancellationToken cancellationToken)
         {
             if (exception is ApiRequestException apiRequestException)
-                await telegramBotClient.SendTextMessageAsync(chatId: _user.Id,
-                                                             text: exception.Message,
-                                                             messageThreadId: default,
-                                                             parseMode: default,
-                                                             entities: default,
-                                                             disableNotification: default,
-                                                             disableWebPagePreview: default,
-                                                             protectContent: default,
-                                                             replyToMessageId: default,
-                                                             allowSendingWithoutReply: default,
-                                                             replyMarkup: default,
-                                                             cancellationToken: default
-                                                             );
+                if (_user is not null)
+                    await telegramBotClient.SendTextMessageAsync(chatId: _user.Id,
+                                                                 text: exception.Message,
+                                                                 messageThreadId: default,
+                                                                 parseMode: default,
+                                                                 entities: default,
+                                                                 disableNotification: default,
+                                                                 disableWebPagePreview: default,
+                                                                 protectContent: default,
+                                                                 replyToMessageId: default,
+                                                                 allowSendingWithoutReply: default,
+                                                                 replyMarkup: default,
+                                                                 cancellationToken: default
+                                                                 );
         }
 
         private async Task UpdateHandler(ITelegramBotClient telegramBotClient, Update update, CancellationToken cancellationToken)

@@ -175,6 +175,9 @@ services.Configure<MvcOptions>(options =>
 
 #endregion
 
+services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel>();
+services.AddSingleton<ATNetCoreTelegramBot.DAL.UnitOfWork>();
+
 #endregion
 
 #region Configure the HTTP request pipeline

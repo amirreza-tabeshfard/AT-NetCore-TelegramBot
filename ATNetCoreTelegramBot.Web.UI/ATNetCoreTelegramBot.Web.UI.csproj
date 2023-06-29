@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\TelegramBot\Views\Dashboard\Partials\Index\_BreadCrumbs.cshtml" />
     <None Include="Views\Shared\Components\PageMessage\Default.cshtml" />
     <None Include="wwwroot\images\Areas\TelegramBot\Loader\loader-001.svg" />
     <None Include="wwwroot\images\CountiresFlagAvatars\Full Software - Dl4All.url" />

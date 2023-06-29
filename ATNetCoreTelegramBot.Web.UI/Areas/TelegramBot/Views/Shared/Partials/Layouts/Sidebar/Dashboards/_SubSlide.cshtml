@@ -1,8 +1,8 @@
 ﻿@{
-    string ClassTextAlign = default(string);
-    string ClassAngle = default(string);
-    string ClassSubAngle = default(string);
-    string StyleDirection = default(string);
+    string? ClassTextAlign = default(string);
+    string? ClassAngle = default(string);
+    string? ClassSubAngle = default(string);
+    string? StyleDirection = default(string);
 }
 
 @{
@@ -12,33 +12,19 @@
     StyleDirection = "direction: rtl;";
 }
 
-<li id="SlideMaintenanceMode" class="slide">
-    <a id="SlideMaintenanceMode_MaintenanceMode" class="side-menu__item" data-toggle="slide" href="#">
-        <i class="feather feather-settings sidemenu_icon"></i>
+<li id="SlideBasicInformation" class="slide">
+    <a id="SlideBasicInformation_Main" class="side-menu__item" data-toggle="slide" href="#">
+        <i class="feather feather-info sidemenu_icon"></i>
         <span class="side-menu__label Vazir-14px @ClassTextAlign">
-            ؟؟؟؟؟
+            اطلاعات پایه
         </span>
         <i class="@ClassAngle"></i>
     </a>
     <ul class="slide-menu">
         <li class="sub-slide">
-            <a id="SlideMaintenanceMode_ViewAllWindows" class="sub-side-menu__item" data-toggle="sub-slide" asp-area="TelegramBot" asp-controller="Test1" asp-action="Index">
+            <a id="SlideBasicInformation_ViewAllGroups" class="sub-side-menu__item" data-toggle="sub-slide" asp-area="TelegramBot" asp-controller="Group" asp-action="Index">
                 <span class="sub-side-menu__label Vazir-14px" style="@StyleDirection">
-                    ؟؟؟؟؟
-                </span>
-            </a>
-        </li>
-        <li class="sub-slide">
-            <a id="SlideMaintenanceMode_ViewAllUnixLinux" class="sub-side-menu__item" data-toggle="sub-slide" asp-area="TelegramBot" asp-controller="Test2" asp-action="Index">
-                <span class="sub-side-menu__label Vazir-14px" style="@StyleDirection">
-                    ؟؟؟؟؟
-                </span>
-            </a>
-        </li>
-        <li class="sub-slide">
-            <a id="SlideMaintenanceMode_ViewAllGroup" class="sub-side-menu__item" data-toggle="sub-slide" asp-area="TelegramBot" asp-controller="Test3" asp-action="Index">
-                <span class="sub-side-menu__label Vazir-14px" style="@StyleDirection">
-                    ؟؟؟؟؟
+                    گروه ها
                 </span>
             </a>
         </li>
