@@ -1,0 +1,111 @@
+﻿@model ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel
+
+@{
+    bool isCardCollapsed = !default(bool);
+    string cardCollapsed = (isCardCollapsed) ? "card-collapsed" : string.Empty;
+}
+
+@{
+    if (Model is not null)
+        if (Model.Groups is not null)
+        {
+            if (Model.Groups.Any())
+            {
+                <div class="row">
+                    @{
+                        foreach (ATNetCoreTelegramBot.Models.SchemaTelegram.Group group in Model.Groups)
+                        {
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="card border p-0 shadow-none @cardCollapsed">
+                                    <div class="d-flex align-items-center p-4">
+                                        <div>
+                                            <div class="avatar avatar-lg brround d-block cover-image" data-image-src="../../../images/NoUsers/NoProfile-001.jpg"></div>
+                                        </div>
+                                        <div class="wrapper mr-3">
+                                            <p class="mb-0 mt-1 text-dark font-weight-semibold" style="direction:ltr;">
+                                                @group.Name
+                                            </p>
+                                        </div>
+                                        <div class="float-left mr-auto">
+                                            <div class="btn-group mr-3 mb-0">
+                                                <div class="card-options">
+                                                    <a href="#" class="card-options-collapse ml-2" data-toggle="card-collapse">
+                                                        <i class="fe fe-chevron-up"></i>
+                                                    </a>
+                                                    <a href="#" class="card-options-fullscreen ml-2" data-toggle="card-fullscreen">
+                                                        <i class="fe fe-maximize"></i>
+                                                    </a>
+                                                    <a href="#" class="card-options-remove" data-toggle="card-remove">
+                                                        <i class="fe fe-x"></i>
+                                                    </a>
+                                                </div>
+                                                <a href="#" class="option-dots" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-left">
+                                                    <a class="dropdown-item Vazir-14px" asp-area="TelegramBot" asp-controller="Group" asp-action="Display" asp-route-id="@group.Id">
+                                                        <i class="fe fe-eye ml-2"></i>
+                                                        مشاهده
+                                                    </a>
+                                                    <a class="dropdown-item Vazir-14px" asp-area="TelegramBot" asp-controller="Group" asp-action="Edit" asp-route-id="@group.Id">
+                                                        <i class="fe fe-edit ml-2"></i>
+                                                        ویرایش
+                                                    </a>
+                                                    <a class="dropdown-item Vazir-14px" asp-area="TelegramBot" asp-controller="Group" asp-action="Delete" asp-route-id="@group.Id">
+                                                        <i class="fe fe-delete ml-2"></i>
+                                                        حذف
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <div class="d-flex mb-3">
+                                            <div class="h6 mb-0 mt-2">
+                                                <span class="Vazir-Bold-14px">
+                                                    ترتیب
+                                                </span>
+                                                <span class="Vazir-14px">
+                                                    :
+                                                    @group.Ordering
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex mb-3">
+                                            <div class="h6 mb-0 mt-2">
+                                                @{
+                                                    if (group.InsertDateTime != default(DateTime))
+                                                    {
+                                                        <text>
+                                                            @group.InsertDateTime.ToLocalTime().ToLongPersianDate()
+                                                            (
+                                                            @group.InsertDateTime.ToLocalTime().ToLongTimeString()
+                                                            )
+                                                        </text>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-xl-12 col-lg-12">
+                <div class="alert alert-light alert-dismissible text-center Vazir-Light-14px" role="alert">
+                    <button class="close" data-dismiss="alert" aria-hidden="true">
+                        ×
+                    </button>
+                    <i class="fa fa-bell-o ml-2" aria-hidden="true"></i>
+                    در حال حاضر هیچ گروهی وجود ندارد.
+                </div>
+            </div>
+        }
+}
