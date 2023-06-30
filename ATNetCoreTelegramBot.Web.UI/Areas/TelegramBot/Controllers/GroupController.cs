@@ -27,8 +27,8 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly DAL.UnitOfWork _unitOfWork;
 
         private ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel _replyKeyboardMarkupViewModel;
-        private Group? _group;
-        private GroupViewModel? _groupVM;
+        private Group _group;
+        private GroupViewModel _groupVM;
 
         #endregion
 
