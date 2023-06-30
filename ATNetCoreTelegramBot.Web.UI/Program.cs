@@ -183,6 +183,7 @@ services.AddSingleton<ATNetCoreTelegramBot.DAL.UnitOfWork>();
 
 #region Add [Models]
 
+services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Channel>();
 services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Group>();
 
 #endregion
