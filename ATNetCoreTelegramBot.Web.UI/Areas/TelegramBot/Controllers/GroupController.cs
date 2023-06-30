@@ -14,6 +14,7 @@ using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types;
 
 using Newtonsoft.Json;
+using System.Threading.Channels;
 
 namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 {
@@ -381,6 +382,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
                          .GetByID(id);
 
                 ClientForGetException(_group);
+                _group.Name = _group.Name.Split('@')[1];
             }
             catch (Exception ex) when (ex.InnerException is HttpRequestException)
             {
