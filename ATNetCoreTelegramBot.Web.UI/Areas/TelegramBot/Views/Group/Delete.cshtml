@@ -1,0 +1,103 @@
+﻿@model ATNetCoreTelegramBot.Models.SchemaTelegram.Group
+
+@{
+    ViewData["Title"] = "حذف گروه";
+    IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>? pageMessage = TempData["TelegramBotPageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>;
+}
+
+@section BreadCrumbs {
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Delete/_BreadCrumbs", model: null, viewData: null);
+    }
+}
+
+@{
+    if (pageMessage is not null)
+    {
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                @await Component.InvokeAsync("TelegramBotPageMessage", pageMessage)
+            </div>
+        </div>
+    }
+}
+
+@{
+    if (Model is not null)
+    {
+        <div class="row">
+            <div class="col-xl-4 col-md-4 col-lg-4">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <h4 class="card-title Vazir-16px">
+                            @ViewData["Title"]
+                        </h4>
+                        <div class="card-options">
+                            <a href="#" class="card-options-collapse ml-2" data-toggle="card-collapse">
+                                <i class="fe fe-chevron-up"></i>
+                            </a>
+                            <a href="#" class="card-options-fullscreen ml-2" data-toggle="card-fullscreen">
+                                <i class="fe fe-maximize"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="card border p-0 shadow-none ">
+                                <div class="d-flex align-items-center p-4">
+                                    <div>
+                                        <img src="~/images/nousers/noprofile-001.jpg" class="avatar avatar-lg brround d-block cover-image" />
+                                    </div>
+                                    <div class="wrapper mr-3">
+                                        <p class="mb-0 mt-1 text-dark font-weight-semibold" style="direction:ltr;">
+                                            @Model.Name
+                                        </p>
+                                    </div>
+                                    <div class="float-left mr-auto">
+                                        <div class="btn-group mr-3 mb-0">
+                                            <div class="card-options">
+                                                <a href="#" class="card-options-collapse ml-2" data-toggle="card-collapse">
+                                                    <i class="fe fe-chevron-up"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body border-top">
+                                    <p class="text-muted Vazir-14px">
+                                        آیا قصد دارید
+                                        <strong>
+                                            گروه
+                                        </strong>
+                                        فوق را حذف کنید؟
+                                    </p>
+                                </div>
+                                <div class="card-footer" style="padding: 0 !important; margin: 0 !important;">
+                                    <form class="needs-validation was-validated" method="post">
+                                        <a class="btn btn-primary Vazir-10px mr-5" asp-area="" asp-controller="Windows" asp-action="Index">
+                                            <i class="fe fe-x"></i>
+                                        </a>
+                                        <button type="submit" class="btn">
+                                            <div class="btn btn-default Vazir-14px">
+                                                <i class="fe fe-delete ml-2"></i>
+                                                حذف
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section ScriptEndBody {
+    <script>
+        $("#SlideBasicInformation").addClass("is-expanded");
+        $("#SlideBasicInformation_Main").addClass("active");
+        $("#SlideBasicInformation_ViewAllGroups").addClass("active");
+    </script>
+}

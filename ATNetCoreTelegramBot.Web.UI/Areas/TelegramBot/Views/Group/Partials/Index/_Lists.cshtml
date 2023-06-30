@@ -1,5 +1,16 @@
 ﻿@model ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel
 
+@{
+    int paddingBottom = default;
+}
+
+@{
+    if (Model.Groups is null)
+        paddingBottom = 10;
+    else
+        paddingBottom = 100;
+}
+
 <div class="col-xl-12 col-md-12 col-lg-12">
     <div class="card">
         <div class="card-header border-0">
@@ -13,7 +24,7 @@
                 </a>
             </div>
         </div>
-        <div class="card-body" style="padding-bottom: 10px;">
+        <div class="card-body" style="padding-bottom: @(paddingBottom)px;">
             @{
                 await Html.RenderPartialAsync(partialViewName: "Partials/Index/List/_CreateAndSearch", model: Model, viewData: null);
                 await Html.RenderPartialAsync(partialViewName: "Partials/Index/List/_Show", model: Model, viewData: null);
