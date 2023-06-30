@@ -1,4 +1,4 @@
-﻿@model ATNetCoreTelegramBot.Models.SchemaTelegram.Group
+﻿@model ATNetCoreTelegramBot.Models.SchemaTelegram.Channel
 
 @{
     ViewData["Title"] = "حذف گروه";
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="card-footer" style="padding: 0 !important; margin: 0 !important;">
                                     <form class="needs-validation was-validated" method="post">
-                                        <a class="btn btn-primary Vazir-10px mr-5" asp-area="TelegramBot" asp-controller="Group" asp-action="Index">
+                                        <a class="btn btn-primary Vazir-10px mr-5" asp-area="TelegramBot" asp-controller="Channel" asp-action="Index">
                                             <i class="fe fe-x"></i>
                                         </a>
                                         <button type="submit" class="btn">
@@ -98,6 +98,6 @@
     <script>
         $("#SlideBasicInformation").addClass("is-expanded");
         $("#SlideBasicInformation_Main").addClass("active");
-        $("#SlideBasicInformation_ViewAllGroups").addClass("active");
+        $("#SlideBasicInformation_ViewAllChannels").addClass("active");
     </script>
 }
