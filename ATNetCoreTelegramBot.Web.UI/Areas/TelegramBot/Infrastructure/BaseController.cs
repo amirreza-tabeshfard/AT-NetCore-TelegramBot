@@ -17,7 +17,7 @@ public class BaseController : Controller
 
     public BaseController()
     {
-        Token = "6067335133:AAHK5hOnVe5y5dqkLjIzGQ4QsZC_R91U7aA";
+        Token = "6067335133:AAH-xYOoqnZ9hNcd_6nx-6cYgTQ3Xq0GR6M";
     }
 
     #endregion

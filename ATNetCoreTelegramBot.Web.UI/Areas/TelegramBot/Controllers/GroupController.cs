@@ -1,14 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using ATNetCoreTelegramBot.Common.Enums;
 using ATNetCoreTelegramBot.Common.Exceptions;
+using ATNetCoreTelegramBot.Models.SchemaTelegram;
 using ATNetCoreTelegramBot.ViewModels;
 using ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot;
 
+using Telegram.Bot;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Polling;
+using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types;
+
 using Newtonsoft.Json;
-using ATNetCoreTelegramBot.Web.UI.Infrastructure;
-using ATNetCoreTelegramBot.Models.SchemaTelegram;
-using Microsoft.EntityFrameworkCore;
 
 namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 {
@@ -21,6 +28,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly IServiceScope _serviceScope;
         private readonly DAL.UnitOfWork _unitOfWork;
 
+        private ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel _replyKeyboardMarkupViewModel;
         private Group? _group = default;
         private GroupViewModel? _groupVM = default;
 
@@ -42,7 +50,8 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 
             _unitOfWork = _serviceScope.ServiceProvider.GetRequiredService<DAL.UnitOfWork>();
             _group = _serviceScope.ServiceProvider.GetRequiredService<Group>();
-            _groupVM = _serviceScope.ServiceProvider.GetService<GroupViewModel>();
+            _groupVM = _serviceScope.ServiceProvider.GetRequiredService<GroupViewModel>();
+            _replyKeyboardMarkupViewModel = _serviceScope.ServiceProvider.GetRequiredService<ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel>();
         }
 
         public GroupController(ILogger<GroupController> logger,
@@ -90,6 +99,120 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 
                 throw new ClientForGetException(JsonConvert.SerializeObject(_exceptionViewModel));
             }
+        }
+
+        #endregion
+
+        #region Method(s) : Private
+
+        private IEnumerable<Group> AllGroups()
+        {
+            IEnumerable<Group> _groups;
+
+            _groups = _unitOfWork
+                        .SchemaTelegramUnitOfWork
+                        .GroupRepository
+                        .GetByAllGroups
+                        ();
+
+            return _groups;
+        }
+
+        private IEnumerable<string> InitializeChannelAndGroups()
+        {
+            List<string> results = new List<string>();
+            IEnumerable<Group> groups = AllGroups();
+
+            if (groups != null)
+                foreach (Group group in groups)
+                    results.Add(group.Name);
+
+            return results;
+        }
+
+        private IEnumerable<string> InMemberOfGroups(IEnumerable<string> groups, long userId)
+        {
+            List<string> result = new List<string>();
+
+            if (groups != null)
+            {
+                foreach (string group in groups)
+                {
+                    try
+                    {
+                        Task<ChatMember> chatMember = TelegramBotClient.GetChatMemberAsync(group, userId);
+
+                        if (chatMember is not null)
+                            if (chatMember.Result is not null)
+                            {
+                                if (chatMember.Result.Status.ToString().Length > 25)
+                                    result.Add(group);
+
+                                if (chatMember.Result.Status.ToString() == "Left")
+                                    result.Add(group);
+                            }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Method(s) : Public
+
+        public GroupStatus Initialize(Telegram.Bot.Types.User user)
+        {
+            IEnumerable<string> NamesOfGroupsThatTheUserIsNotAMember = default;
+            IEnumerable<string> groupNames = InitializeChannelAndGroups();
+            GroupStatus result = GroupStatus.Unknown;
+            // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            if (groupNames is not null)
+                if (groupNames.Any())
+                {
+                    NamesOfGroupsThatTheUserIsNotAMember = InMemberOfGroups(groupNames, user.Id);
+
+                    if (NamesOfGroupsThatTheUserIsNotAMember is not null)
+                        if (NamesOfGroupsThatTheUserIsNotAMember.Count() != 0)
+                        {
+                            StringBuilder sb = new StringBuilder();
+
+                            sb.AppendLine($"کاربر گرامی (<b><i>{user.Username}</i></b>)");
+                            sb.AppendLine("جهت استفاده از این ربات باید عضو گروه های ذیل شوید.");
+                            sb.AppendLine();
+                            sb.AppendLine("👥 لیست گروه ها");
+
+                            foreach (var item in NamesOfGroupsThatTheUserIsNotAMember)
+                            {
+                                string url = item.Replace("@", "https://t.me/");
+                                sb.AppendLine($"🔘 <a href='{url}'>{item.Replace("@", "")}</a>");
+                            }
+
+                            TelegramBotClient.SendTextMessageAsync(chatId: user.Id,
+                                                                   text: sb.ToString(),
+                                                                   messageThreadId: default,
+                                                                   parseMode: ParseMode.Html,
+                                                                   entities: default,
+                                                                   disableNotification: default,
+                                                                   disableWebPagePreview: default,
+                                                                   protectContent: default,
+                                                                   replyToMessageId: default,
+                                                                   allowSendingWithoutReply: default,
+                                                                   replyMarkup: _replyKeyboardMarkupViewModel.MembershipConfirmation(),
+                                                                   cancellationToken: CancellationToken.None);
+
+                            result = GroupStatus.UnMembered;
+                        }
+                        else
+                            result = GroupStatus.Membered;
+                }
+            // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            return result;
         }
 
         #endregion
