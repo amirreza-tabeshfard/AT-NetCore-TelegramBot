@@ -20,4 +20,15 @@ public interface IChannelRepository :
         (string name, bool isExceptName = false);
 
     #endregion
+
+    #region Full Items
+
+    // All Items
+    IEnumerable<Models.SchemaTelegram.Channel> GetByAllChannels
+        ();
+
+    Task<List<Models.SchemaTelegram.Channel>> GetByAllChannelsAsync
+        ();
+
+    #endregion /Full Items
 }

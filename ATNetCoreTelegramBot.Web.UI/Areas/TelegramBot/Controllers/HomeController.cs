@@ -20,6 +20,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private User _user;
 
         private GroupController _groupController;
+        private static bool _isTelegramBotStart = default;
 
         #endregion
 
@@ -136,7 +137,11 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         {
             try
             {
-                TelegramBotClient.StartReceiving(updateHandler: UpdateHandler, pollingErrorHandler: PollingErrorHandler, receiverOptions: ReceiverOption());
+                if (!_isTelegramBotStart)
+                {
+                    TelegramBotClient.StartReceiving(updateHandler: UpdateHandler, pollingErrorHandler: PollingErrorHandler, receiverOptions: ReceiverOption());
+                    _isTelegramBotStart = true;
+                }
             }
             catch (Exception ex) when (ex.InnerException is HttpRequestException)
             {

@@ -189,6 +189,7 @@ services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Group>();
 
 #region Add [ViewModels]
 
+services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ChannelViewModel>();
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel>();
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.InlineKeyboardMarkupViewModel>();
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel>();
