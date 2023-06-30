@@ -19,6 +19,8 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly IServiceScope _serviceScope;
         private User _user;
 
+        private GroupController _groupController;
+
         #endregion
 
         #region Constructor(s)
@@ -34,6 +36,8 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         {
             _serviceProvider = serviceProvider;
             _serviceScope = _serviceProvider.CreateScope();
+
+            _groupController = _serviceScope.ServiceProvider.GetRequiredService<GroupController>();
         }
 
         public HomeController(ILogger<HomeController> logger,
@@ -97,9 +101,13 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             try
             {
-                if (user is not null)
+                if (message.Text is not null)
                 {
+                    if (user is not null)
+                        groupStatus = _groupController.Initialize(user);
 
+                    if (groupStatus == GroupStatus.UnMembered)
+                        return;
                 }
             }
             catch (Exception ex)

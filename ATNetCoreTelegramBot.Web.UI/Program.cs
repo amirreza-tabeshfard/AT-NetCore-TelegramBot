@@ -190,6 +190,14 @@ services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Group>();
 #region Add [ViewModels]
 
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel>();
+services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.InlineKeyboardMarkupViewModel>();
+services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel>();
+
+#endregion
+
+#region Add [Web.UI]
+
+services.AddScoped<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers.GroupController>();
 
 #endregion
 
