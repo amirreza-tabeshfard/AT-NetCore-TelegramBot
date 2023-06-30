@@ -8,6 +8,7 @@ using ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot;
 using Newtonsoft.Json;
 using ATNetCoreTelegramBot.Web.UI.Infrastructure;
 using ATNetCoreTelegramBot.Models.SchemaTelegram;
+using Microsoft.EntityFrameworkCore;
 
 namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 {
@@ -20,7 +21,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly IServiceScope _serviceScope;
         private readonly DAL.UnitOfWork _unitOfWork;
 
-        private Models.SchemaTelegram.Group? _group = default;
+        private Group? _group = default;
         private GroupViewModel? _groupVM = default;
 
         #endregion
@@ -40,7 +41,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             _serviceScope = _serviceProvider.CreateScope();
 
             _unitOfWork = _serviceScope.ServiceProvider.GetRequiredService<DAL.UnitOfWork>();
-            _group = _serviceScope.ServiceProvider.GetRequiredService<Models.SchemaTelegram.Group>();
+            _group = _serviceScope.ServiceProvider.GetRequiredService<Group>();
             _groupVM = _serviceScope.ServiceProvider.GetService<GroupViewModel>();
         }
 
@@ -112,7 +113,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
                 _groupVM.Groups = _unitOfWork
                                   .SchemaTelegramUnitOfWork
                                   .GroupRepository
-                                  .GetByAllGroups() ;
+                                  .GetByAllGroups();
 
                 if (!_groupVM.Groups.Any())
                     _groupVM.Groups = default;
@@ -132,7 +133,10 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             {
                 TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
             }
+            finally
+            {
 
+            }
             return View(_groupVM);
         }
 
@@ -148,7 +152,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name,Ordering,InsertDateTime")] Models.SchemaTelegram.Group model)
+        public IActionResult Create([Bind("Name,Ordering")] Group model)
         {
             try
             {
@@ -184,7 +188,10 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             {
                 TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
             }
+            finally
+            {
 
+            }
             return View(_group);
         }
 
@@ -198,6 +205,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             try
             {
                 ClientForGetException(id);
+
                 _group = _unitOfWork
                          .SchemaTelegramUnitOfWork
                          .GroupRepository
@@ -226,7 +234,121 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             {
                 TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
             }
+            finally
+            {
 
+            }
+            return View(_group);
+        }
+
+        #endregion
+
+        #region Edit
+
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                _group = _unitOfWork
+                         .SchemaTelegramUnitOfWork
+                         .GroupRepository
+                         .GetByID(id);
+
+                ClientForGetException(_group);
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_group);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Guid id, [Bind("Name,Ordering")] Group model)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                if (ModelState.IsValid)
+                {
+                    _group = _unitOfWork
+                             .SchemaTelegramUnitOfWork
+                             .GroupRepository
+                             .GetByID(id);
+
+                    ClientForGetException(_group);
+
+                    _group.Name = string.Concat("@", model.Name);
+                    _group.Ordering = model.Ordering;
+
+                    _unitOfWork
+                        .SchemaTelegramUnitOfWork
+                        .GroupRepository
+                        .Update(_group)
+                        ;
+
+                    _unitOfWork
+                        .SaveChanges();
+
+                    return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
+                }
+
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "DbUpdateConcurrencyException", ex.Message));
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
             return View(_group);
         }
 
