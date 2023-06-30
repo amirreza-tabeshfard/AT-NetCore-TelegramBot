@@ -1,0 +1,35 @@
+﻿@model ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ChannelViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>? pageMessage = TempData["TelegramBotPageMessages"] as IEnumerable<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Infrastructure.TelegramBotPageMessage>;
+}
+
+@section BreadCrumbs {
+    @{
+        await Html.RenderPartialAsync(partialViewName: "Partials/Index/_BreadCrumbs", model: null, viewData: null);
+    }
+}
+
+@{
+    if (pageMessage is not null)
+    {
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                @await Component.InvokeAsync("TelegramBotPageMessage", pageMessage)
+            </div>
+        </div>
+    }
+}
+
+@{
+    if (Model is not null)
+    {
+        <div class="row">
+            @{
+                await Html.RenderPartialAsync(partialViewName: "Partials/Index/_Widgets", model: Model, viewData: null);
+                await Html.RenderPartialAsync(partialViewName: "Partials/Index/_Lists", model: Model, viewData: null);
+            }
+        </div>
+    }
+}

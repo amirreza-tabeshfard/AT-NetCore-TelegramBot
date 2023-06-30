@@ -130,4 +130,33 @@ public class ChannelRepository :
     }
 
     #endregion
+
+    #region Full Items
+
+    // All Items
+    public IEnumerable<Models.SchemaTelegram.Channel> GetByAllChannels
+        ()
+    {
+        IEnumerable<Models.SchemaTelegram.Channel> oEntities =
+            Get()
+            .OrderBy(current => current.Name)
+            .ToList()
+            ;
+
+        return oEntities;
+    }
+
+    public Task<List<Models.SchemaTelegram.Channel>> GetByAllChannelsAsync
+        ()
+    {
+        Task<List<Models.SchemaTelegram.Channel>> oEntities =
+            Get()
+            .OrderBy(current => current.Name)
+            .ToListAsync()
+            ;
+
+        return oEntities;
+    }
+
+    #endregion /Full Items
 }

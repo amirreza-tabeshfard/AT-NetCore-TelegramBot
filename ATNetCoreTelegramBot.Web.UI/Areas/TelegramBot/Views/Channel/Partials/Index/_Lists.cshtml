@@ -1,0 +1,34 @@
+﻿@model ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ChannelViewModel
+
+@{
+    int paddingBottom = default;
+}
+
+@{
+    if (Model.Channels is null)
+        paddingBottom = 10;
+    else
+        paddingBottom = 100;
+}
+
+<div class="col-xl-12 col-md-12 col-lg-12">
+    <div class="card">
+        <div class="card-header border-0">
+            <h4 class="card-title Vazir-16px">
+                لیست
+                کانال ها
+            </h4>
+            <div class="card-options">
+                <a href="#" class="card-options-fullscreen ml-2" data-toggle="card-fullscreen">
+                    <i class="fe fe-maximize"></i>
+                </a>
+            </div>
+        </div>
+        <div class="card-body" style="padding-bottom: @(paddingBottom)px;">
+            @{
+                await Html.RenderPartialAsync(partialViewName: "Partials/Index/List/_CreateAndSearch", model: Model, viewData: null);
+                await Html.RenderPartialAsync(partialViewName: "Partials/Index/List/_Show", model: Model, viewData: null);
+            }
+        </div>
+    </div>
+</div>

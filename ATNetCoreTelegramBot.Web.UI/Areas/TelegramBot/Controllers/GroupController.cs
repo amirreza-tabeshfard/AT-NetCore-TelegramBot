@@ -10,8 +10,6 @@ using ATNetCoreTelegramBot.ViewModels;
 using ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot;
 
 using Telegram.Bot;
-using Telegram.Bot.Exceptions;
-using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types;
 
@@ -29,8 +27,8 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly DAL.UnitOfWork _unitOfWork;
 
         private ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel _replyKeyboardMarkupViewModel;
-        private Group? _group = default;
-        private GroupViewModel? _groupVM = default;
+        private Group? _group;
+        private GroupViewModel? _groupVM;
 
         #endregion
 
