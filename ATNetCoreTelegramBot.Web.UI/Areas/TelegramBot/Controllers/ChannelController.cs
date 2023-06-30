@@ -1,13 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using ATNetCoreTelegramBot.Common.Enums;
 using ATNetCoreTelegramBot.Common.Exceptions;
 using ATNetCoreTelegramBot.Models.SchemaTelegram;
 using ATNetCoreTelegramBot.ViewModels;
 using ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot;
-using System.Threading.Channels;
+
+using Telegram.Bot;
+using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types;
+
 using Newtonsoft.Json;
-using System.Text.RegularExpressions;
 
 namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 {
@@ -20,7 +26,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly IServiceScope _serviceScope;
         private readonly DAL.UnitOfWork _unitOfWork;
 
-        private Models.SchemaTelegram.Channel _channel;
+        private Channel _channel;
         private ChannelViewModel _channelVM;
 
         #endregion
@@ -40,7 +46,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             _serviceScope = _serviceProvider.CreateScope();
 
             _unitOfWork = _serviceScope.ServiceProvider.GetRequiredService<DAL.UnitOfWork>();
-            _channel = _serviceScope.ServiceProvider.GetRequiredService<Models.SchemaTelegram.Channel>();
+            _channel = _serviceScope.ServiceProvider.GetRequiredService<Channel>();
             _channelVM = _serviceScope.ServiceProvider.GetRequiredService<ChannelViewModel>();
         }
 
@@ -73,7 +79,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             }
         }
 
-        private void ClientForGetException(Models.SchemaTelegram.Channel channel)
+        private void ClientForGetException(Channel channel)
         {
             ExceptionViewModel _exceptionViewModel = default;
             // -----------------------------------------------------------------------------------------------------------------------------------------
@@ -151,7 +157,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name,Ordering")] Models.SchemaTelegram.Channel model)
+        public IActionResult Create([Bind("Name,Ordering")] Channel model)
         {
             try
             {
@@ -226,6 +232,120 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
                 TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
                 TempData["StatusMessage"] = exceptionViewModel.Message;
                 return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_channel);
+        }
+
+        #endregion
+
+        #region Edit
+
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                _channel = _unitOfWork
+                            .SchemaTelegramUnitOfWork
+                            .ChannelRepository
+                            .GetByID(id);
+
+                ClientForGetException(_channel);
+
+                _channel.Name = _channel.Name.Split('@')[1];
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_channel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Guid id, [Bind("Name,Ordering")] Channel model)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                if (ModelState.IsValid)
+                {
+                    _channel = _unitOfWork
+                                .SchemaTelegramUnitOfWork
+                                .ChannelRepository
+                                .GetByID(id);
+
+                    ClientForGetException(_channel);
+
+                    _channel.Name = string.Concat("@", model.Name);
+                    _channel.Ordering = model.Ordering;
+
+                    _unitOfWork
+                        .SchemaTelegramUnitOfWork
+                        .ChannelRepository
+                        .Update(_channel)
+                        ;
+
+                    _unitOfWork
+                        .SaveChanges();
+
+                    TempData["AlertSeverity"] = (int)AlertSeverity.Success;
+                    TempData["StatusMessage"] = $"کانال {_channel.Name} با موفقیت به روز رسانی گردید.";
+                    return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+                }
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "DbUpdateConcurrencyException", ex.Message));
             }
             catch (TimeoutException ex)
             {
