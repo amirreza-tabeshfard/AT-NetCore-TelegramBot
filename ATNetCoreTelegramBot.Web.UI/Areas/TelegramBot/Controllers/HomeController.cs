@@ -17,8 +17,6 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly IServiceScope _serviceScope;
-
-        private readonly TelegramBotClient _telegramBotClient;
         private User _user;
 
         #endregion
@@ -28,7 +26,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private HomeController()
              : base()
         {
-            _telegramBotClient = new TelegramBotClient(Token);
+            TelegramBotClient = new TelegramBotClient(Token);
         }
 
         private HomeController(IServiceProvider serviceProvider)
@@ -99,7 +97,10 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             try
             {
+                if (user is not null)
+                {
 
+                }
             }
             catch (Exception ex)
             {
@@ -127,7 +128,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         {
             try
             {
-                _telegramBotClient.StartReceiving(updateHandler: UpdateHandler, pollingErrorHandler: PollingErrorHandler, receiverOptions: ReceiverOption());
+                TelegramBotClient.StartReceiving(updateHandler: UpdateHandler, pollingErrorHandler: PollingErrorHandler, receiverOptions: ReceiverOption());
             }
             catch (Exception ex) when (ex.InnerException is HttpRequestException)
             {
@@ -142,7 +143,10 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             {
                 TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
             }
+            finally
+            {
 
+            }
             return View();
         }
 
