@@ -363,5 +363,114 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         }
 
         #endregion
+
+        #region Delete
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                _channel = _unitOfWork
+                            .SchemaTelegramUnitOfWork
+                            .ChannelRepository
+                            .GetByID(id);
+
+                ClientForGetException(_channel);
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_channel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                if (ModelState.IsValid)
+                {
+                    _channel = _unitOfWork
+                                .SchemaTelegramUnitOfWork
+                                .ChannelRepository
+                                .GetByID(id);
+
+                    ClientForGetException(_channel);
+
+                    _unitOfWork
+                        .SchemaTelegramUnitOfWork
+                        .ChannelRepository
+                        .Delete(_channel)
+                        ;
+
+                    _unitOfWork
+                        .SaveChanges();
+
+                    TempData["AlertSeverity"] = (int)AlertSeverity.Success;
+                    TempData["StatusMessage"] = $"کانال {_channel.Name} با موفقیت حذف گردید.";
+                    return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+                }
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "DbUpdateConcurrencyException", ex.Message));
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_channel);
+        }
+
+        #endregion
     }
 }
