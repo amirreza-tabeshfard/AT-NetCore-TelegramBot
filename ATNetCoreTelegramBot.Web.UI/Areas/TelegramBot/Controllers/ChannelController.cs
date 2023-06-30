@@ -6,6 +6,8 @@ using ATNetCoreTelegramBot.Models.SchemaTelegram;
 using ATNetCoreTelegramBot.ViewModels;
 using ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot;
 using System.Threading.Channels;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 {
@@ -47,6 +49,46 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             : this(serviceProvider)
         {
             _logger = logger;
+        }
+
+        #endregion
+
+        #region Method(s): Exception
+
+        private void ClientForGetException(Guid? id)
+        {
+            ExceptionViewModel _exceptionViewModel = default;
+            // -----------------------------------------------------------------------------------------------------------------------------------------
+            if (id.Equals(default(Guid)))
+            {
+                _exceptionViewModel = new ExceptionViewModel()
+                {
+                    Title = default,
+                    Message = $"شناسه وارد شده صحیح نمی باشد",
+                    Alignment = Alignment.Right,
+                    AlertSeverity = AlertSeverity.Error
+                };
+
+                throw new ClientForGetException(JsonConvert.SerializeObject(_exceptionViewModel));
+            }
+        }
+
+        private void ClientForGetException(Models.SchemaTelegram.Channel channel)
+        {
+            ExceptionViewModel _exceptionViewModel = default;
+            // -----------------------------------------------------------------------------------------------------------------------------------------
+            if (channel is null)
+            {
+                _exceptionViewModel = new ExceptionViewModel()
+                {
+                    Title = default,
+                    Message = $"شناسه وارد شده صحیح نمی باشد",
+                    Alignment = Alignment.Right,
+                    AlertSeverity = AlertSeverity.Error
+                };
+
+                throw new ClientForGetException(JsonConvert.SerializeObject(_exceptionViewModel));
+            }
         }
 
         #endregion
@@ -138,6 +180,52 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             {
                 TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
                 TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_channel);
+        }
+
+        #endregion
+
+        #region Details
+
+        [HttpGet]
+        public IActionResult Details(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                _channel = _unitOfWork
+                            .SchemaTelegramUnitOfWork
+                            .ChannelRepository
+                            .GetByID(id);
+
+                ClientForGetException(_channel);
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Channel", routeValues: new { Area = "TelegramBot" });
             }
             catch (TimeoutException ex)
             {
