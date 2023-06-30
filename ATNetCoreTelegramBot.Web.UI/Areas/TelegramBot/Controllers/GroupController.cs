@@ -172,6 +172,8 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
                     _unitOfWork
                         .SaveChanges();
 
+                    TempData["AlertSeverity"] = (int)AlertSeverity.Success;
+                    TempData["StatusMessage"] = $"گروه {_group.Name} با موفقیت ثبت گردید.";
                     return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
                 }
             }
@@ -316,9 +318,119 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
                     _unitOfWork
                         .SaveChanges();
 
+                    TempData["AlertSeverity"] = (int)AlertSeverity.Success;
+                    TempData["StatusMessage"] = $"گروه {_group.Name} با موفقیت به روز رسانی گردید.";
                     return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
                 }
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
 
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "DbUpdateConcurrencyException", ex.Message));
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_group);
+        }
+
+        #endregion
+
+        #region Delete
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                _group = _unitOfWork
+                         .SchemaTelegramUnitOfWork
+                         .GroupRepository
+                         .GetByID(id);
+
+                ClientForGetException(_group);
+            }
+            catch (Exception ex) when (ex.InnerException is HttpRequestException)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "Service", $"هیچ ارتباطی با سرویس فوق برقرار نبوده و ارتباط ماشین با سرویس قطع می باشد.", "(عدم ارتباط با سرویس دهنده)"));
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Information, title: "Service", $"ممکن است، سرویس فوق در حال به روز رسانی بوده و یا خاموش می باشد."));
+            }
+            catch (ClientForGetException cex)
+            {
+                ExceptionViewModel? exceptionViewModel = JsonConvert.DeserializeObject<ExceptionViewModel>(cex.Message);
+
+                TempData["AlertSeverity"] = (int)exceptionViewModel.AlertSeverity;
+                TempData["StatusMessage"] = exceptionViewModel.Message;
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
+            }
+            catch (TimeoutException ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "TimeoutException", ex.Message));
+            }
+            catch (Exception ex)
+            {
+                TelegramBotPageMessages.Add(new Infrastructure.TelegramBotPageMessage(alertSeverity: AlertSeverity.Error, title: "خطای سیستمی", "[ Message ]", ex.Message));
+            }
+            finally
+            {
+
+            }
+            return View(_group);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(Guid id)
+        {
+            try
+            {
+                ClientForGetException(id);
+
+                if (ModelState.IsValid)
+                {
+                    _group = _unitOfWork
+                             .SchemaTelegramUnitOfWork
+                             .GroupRepository
+                             .GetByID(id);
+
+                    ClientForGetException(_group);
+
+                    _unitOfWork
+                        .SchemaTelegramUnitOfWork
+                        .GroupRepository
+                        .Delete(_group)
+                        ;
+
+                    _unitOfWork
+                        .SaveChanges();
+
+                    TempData["AlertSeverity"] = (int)AlertSeverity.Success;
+                    TempData["StatusMessage"] = $"گروه {_group.Name} با موفقیت حذف گردید.";
+                    return RedirectToAction(actionName: nameof(Index), controllerName: "Group", routeValues: new { Area = "TelegramBot" });
+                }
             }
             catch (Exception ex) when (ex.InnerException is HttpRequestException)
             {
