@@ -32,7 +32,7 @@ English | [Persian](./README.fa-IR.md)
 <div>
   <ul>
     <li>/start</li>
-    <li>//help</li>
+    <li>/help</li>
     <li>/profile</li>
     <li>/aboutus</li>
     <li>/setting</li>
