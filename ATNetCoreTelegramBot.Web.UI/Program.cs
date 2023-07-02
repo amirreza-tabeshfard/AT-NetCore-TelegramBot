@@ -185,6 +185,7 @@ services.AddSingleton<ATNetCoreTelegramBot.DAL.UnitOfWork>();
 
 services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Channel>();
 services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.Group>();
+services.AddScoped<ATNetCoreTelegramBot.Models.SchemaTelegram.User>();
 
 #endregion
 
@@ -194,6 +195,7 @@ services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ChannelView
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.GroupViewModel>();
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.InlineKeyboardMarkupViewModel>();
 services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel>();
+services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.UserViewModel>();
 
 #endregion
 
