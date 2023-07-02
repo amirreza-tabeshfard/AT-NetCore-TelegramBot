@@ -1,0 +1,9 @@
+﻿@model ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.UserViewModel
+
+<div class="col-xl-12 col-md-12 col-lg-12">
+    <div class="row">
+        @{
+            await Html.RenderPartialAsync(partialViewName: "Partials/Index/Widget/_TotalUsers", model: Model, viewData: null);
+        }
+    </div>
+</div>

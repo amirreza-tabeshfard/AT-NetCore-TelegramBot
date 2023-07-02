@@ -14,7 +14,7 @@ internal static class Program
 
     static Program()
     {
-        Token = "6105915531:AAEaNaJWSJyqlrMo1vVxYM1iTU6sPT7KEgg";
+        Token = "6067335133:AAH-xYOoqnZ9hNcd_6nx-6cYgTQ3Xq0GR6M";
     }
 
     [STAThread]
