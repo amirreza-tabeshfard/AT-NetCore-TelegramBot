@@ -19,6 +19,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly IServiceScope _serviceScope;
         private User _user;
 
+        private ChannelController _channelController;
         private GroupController _groupController;
         private static bool _isTelegramBotStart = default;
 
@@ -38,6 +39,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             _serviceProvider = serviceProvider;
             _serviceScope = _serviceProvider.CreateScope();
 
+            _channelController = _serviceScope.ServiceProvider.GetRequiredService<ChannelController>();
             _groupController = _serviceScope.ServiceProvider.GetRequiredService<GroupController>();
         }
 
@@ -93,6 +95,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             Chat? chat = default;
             User? user = default;
             MessageType type = default;
+            ChannelStatus channelStatus = default;
             GroupStatus groupStatus = default;
             // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             message = update.Message;
@@ -105,9 +108,12 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
                 if (message.Text is not null)
                 {
                     if (user is not null)
+                    {
+                        channelStatus = _channelController.Initialize(user);
                         groupStatus = _groupController.Initialize(user);
+                    }
 
-                    if (groupStatus == GroupStatus.UnMembered)
+                    if ((channelStatus == ChannelStatus.UnMembered) || (groupStatus == GroupStatus.UnMembered))
                         return;
                 }
             }

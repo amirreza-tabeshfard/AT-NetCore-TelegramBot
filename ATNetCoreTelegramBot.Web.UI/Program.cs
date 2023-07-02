@@ -199,6 +199,7 @@ services.AddScoped<ATNetCoreTelegramBot.ViewModels.Areas.TelegramBot.ReplyKeyboa
 
 #region Add [Web.UI]
 
+services.AddScoped<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers.ChannelController>();
 services.AddScoped<ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers.GroupController>();
 
 #endregion

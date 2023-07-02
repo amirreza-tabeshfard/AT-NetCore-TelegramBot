@@ -1,6 +1,6 @@
 ﻿namespace ATNetCoreTelegramBot.Common.Enums;
 
-public enum ChannelStatus : SByte
+public enum GroupStatus : SByte
 {
     Unknown = 0,
 

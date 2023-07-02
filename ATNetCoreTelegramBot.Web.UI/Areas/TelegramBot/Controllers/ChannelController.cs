@@ -26,6 +26,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
         private readonly IServiceScope _serviceScope;
         private readonly DAL.UnitOfWork _unitOfWork;
 
+        private ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel _replyKeyboardMarkupViewModel;
         private Channel _channel;
         private ChannelViewModel _channelVM;
 
@@ -48,6 +49,7 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
             _unitOfWork = _serviceScope.ServiceProvider.GetRequiredService<DAL.UnitOfWork>();
             _channel = _serviceScope.ServiceProvider.GetRequiredService<Channel>();
             _channelVM = _serviceScope.ServiceProvider.GetRequiredService<ChannelViewModel>();
+            _replyKeyboardMarkupViewModel = _serviceScope.ServiceProvider.GetRequiredService<ViewModels.Areas.TelegramBot.ReplyKeyboardMarkupViewModel>();
         }
 
         public ChannelController(ILogger<ChannelController> logger,
@@ -95,6 +97,119 @@ namespace ATNetCoreTelegramBot.Web.UI.Areas.TelegramBot.Controllers
 
                 throw new ClientForGetException(JsonConvert.SerializeObject(_exceptionViewModel));
             }
+        }
+
+        #endregion
+
+        #region Method(s) : Private
+
+        private IEnumerable<Channel> AllChannels()
+        {
+            IEnumerable<Channel> _channels;
+
+            _channels = _unitOfWork
+                        .SchemaTelegramUnitOfWork
+                        .ChannelRepository
+                        .GetByAllChannels();
+
+            return _channels;
+        }
+
+        private IEnumerable<string> InitializeChannels()
+        {
+            List<string> results = new List<string>();
+            IEnumerable<Channel> channels = AllChannels();
+
+            if (channels != null)
+                foreach (Channel channel in channels)
+                    results.Add(channel.Name);
+
+            return results;
+        }
+
+        private IEnumerable<string> InMemberOfGroups(IEnumerable<string> groups, long userId)
+        {
+            List<string> result = new List<string>();
+
+            if (groups != null)
+            {
+                foreach (string group in groups)
+                {
+                    try
+                    {
+                        Task<ChatMember> chatMember = TelegramBotClient.GetChatMemberAsync(group, userId);
+
+                        if (chatMember is not null)
+                            if (chatMember.Result is not null)
+                            {
+                                if (chatMember.Result.Status.ToString().Length > 25)
+                                    result.Add(group);
+
+                                if (chatMember.Result.Status.ToString() == "Left")
+                                    result.Add(group);
+                            }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Method(s) : Public
+
+        public ChannelStatus Initialize(Telegram.Bot.Types.User user)
+        {
+            IEnumerable<string> NamesOfChannelsThatTheUserIsNotAMember = default;
+            IEnumerable<string> channelNames = InitializeChannels();
+            ChannelStatus result = ChannelStatus.Unknown;
+            // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            if (channelNames is not null)
+                if (channelNames.Any())
+                {
+                    NamesOfChannelsThatTheUserIsNotAMember = InMemberOfGroups(channelNames, user.Id);
+
+                    if (NamesOfChannelsThatTheUserIsNotAMember is not null)
+                        if (NamesOfChannelsThatTheUserIsNotAMember.Count() != 0)
+                        {
+                            StringBuilder sb = new StringBuilder();
+
+                            sb.AppendLine($"کاربر گرامی (<b><i>{user.Username}</i></b>)");
+                            sb.AppendLine("جهت استفاده از این ربات باید عضو کانال های ذیل شوید.");
+                            sb.AppendLine();
+                            sb.AppendLine("👥 لیست کانال ها");
+
+                            foreach (var item in NamesOfChannelsThatTheUserIsNotAMember)
+                            {
+                                string url = item.Replace("@", "https://t.me/");
+                                sb.AppendLine($"🔘 <a href='{url}'>{item.Replace("@", "")}</a>");
+                            }
+
+                            TelegramBotClient.SendTextMessageAsync(chatId: user.Id,
+                                                                   text: sb.ToString(),
+                                                                   messageThreadId: default,
+                                                                   parseMode: ParseMode.Html,
+                                                                   entities: default,
+                                                                   disableNotification: default,
+                                                                   disableWebPagePreview: default,
+                                                                   protectContent: default,
+                                                                   replyToMessageId: default,
+                                                                   allowSendingWithoutReply: default,
+                                                                   replyMarkup: _replyKeyboardMarkupViewModel.MembershipConfirmation(),
+                                                                   cancellationToken: CancellationToken.None);
+
+                            result = ChannelStatus.UnMembered;
+                        }
+                        else
+                            result = ChannelStatus.Membered;
+                }
+            // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            return result;
         }
 
         #endregion
